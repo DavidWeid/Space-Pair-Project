@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.css"
+import "./style.css";
 
 // This is just for showing what some of the pics are that we are going to get back
 
-const ExampleCall = (props) => {
+const ExampleCall = props => {
   console.log(props.photos);
   return (
     <div className="container">
@@ -13,14 +13,13 @@ const ExampleCall = (props) => {
             <img src={pic.img_src} alt="rover pic" key={pic.id} />
           ))}
         </div>
-
       ) : (
-          <div>
-            <h2>No pics here</h2>
-          </div>
-        )}
+        <div>
+          <h2>No pics here</h2>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default ExampleCall;

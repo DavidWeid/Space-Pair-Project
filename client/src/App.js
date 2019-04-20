@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-
 import API from "./utils/API";
 
+// Pages
+import Main from "./pages/Main";
+
 // Components
+import Navbar from "./components/Navbar";
+import Wrapper from "./components/Wrapper";
 import ExampleCall from "./components/ExampleCall"
 
 class App extends Component {
@@ -24,11 +28,14 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-
   render() {
     return (
       <Router>
-        <ExampleCall photos={this.state.photos} />
+        {/* <Navbar /> */}
+        {/* <Wrapper> */}
+          {/* <Route exact path="/" component={Main} /> */}
+          <ExampleCall photos={this.state.photos} />
+        {/* </Wrapper> */}
       </Router>
     );
   }
