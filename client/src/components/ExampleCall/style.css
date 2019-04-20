@@ -1,0 +1,13 @@
+.container{
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.container img{
+  display: block;
+  margin-bottom: .5em;
+}

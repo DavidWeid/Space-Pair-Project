@@ -2,7 +2,7 @@ import Axios from "axios";
 
 // Need to move API key to a .env file.
 
-const key = ""
+const key = "12L8xvuLDTMsLDT4dKrb5xyk5H7b6HZfsJfVZImI"
 
 export default {
 
