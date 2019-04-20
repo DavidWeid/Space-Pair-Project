@@ -1,8 +1,7 @@
 import Axios from "axios";
 
-// Need to move API key to a .env file.
-
-const key = "12L8xvuLDTMsLDT4dKrb5xyk5H7b6HZfsJfVZImI"
+// Getting the api key from process.env
+const key = process.env.REACT_APP_NASA_KEY;
 
 export default {
 
