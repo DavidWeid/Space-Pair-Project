@@ -4,7 +4,9 @@ import "./App.css";
 import API from "./utils/API";
 
 // Pages
-import Main from "./pages/Main";
+import Forum from "./pages/Forum";
+import Data from "./pages/Data";
+import Profile from "./pages/Profile";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -31,11 +33,13 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* <Navbar /> */}
-        {/* <Wrapper> */}
-          {/* <Route exact path="/" component={Main} /> */}
-          <ExampleCall photos={this.state.photos} />
-        {/* </Wrapper> */}
+        <Navbar brand="Science" pageOne="Data" pageTwo="Forum" pageThree="Profile" />
+        <Wrapper>
+          <Route exact path="/Forum" component={Forum} />
+          <Route exact path="/Data" component={Data} />
+          <Route exact path="/Profile" component={Profile} />
+          {/* <ExampleCall photos={this.state.photos} /> */}
+        </Wrapper>
       </Router>
     );
   }
