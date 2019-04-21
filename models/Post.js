@@ -41,6 +41,10 @@ const PostSchema = new Schema({
     default: 0
   },
 
+  createdAt: {
+    type: Date,
+  },
+
   // End Common information -----------------------------------------------------------------
 
   // Selective Information, each post will fullfill all of the options in the correct section to save
@@ -134,5 +138,12 @@ const PostSchema = new Schema({
 
 
 });
+
+PostSchema.pre('save', function(next) {
+  if (!this.createdAt) {
+    this.createdAt = Date.now()
+  }
+  next()
+})
 
 module.exports = Post = mongoose.model("Post", PostSchema);
