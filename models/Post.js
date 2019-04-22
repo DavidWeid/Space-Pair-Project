@@ -2,14 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-
   // All Posts will share this information in this top section
 
   type: {
     // This will be either a Rover Pic, an Article Post, or a Discussion Post
     // roverPic, article, discussion
     type: String,
-    requried: true
+    required: true
   },
 
   userComment: {
@@ -26,14 +25,13 @@ const PostSchema = new Schema({
 
   username: {
     // Optional field, if we want to post Usernames to the forum
-    type: String,
-    required: true
+    type: String
   },
 
   commentIDs: {
     // Array of all of the comment _ids associated with this post
     type: Array,
-    default: [],
+    default: []
   },
 
   likes: {
@@ -43,6 +41,7 @@ const PostSchema = new Schema({
 
   createdAt: {
     type: Date,
+    default: Date.now
   },
 
   // End Common information -----------------------------------------------------------------
@@ -53,62 +52,62 @@ const PostSchema = new Schema({
   roverName: {
     // Rover Name that took the pic
     type: String,
-    default: ''
+    default: ""
   },
 
   roverImg: {
     // Img_src that the API returns
     type: String,
-    default: ''
+    default: ""
   },
 
   roverCamera: {
     // Camera that took the roverImg
     type: String,
-    default: ''
+    default: ""
   },
 
   roverSol: {
     // Martian Day the photo was taken
     type: String,
-    default: ''
+    default: ""
   },
 
   roverEarthDate: {
     // Earth Day the photo was taken
     type: String,
-    default: ''
+    default: ""
   },
 
   // Article Section--------------------------------------------------------------------------
   articleTitle: {
     // Title of Article from scrape
     type: String,
-    default: ''
+    default: ""
   },
 
   articleImg: {
     // Image from Article scrape
     type: String,
-    default: ''
+    default: ""
   },
 
   articleAuthor: {
     // Author of the Article
     type: String,
-    default: ''
+    default: ""
   },
 
   articleURL: {
     // Location of the Article
     type: String,
-    default: ''
+    default: ""
   },
 
   articleDescription: {
     // Description of the Article from scrape
     type: String,
-    default: ''
+    default: ""
   },
 
   // User Post Section---------------------------------------------------------------------------
@@ -116,7 +115,7 @@ const PostSchema = new Schema({
   postTitle: {
     // Title user wants to give the post
     type: String,
-    default: ''
+    default: ""
   },
 
   // Post Content will be stored in the userComment item in shared information area
@@ -126,24 +125,21 @@ const PostSchema = new Schema({
     // Maybe have a set number of things that can give the post different styles
     // i.e. theme = rocket launch then the color scheme might be different
     type: String,
-    default: ''
+    default: ""
   }
-
 
   // There will probably be more that we will add to this, but this is what I could think of as a start.
 
   // We could also try a different structure that checks for Boolean values earlier in the insertion,
   // so if we make the type an object with 3 booleans, we could use that to shape the model.
   // This way that we have already is more blunt but should be pretty effective
-
-
 });
 
-PostSchema.pre('save', function(next) {
+PostSchema.pre("save", function(next) {
   if (!this.createdAt) {
-    this.createdAt = Date.now()
+    this.createdAt = Date.now();
   }
-  next()
-})
+  next();
+});
 
 module.exports = Post = mongoose.model("Post", PostSchema);
