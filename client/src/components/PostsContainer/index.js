@@ -18,7 +18,7 @@ const PostsContainer = props => {
                 alt="Rover Image"
               />
               <div className="card-body">
-                <p className="card-text">Rover Pic: {props.userComment}</p>
+                <p className="card-text">{post.userComment}</p>
               </div>
             </div>
           </div>
