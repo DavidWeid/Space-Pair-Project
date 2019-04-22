@@ -5,6 +5,16 @@ const key = process.env.REACT_APP_NASA_KEY;
 
 export default {
   // This will just return the pictures from Opportunity from all of it's cameras on sol 45
+  /* res.data = a photos array(12)
+    res.data.photos[0] = {
+      camera: {id, name, rover_id, full_name}, 
+      earth_date, 
+      id, 
+      img_src, 
+      rover: {cameras, id, landing_date, launch_date, max_date, max_sol, name, status, total_photos},
+      sol
+    } 
+  */
   exampleAPI() {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=45&camera=FHAZ&api_key=${key}`
