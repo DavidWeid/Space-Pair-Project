@@ -33,5 +33,9 @@ export default {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${camera}&api_key=${key}`
     );
+  },
+
+  getAllPosts() {
+    return Axios.get("/api/posts/");
   }
 };

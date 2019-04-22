@@ -4,10 +4,18 @@
   background-color: blanchedalmond;
 }
 
-/* .forum-row {
-    width: 100% !important;
-    background-color: red;
-} */
+.info-column,
+.posts-column {
+  padding-top: 2%;
+}
+
+.info-column {
+  background-color: cadetblue;
+}
+
+.info-column .row {
+  padding: 2%;
+}
 
 @media all and (max-width: 800px) {
   .forum-container {
@@ -21,7 +29,7 @@
     margin: 1em auto !important;
   }
 
-  .form-row{
+  .form-row {
     width: 100%;
     padding: 0;
   }
