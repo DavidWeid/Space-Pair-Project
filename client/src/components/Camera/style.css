@@ -1,0 +1,5 @@
+.cameraButtons{
+  display: flex;
+  flex-direction: column;
+}
+

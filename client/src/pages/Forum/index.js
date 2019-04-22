@@ -10,7 +10,7 @@ class Forum extends Component {
     key: "value"
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   handleSortBtn = e => {
     const sortby = e.target.value;
@@ -28,7 +28,7 @@ class Forum extends Component {
           sortTwo="popular"
           handleSortBtn={this.handleSortBtn}
         />
-        <Container className="forum-container">
+        <Container fluid className="forum-container">
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">Info (About)</Col>
             <Col md="9" xs="12" className="posts-column">Posts</Col>
