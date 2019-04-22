@@ -5,3 +5,9 @@
 .post-block {
     width: 100%;
 }
+
+@media all and (min-width: 1440px) {
+    .posts-container {
+        width: 50%;
+    }
+}

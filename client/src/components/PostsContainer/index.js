@@ -17,9 +17,23 @@ const PostsContainer = props => {
                 className="card-img-top"
                 alt="Rover Image"
               />
-              <div className="card-body">
-                <p className="card-text">{post.userComment}</p>
-              </div>
+              <Container fluid className="card-body">
+                <Row>
+                    <Col>
+                        <p className="card-text">{post.username}: {post.userComment}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <p className="date-stamp">{post.createdAt}</p>
+                    </Col>
+                    <Col>
+                        <button className="post-btn like-btn">Like</button>
+                        <button className="post-btn comment-btn">Comment</button>
+                        <button className="post-btn save-btn">Save</button>
+                    </Col>
+                </Row>
+              </Container>
             </div>
           </div>
         );
