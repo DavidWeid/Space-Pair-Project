@@ -5,100 +5,105 @@ import { Button, ButtonGroup } from "reactstrap";
 const Camera = props => {
   return (
     <div className="cameraSection">
+
       {props.rover ? <div>
+        <p className="camTitle">Select Camera</p>
         {props.rover === "curiosity" ? <div>
-          <ButtonGroup className="cameraButtons">
-            <Button
-              color={props.camera === "rhaz" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="rhaz">
-              RHAZ
-            </Button>
-            <Button
-              color={props.camera === "fhaz" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="fhaz">
-              FHAZ
-            </Button>
-            <Button
-              color={props.camera === "navcam" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="navcam">
-              NAVCAM
-            </Button>
-
-            <Button
-              color={props.camera === "mast" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="mast">
-              MAST
-            </Button>
-            <Button
-              color={props.camera === "chemcam" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="chemcam">
-              CHEMCAM
-            </Button>
-
-            <Button
-              color={props.camera === "mahli" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="mahli">
-              MAHLI
-            </Button>
-            <Button
-              color={props.camera === "mardi" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="mardi">
-              MARDI
-            </Button>
-            <Button
-              color={props.camera === "all" ? "warning" : "dark"}
-              onClick={(e) => props.selectCamera(e)}
-              data-camera="all">
-              ALL
-            </Button>
-          </ButtonGroup>
-        </div> : <div>
-            <ButtonGroup className="cameraButtons">
-              <Button
-                color={props.camera === "rhaz" ? "warning" : "dark"}
-                onClick={(e) => props.selectCamera(e)}
-                data-camera="rhaz">
-                RHAZ
-              </Button>
-              <Button
-                color={props.camera === "fhaz" ? "warning" : "dark"}
+          <div>
+            <div className="cameraButtons">
+              <button
+                className={props.camera === "fhaz" ? "activeCam camBtn" : "camBtn"}
                 onClick={(e) => props.selectCamera(e)}
                 data-camera="fhaz">
                 FHAZ
-              </Button>
-              <Button
-                color={props.camera === "navcam" ? "warning" : "dark"}
+            </button>
+              <button
+                className={props.camera === "rhaz" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="rhaz">
+                RHAZ
+            </button>
+              <button
+                className={props.camera === "navcam" ? "activeCam camBtn" : "camBtn"}
                 onClick={(e) => props.selectCamera(e)}
                 data-camera="navcam">
                 NAVCAM
-              </Button>
+            </button>
 
-              <Button
-                color={props.camera === "pancam" ? "warning" : "dark"}
+              <button
+                className={props.camera === "mast" ? "activeCam camBtn" : "camBtn"}
                 onClick={(e) => props.selectCamera(e)}
-                data-camera="pancam">
-                PANCAM
-              </Button>
-              <Button
-                color={props.camera === "minites" ? "warning" : "dark"}
+                data-camera="mast">
+                MAST
+            </button>
+              <button
+                className={props.camera === "chemcam" ? "activeCam camBtn" : "camBtn"}
                 onClick={(e) => props.selectCamera(e)}
-                data-camera="minites">
-                MINITES
-              </Button>
-              <Button
-                color={props.camera === "all" ? "warning" : "dark"}
+                data-camera="chemcam">
+                CHEMCAM
+            </button>
+
+              <button
+                className={props.camera === "mahli" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="mahli">
+                MAHLI
+            </button>
+              <button
+                className={props.camera === "mardi" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="mardi">
+                MARDI
+            </button>
+              <button
+                className={props.camera === "all" ? "activeCam camBtn" : "camBtn"}
                 onClick={(e) => props.selectCamera(e)}
                 data-camera="all">
                 ALL
-              </Button>
-            </ButtonGroup>
+            </button>
+            
+            </div>
+          </div>
+        </div> : <div>
+            <div className="cameraButtons">
+              <button
+                className={props.camera === "fhaz" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="fhaz">
+                FHAZ
+              </button>
+              <button
+                className={props.camera === "rhaz" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="rhaz">
+                RHAZ
+              </button>
+              <button
+                className={props.camera === "navcam" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="navcam">
+                NAVCAM
+              </button>
+
+              <button
+                className={props.camera === "pancam" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="pancam">
+                PANCAM
+              </button>
+              <button
+                className={props.camera === "minites" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="minites">
+                MINITES
+              </button>
+              <button
+                className={props.camera === "all" ? "activeCam camBtn" : "camBtn"}
+                onClick={(e) => props.selectCamera(e)}
+                data-camera="all">
+                ALL
+              </button>
+            </div>
           </div>}
       </div> : <div></div>}
     </div>
