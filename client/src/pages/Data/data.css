@@ -1,0 +1,13 @@
+.roverPicGrid{
+  display: grid;
+  border-top: .5px red solid;
+  grid-template-columns: 325px auto;
+}
+
+/* .spaceTaker{
+  background-color: red;
+} */
+
+.roverPicHolder{
+  background-color: rgb(205, 228, 247);
+} 
