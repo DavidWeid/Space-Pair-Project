@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonGroup, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, ButtonGroup, Form, FormGroup, Label, Input, Col } from "reactstrap";
 import "./style.css";
 import Camera from "../Camera";
 
@@ -9,41 +9,49 @@ const FormRover = props => {
   return (
     <div className="formRover">
       <Form>
-        <ButtonGroup>
-          <Button
+        <div className="roverSelectButtons">
+          <button
             onClick={(e) => {
               props.selectRover(e)
             }}
             data-rover="spirit"
-            color={props.rover === "spirit" ? "warning" : "dark"}>
+            className={props.rover === "spirit" ? "activeRover roverBtn" : "roverBtn"}>
             Spirit
-          </Button>
-          <Button
+          </button>
+          <button
             onClick={(e) => {
               props.selectRover(e)
             }}
             data-rover="opportunity"
-            color={props.rover === "opportunity" ? "warning" : "dark"}>
+            className={props.rover === "opportunity" ? "activeRover roverBtn" : "roverBtn"}>
             Opportunity
-          </Button>
-          <Button
+          </button>
+          <button
             onClick={(e) => {
               props.selectRover(e)
             }}
             data-rover="curiosity"
-            color={props.rover === "curiosity" ? "warning" : "dark"}>
+            className={props.rover === "curiosity" ? "activeRover roverBtn" : "roverBtn"}>
             Curiosity
-          </Button>
-        </ButtonGroup>
+          </button>
+        </div>
         <Camera camera={props.camera} rover={props.rover} selectCamera={props.selectCamera} />
-        {props.camera ? (<div>
-          <FormGroup>
-            <Label>Sol</Label>
-            <Input type="number"onChange={(e) => props.selectSolDay(e)} value={props.sol}/>
-          </FormGroup>
-        </div>) : (<div></div>)}
+        {props.camera ? (
+          <div className="solGroup">
+            <label>Sol</label>
+            <input type="number" className="solInput" onChange={(e) => props.selectSolDay(e)} value={props.sol}/>
+          </div>
+        ) : (
+            <div></div>
+          )}
         {props.sol ? (<div>
-          <Button>Search</Button>
+          <button 
+            className="searchBtn" 
+            onClick={(e) => props.getPhotos(e)}
+            data-rover={props.rover}
+            data-sol={props.sol}
+            data-camera={props.camera}
+            >Search</button>
         </div>) : (<div></div>)}
       </Form>
     </div>

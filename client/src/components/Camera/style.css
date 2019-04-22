@@ -1,5 +1,44 @@
 .cameraButtons{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 250px;
+  grid-gap: 5px;
+  /* grid-column-gap: 20px; */
+  margin: auto;
 }
 
+.cameraButtons button:nth-child(1) {
+  border-radius: 0;
+}
+
+.cameraButtons button:nth-last-child(1){
+  border-radius: 0;
+}
+
+.camBtn{
+  margin-bottom: .25em;
+  font-size: 14px;
+  padding: 3px;
+  width: 100%;
+  border: 1px black solid;
+  background-color: rgb(122, 41, 21);
+  color: white;
+}
+
+.camTitle{
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.camBtn:active{
+  transform: scale(.95)
+}
+
+.camBtn:focus{
+  outline: 0;
+}
+
+.activeCam{
+  background-color: black;
+}
