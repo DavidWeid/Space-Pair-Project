@@ -23,11 +23,15 @@ class Data extends Component {
   }
 
   hitRoverSolPictures(rover, sol) {
-    API.roverSolPictures(rover, sol).then(res => console.log(res.data)).catch(err => console.log(err));
+    API.roverSolPictures(rover, sol)
+      .then(res => {
+        console.log(res.data.photos);
+      })
+      .catch(err => console.log(err));
   }
 
   hitRoverSolCameraPictures(rover, sol, camera) {
-    API.roverSolCameraPictures().then(res => console.log(res.data)).catch(err => console.log(err));
+    API.roverSolCameraPictures(rover, sol, camera).then(res => console.log(res.data)).catch(err => console.log(err));
   }
 
   selectRover = (e) => {
@@ -50,6 +54,17 @@ class Data extends Component {
     this.setState({ sol: newInput })
   }
 
+  getPhotos = (e) => {
+    e.preventDefault();
+    const rover = this.state.rover;
+    const sol = this.state.sol;
+    const camera = this.state.camera;
+    if (camera === "all") {
+      return this.hitRoverSolPictures(rover, sol);
+    }
+    return this.hitRoverSolCameraPictures(rover, sol, camera);
+  }
+
   render() {
     return <div>
       <FormRover
@@ -60,6 +75,7 @@ class Data extends Component {
         selectRover={this.selectRover}
         selectCamera={this.selectCamera}
         selectSolDay={this.selectSolDay}
+        getPhotos={this.getPhotos}
       />
     </div>;
   }

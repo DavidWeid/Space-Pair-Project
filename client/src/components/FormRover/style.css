@@ -1,12 +1,74 @@
-.formRover{
-  position: fixed;
-  top:76px;
-  left: 0;
-  width: 30%;
-  overflow: hidden;
-  height: calc(100vh - 76px)
+nav{
+  z-index: 4;
 }
 
-.formRover button{
-  font-size: 16px;
+.formRover{
+  position: fixed;
+  top:0px;
+  left: 0px;
+  padding: 76px 10px 0px 10px;
+  width: 30%;
+  min-width: 325px;
+  overflow: hidden;
+  height: 100vh; 
+  background-color: whitesmoke;
 }
+
+.roverSelectButtons{
+  width: fit-content;
+  margin: auto;
+  background-color:  rgb(122, 41, 21);
+}
+
+.roverBtn{
+  border: 1px black solid;
+  background-color: rgb(122, 41, 21);
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  width: 90px;
+}
+
+.roverBtn:active{
+  transform: scale(.95);
+  border: none;
+}
+
+.roverBtn:focus{
+  outline: 0;
+}
+
+.roverBtn:nth-child(1){
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: none;
+}
+
+.roverBtn:nth-child(3){
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: none;
+}
+
+.activeRover{
+  background-color: black;
+}
+
+.solGroup{
+  width: 150px;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.solInput{
+  width: 80px;
+  margin-left: 5px;
+  text-align: center;
+}
+
+.searchBtn{
+  display: block;
+  margin: auto;
+}
+
+
