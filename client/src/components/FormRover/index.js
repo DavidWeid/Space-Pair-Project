@@ -35,7 +35,16 @@ const FormRover = props => {
             Curiosity
           </Button>
         </ButtonGroup>
-        <Camera camera={props.camera} rover={props.rover}/>
+        <Camera camera={props.camera} rover={props.rover} selectCamera={props.selectCamera} />
+        {props.camera ? (<div>
+          <FormGroup>
+            <Label>Sol</Label>
+            <Input type="number"onChange={(e) => props.selectSolDay(e)} value={props.sol}/>
+          </FormGroup>
+        </div>) : (<div></div>)}
+        {props.sol ? (<div>
+          <Button>Search</Button>
+        </div>) : (<div></div>)}
       </Form>
     </div>
   )

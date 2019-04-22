@@ -1,20 +1,28 @@
 .forum-container {
-  min-width: 86%;
+  max-width: 86%;
+  margin: auto !important;
   background-color: blanchedalmond;
 }
 
 /* .forum-row {
-    min-width: 100%;
+    width: 100% !important;
+    background-color: red;
 } */
 
 @media all and (max-width: 800px) {
   .forum-container {
-    min-width: 92%;
+    width: 92%;
   }
 }
 
 @media all and (max-width: 500px) {
   .forum-container {
     min-width: 100%;
+    margin: 1em auto !important;
+  }
+
+  .form-row{
+    width: 100%;
+    padding: 0;
   }
 }

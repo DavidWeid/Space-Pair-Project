@@ -33,7 +33,21 @@ class Data extends Component {
   selectRover = (e) => {
     e.preventDefault();
     const newRover = e.target.dataset.rover;
-    this.setState({ rover: newRover })
+    this.setState({ rover: newRover, camera: "", sol: "" })
+  }
+
+  selectCamera = (e) => {
+    e.preventDefault();
+    const newCamera = e.target.dataset.camera;
+    console.log(newCamera)
+    this.setState({ camera: newCamera })
+  }
+
+  selectSolDay = (e) => {
+    e.preventDefault();
+    const newInput = e.target.value;
+    console.log(newInput)
+    this.setState({ sol: newInput })
   }
 
   render() {
@@ -44,6 +58,8 @@ class Data extends Component {
         earthDay={this.state.earthDay}
         camera={this.state.camera}
         selectRover={this.selectRover}
+        selectCamera={this.selectCamera}
+        selectSolDay={this.selectSolDay}
       />
     </div>;
   }
