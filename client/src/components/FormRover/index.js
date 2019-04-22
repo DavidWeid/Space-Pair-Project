@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonGroup, Form, FormGroup, Label, Input, Col } from "reactstrap";
+import { Form } from "reactstrap";
 import "./style.css";
 import Camera from "../Camera";
 

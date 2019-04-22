@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import "./data.css";
 import API from "../../utils/API";
-import FormRover from "../../components/FormRover"
+import FormRover from "../../components/FormRover";
+import RoverPic from "../../components/RoverPic";
 
 class Data extends Component {
   state = {
@@ -22,16 +24,22 @@ class Data extends Component {
     API.exampleAPI().then(res => console.log(res.data)).catch(err => console.log(err));
   }
 
-  hitRoverSolPictures(rover, sol) {
+  hitRoverSolPictures = (rover, sol) => {
     API.roverSolPictures(rover, sol)
       .then(res => {
         console.log(res.data.photos);
+        this.setState({ photos: res.data.photos })
       })
       .catch(err => console.log(err));
   }
 
-  hitRoverSolCameraPictures(rover, sol, camera) {
-    API.roverSolCameraPictures(rover, sol, camera).then(res => console.log(res.data)).catch(err => console.log(err));
+  hitRoverSolCameraPictures = (rover, sol, camera) => {
+    API.roverSolCameraPictures(rover, sol, camera)
+      .then(res => {
+        console.log(res.data.photos)
+        this.setState({ photos: res.data.photos })
+      })
+      .catch(err => console.log(err));
   }
 
   selectRover = (e) => {
@@ -56,6 +64,7 @@ class Data extends Component {
 
   getPhotos = (e) => {
     e.preventDefault();
+    window.scrollTo(0, 0)
     const rover = this.state.rover;
     const sol = this.state.sol;
     const camera = this.state.camera;
@@ -77,6 +86,18 @@ class Data extends Component {
         selectSolDay={this.selectSolDay}
         getPhotos={this.getPhotos}
       />
+      <div className="roverPicGrid">
+        <div className="spaceTaker"></div>
+        <div className="roverPicHolder">
+          {this.state.photos.length > 0 ? (
+            this.state.photos.map(photo =>
+              <RoverPic key={photo.id} photo={photo} />
+            )
+          ) : (
+              <div></div>
+            )}
+        </div>
+      </div>
     </div>;
   }
 }
