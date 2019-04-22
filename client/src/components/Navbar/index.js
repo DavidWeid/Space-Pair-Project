@@ -21,7 +21,7 @@ const Navbar = props => (
       <span className="navbar-toggler-icon" />
     </button>
 
-    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div className="navbar-nav">
         <Link
           className={
