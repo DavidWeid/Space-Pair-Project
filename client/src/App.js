@@ -11,29 +11,34 @@ import Profile from "./pages/Profile";
 // Components
 import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
-import ExampleCall from "./components/ExampleCall"
+import ExampleCall from "./components/ExampleCall";
 
 class App extends Component {
   state = {
     photos: []
-  }
+  };
 
   componentDidMount() {
     // Just for showing some of the photos we expect to get back
     // Will not use for real version
-    this.getExamplePhotos()
+    this.getExamplePhotos();
   }
 
   getExamplePhotos() {
     API.exampleAPI()
-    .then(res => this.setState({photos: res.data.photos}))
-    .catch(err => console.log(err));
+      .then(res => this.setState({ photos: res.data.photos }))
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
       <Router>
-        <Navbar brand="Science" pageOne="Data" pageTwo="Forum" pageThree="Profile" />
+        <Navbar
+          brand="Science"
+          pageOne="Data"
+          pageTwo="Forum"
+          pageThree="Profile"
+        />
         <Wrapper>
           <Route exact path="/Forum" component={Forum} />
           <Route exact path="/Data" component={Data} />
