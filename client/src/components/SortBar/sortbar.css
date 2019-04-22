@@ -1,0 +1,20 @@
+.sortbar {
+    background-color: black;
+    color: white;
+}
+
+.sort-btn {
+    color: white;
+}
+
+.sort-btn:hover {
+    color: lavender;
+}
+
+.sort-menu {
+    font-size: 75%;
+}
+
+.drop-item {
+    text-transform: uppercase;
+}
