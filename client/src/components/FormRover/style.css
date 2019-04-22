@@ -7,11 +7,12 @@ nav{
   top:0px;
   left: 0px;
   padding: 76px 10px 0px 10px;
-  width: 30%;
-  min-width: 325px;
+  width: 325px;
   overflow: hidden;
   height: 100vh; 
   background-color: whitesmoke;
+  z-index: 3;
+  border-right: .5px red solid;
 }
 
 .roverSelectButtons{
@@ -69,6 +70,10 @@ nav{
 .searchBtn{
   display: block;
   margin: auto;
+  border: 1px black solid;
+  background-color: rgb(122, 41, 21);
+  color: white;
+  padding: 5px 10px;
 }
 
 

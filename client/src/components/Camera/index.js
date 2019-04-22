@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import { Button, ButtonGroup } from "reactstrap";
 
 const Camera = props => {
   return (
