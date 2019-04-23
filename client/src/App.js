@@ -21,7 +21,7 @@ class App extends Component {
   componentDidMount() {
     // Just for showing some of the photos we expect to get back
     // Will not use for real version
-    this.getExamplePhotos();
+    // this.getExamplePhotos();
   }
 
   getExamplePhotos() {
