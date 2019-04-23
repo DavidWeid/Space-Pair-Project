@@ -24,13 +24,13 @@ const PostsContainer = props => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col xs="12" sm="3">
                         <p className="date-stamp">{post.createdAt}</p>
                     </Col>
-                    <Col>
-                        <button className="post-btn like-btn">Like</button>
-                        <button className="post-btn comment-btn">Comment</button>
-                        <button className="post-btn save-btn">Save</button>
+                    <Col xs="12" sm="9" className="d-flex justify-content-end">
+                        <div onClick={props.handlePostBtns} className="post-btn like-btn" value="like" >Like</div>
+                        <div onClick={props.handlePostBtns} className="post-btn comment-btn" value="comment">Comment</div>
+                        <div onClick={props.handlePostBtns} className="post-btn save-btn" value="save">Save</div>
                     </Col>
                 </Row>
               </Container>

@@ -73,6 +73,11 @@ class Forum extends Component {
     console.log("Sort Clicked\n", sortby);
   };
 
+  handlePostBtns = e => {
+    const userAction = e.target.getAttribute("value");
+    console.log(userAction);
+  }
+
   render() {
     return (
       <div style={{ height: "100%" }}>
@@ -93,7 +98,7 @@ class Forum extends Component {
               <Row>Comments: 0</Row>
             </Col>
             <Col md="9" xs="12" className="posts-column d-flex justify-content-center">
-              <PostsContainer posts={this.state.posts} />
+              <PostsContainer handlePostBtns={this.handlePostBtns} posts={this.state.posts} />
             </Col>
           </Row>
         </Container>
