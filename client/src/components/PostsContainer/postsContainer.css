@@ -5,3 +5,24 @@
 .post-block {
     width: 100%;
 }
+
+.date-stamp {
+    font-size: 75%;
+}
+
+.post-btn {
+    background-color: beige;
+    border: 1px white solid;
+    padding: 1%;
+}
+
+.post-btn:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+@media all and (min-width: 1440px) {
+    .posts-container {
+        width: 50%;
+    }
+}

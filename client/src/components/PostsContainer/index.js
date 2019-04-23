@@ -17,9 +17,23 @@ const PostsContainer = props => {
                 className="card-img-top"
                 alt="Rover Image"
               />
-              <div className="card-body">
-                <p className="card-text">Rover Pic: {props.userComment}</p>
-              </div>
+              <Container fluid className="card-body">
+                <Row>
+                    <Col>
+                        <p className="card-text">{post.username}: {post.userComment}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs="12" sm="3">
+                        <p className="date-stamp">{post.createdAt}</p>
+                    </Col>
+                    <Col xs="12" sm="9" className="d-flex justify-content-end">
+                        <div onClick={props.handlePostBtns} className="post-btn like-btn" value="like" >Like</div>
+                        <div onClick={props.handlePostBtns} className="post-btn comment-btn" value="comment">Comment</div>
+                        <div onClick={props.handlePostBtns} className="post-btn save-btn" value="save">Save</div>
+                    </Col>
+                </Row>
+              </Container>
             </div>
           </div>
         );
