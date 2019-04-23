@@ -37,5 +37,9 @@ export default {
 
   getAllPosts() {
     return Axios.get("/api/posts/");
+  },
+
+  getRoverManifest(rover) {
+    return Axios.get(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`)
   }
 };

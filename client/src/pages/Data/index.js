@@ -11,19 +11,15 @@ class Data extends Component {
     sol: "",
     earthDay: "",
     camera: "",
-    photos: []
+    photos: [],
+    picture_manifest: [],
+    cameras_manifest: [],
+    max_sol: "",
+    total_pictures: "",
+    total_day_photos: "",
   };
 
-  componentDidMount() {
-    // this.hitExampleAPI();
-    // this.hitRoverSolPictures("Curiosity", 45);
-    // this.hitRoverSolCameraPictures();
-  }
-
-  hitExampleAPI() {
-    API.exampleAPI().then(res => console.log(res.data)).catch(err => console.log(err));
-  }
-
+  // Get pictures from all cameras given rover and sol
   hitRoverSolPictures = (rover, sol) => {
     API.roverSolPictures(rover, sol)
       .then(res => {
@@ -33,6 +29,7 @@ class Data extends Component {
       .catch(err => console.log(err));
   }
 
+  // Get pictures from a specfic camera for a rover and sol
   hitRoverSolCameraPictures = (rover, sol, camera) => {
     API.roverSolCameraPictures(rover, sol, camera)
       .then(res => {
@@ -42,27 +39,67 @@ class Data extends Component {
       .catch(err => console.log(err));
   }
 
-  selectRover = (e) => {
-    e.preventDefault();
-    const newRover = e.target.dataset.rover;
-    this.setState({ rover: newRover, camera: "", sol: "" })
+  // Get rover manifest from API when user selects a rover
+  // Used to help display what cameras are available to get photos from
+  hitRoverManifest = rover => {
+    API.getRoverManifest(rover)
+      .then(result => {
+        console.log(result.data.photo_manifest);
+        const roverData = result.data.photo_manifest;
+        this.setState({
+          picture_manifest: roverData.photos,
+          max_sol: roverData.max_sol,
+          total_pictures: roverData.total_pictures
+        })
+      })
+      .catch(err => console.log(err))
   }
 
-  selectCamera = (e) => {
+  // Input from buttons in FormRover to select a rover
+  selectRover = e => {
+    e.preventDefault();
+    const newRover = e.target.dataset.rover;
+    this.setState({
+      rover: newRover,
+      camera: "",
+      sol: "",
+      cameras_manifest: []
+    })
+    this.hitRoverManifest(newRover);
+  }
+
+  // Input from FormRover
+  selectSolDay = e => {
+    e.preventDefault();
+    const newInput = e.target.value;
+    this.setState({ sol: newInput, camera: "" })
+    this.getCameraManifest(newInput)
+  }
+
+  // From the photo_manifest, gets a list of cameras that have photos for that sol
+  // Sends to Camera Component in FormRover to display buttons
+  getCameraManifest = sol => {
+    console.log(typeof sol, sol)
+    const rightSol = this.state.picture_manifest.filter(each => each.sol.toString() === sol);
+    const iSaidRightSol = rightSol[0];
+    if (iSaidRightSol) {
+      console.log(iSaidRightSol);
+      return this.setState({cameras_manifest: iSaidRightSol.cameras});
+    }
+    return this.setState({cameras_manifest: []});
+  }
+
+  // Input form FormRover/Cameras Component
+  // Saves camera choice to state
+  selectCamera = e => {
     e.preventDefault();
     const newCamera = e.target.dataset.camera;
     console.log(newCamera)
     this.setState({ camera: newCamera })
   }
 
-  selectSolDay = (e) => {
-    e.preventDefault();
-    const newInput = e.target.value;
-    console.log(newInput)
-    this.setState({ sol: newInput })
-  }
-
-  getPhotos = (e) => {
+  // Makes the API call to get photos based on rover, sol, and camera selected
+  getPhotos = e => {
     e.preventDefault();
     window.scrollTo(0, 0)
     const rover = this.state.rover;
@@ -81,6 +118,7 @@ class Data extends Component {
         sol={this.state.sol}
         earthDay={this.state.earthDay}
         camera={this.state.camera}
+        cameras_manifest={this.state.cameras_manifest}
         selectRover={this.selectRover}
         selectCamera={this.selectCamera}
         selectSolDay={this.selectSolDay}
