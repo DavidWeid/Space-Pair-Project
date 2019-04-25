@@ -2,8 +2,13 @@
     width: 90%;
 }
 
+.posts-container a {
+    color: darkgoldenrod;
+}
+
 .post-block {
     width: 100%;
+    margin-bottom: 3%;
 }
 
 .date-stamp {
@@ -14,11 +19,25 @@
     background-color: beige;
     border: 1px white solid;
     padding: 1%;
+    word-wrap: normal;
 }
 
 .post-btn:hover {
     background-color: antiquewhite;
     cursor: pointer;
+}
+
+.initial-comment {
+    padding: 2%;
+}
+
+.article-title {
+    font-size: 110%;
+    font-weight: 600;
+}
+
+.article-description {
+    font-size: 95%;
 }
 
 @media all and (min-width: 1440px) {

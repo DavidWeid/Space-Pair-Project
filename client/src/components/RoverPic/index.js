@@ -11,7 +11,7 @@ const RoverPic = props => {
         <p className="camFullName">{props.photo.camera.full_name}</p>
         <p>Sol: {props.photo.sol}</p>
         <p>Earth Day: {props.photo.earth_date}</p>
-        <a href={props.photo.img_src} target="_blank">Full Pic</a>
+        <a href={props.photo.img_src} rel="noopener noreferrer" target="_blank">Full Pic</a>
       </div>
       <div className="imgButtonArea">
       

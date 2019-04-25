@@ -11,6 +11,7 @@ class Forum extends Component {
     posts: [
       {
         type: "roverPic",
+        _id: 100,
         userComment: "I love rover pics!",
         userID: "9001",
         username: "Vegeta",
@@ -18,27 +19,30 @@ class Forum extends Component {
         likes: 1,
         createdAt: Date.now(),
         roverName: "Opportunity",
-        roverImg: "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
+        roverImg:
+          "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
         roverCamera: "FHAZ",
         roverSol: "45",
         roverEarthDate: "2004-03-11"
       },
       {
         type: "article",
+        _id: 101,
         userComment: "I love space articles!",
         userID: "9002",
         username: "Goku",
         commentIDs: ["1"],
         likes: 3,
         createdAt: Date.now(),
-        articleTitle: "",
-        articleImg: "",
-        articleAuthor: "",
-        articleURL: "",
-        articleDescription: ""
+        articleTitle: "The Space Age Invades Marvel's Cinematic Universe",
+        articleImg: "https://cdn.mos.cms.futurecdn.net/23SQ7ZFTRMqMgwPDDWpXdP-970-80.jpg",
+        articleAuthor: "Sarah Lewin",
+        articleURL: "https://www.space.com/space-age-invades-marvel-cinematic-universe.html",
+        articleDescription: "As the forces of the universe muster against the ultimate villain Thanos for 'Avengers: Endgame' (2019), Space.com took a look back at how the MCU has related to outer space."
       },
       {
         type: "discussion",
+        _id: 102,
         userComment: "Opportunity is the best!",
         userID: "9000",
         username: "Gohan",
@@ -76,7 +80,9 @@ class Forum extends Component {
   handlePostBtns = e => {
     const userAction = e.target.getAttribute("value");
     console.log(userAction);
-  }
+    const postId = e.target.id;
+    console.log(postId);
+  };
 
   render() {
     return (
@@ -87,6 +93,9 @@ class Forum extends Component {
         <SortBar
           sortOne="top"
           sortTwo="popular"
+          pageOne="Data"
+          pageTwo="Forum"
+          pageThree="Profile"
           handleSortBtn={this.handleSortBtn}
         />
         <Container fluid className="forum-container">
@@ -97,8 +106,15 @@ class Forum extends Component {
               <Row>Posts: 0</Row>
               <Row>Comments: 0</Row>
             </Col>
-            <Col md="9" xs="12" className="posts-column d-flex justify-content-center">
-              <PostsContainer handlePostBtns={this.handlePostBtns} posts={this.state.posts} />
+            <Col
+              md="9"
+              xs="12"
+              className="posts-column d-flex justify-content-center"
+            >
+              <PostsContainer
+                handlePostBtns={this.handlePostBtns}
+                posts={this.state.posts}
+              />
             </Col>
           </Row>
         </Container>
