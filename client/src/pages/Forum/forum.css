@@ -1,7 +1,7 @@
 .forum-container {
   max-width: 86%;
   margin: auto !important;
-  background-color: blanchedalmond;
+  background-color: #2f3640;
 }
 
 .info-column,
@@ -10,7 +10,8 @@
 }
 
 .info-column {
-  background-color: cadetblue;
+  background-color: #353b48;
+  color: #f5f6fa;
 }
 
 .info-column .row {

@@ -9,7 +9,6 @@ const PostsContainer = props => {
   console.log(posts);
 
   const listPosts = posts.map(post => {
-
     const postTime = moment.unix(`${post.createdAt}`).format("MMM D, h:mm");
 
     switch (post.type) {
