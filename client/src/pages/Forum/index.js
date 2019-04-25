@@ -43,14 +43,15 @@ class Forum extends Component {
       {
         type: "discussion",
         _id: 102,
-        userComment: "Opportunity is the best!",
+        userComment: "Aliens could be evolved enough to see the realism in videogames, i.e. WE'RE ALL A SIMULATION!",
         userID: "9000",
         username: "Gohan",
         commentIDs: [],
         likes: 0,
         createdAt: Date.now(),
-        postTitle: "",
-        postTheme: ""
+        discussionTitle: "Would Aliens like Videogames",
+        discussionTheme: "Aliens",
+        discussionImg: ""
       }
     ]
   };

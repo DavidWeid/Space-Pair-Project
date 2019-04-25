@@ -11,6 +11,11 @@
     margin-bottom: 3%;
 }
 
+.info-row {
+    padding-top: 3%;
+    font-size: 85%;
+}
+
 .date-stamp {
     font-size: 75%;
 }
@@ -31,7 +36,7 @@
     padding: 2%;
 }
 
-.article-title {
+.article-title, .discussion-title {
     font-size: 110%;
     font-weight: 600;
 }
