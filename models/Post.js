@@ -112,7 +112,7 @@ const PostSchema = new Schema({
 
   // User Post Section---------------------------------------------------------------------------
 
-  postTitle: {
+  discussionTitle: {
     // Title user wants to give the post
     type: String,
     default: ""
@@ -120,10 +120,15 @@ const PostSchema = new Schema({
 
   // Post Content will be stored in the userComment item in shared information area
 
-  postTheme: {
+  discussionTheme: {
     // Optional
     // Maybe have a set number of things that can give the post different styles
     // i.e. theme = rocket launch then the color scheme might be different
+    type: String,
+    default: ""
+  },
+
+  discussionImg: {
     type: String,
     default: ""
   }
