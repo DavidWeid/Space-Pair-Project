@@ -18,7 +18,8 @@ class Forum extends Component {
         likes: 1,
         createdAt: Date.now(),
         roverName: "Opportunity",
-        roverImg: "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
+        roverImg:
+          "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
         roverCamera: "FHAZ",
         roverSol: "45",
         roverEarthDate: "2004-03-11"
@@ -76,7 +77,7 @@ class Forum extends Component {
   handlePostBtns = e => {
     const userAction = e.target.getAttribute("value");
     console.log(userAction);
-  }
+  };
 
   render() {
     return (
@@ -87,6 +88,9 @@ class Forum extends Component {
         <SortBar
           sortOne="top"
           sortTwo="popular"
+          pageOne="Data"
+          pageTwo="Forum"
+          pageThree="Profile"
           handleSortBtn={this.handleSortBtn}
         />
         <Container fluid className="forum-container">
@@ -97,8 +101,15 @@ class Forum extends Component {
               <Row>Posts: 0</Row>
               <Row>Comments: 0</Row>
             </Col>
-            <Col md="9" xs="12" className="posts-column d-flex justify-content-center">
-              <PostsContainer handlePostBtns={this.handlePostBtns} posts={this.state.posts} />
+            <Col
+              md="9"
+              xs="12"
+              className="posts-column d-flex justify-content-center"
+            >
+              <PostsContainer
+                handlePostBtns={this.handlePostBtns}
+                posts={this.state.posts}
+              />
             </Col>
           </Row>
         </Container>

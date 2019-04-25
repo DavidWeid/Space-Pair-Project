@@ -2,6 +2,15 @@
   background-color: black;
   color: white;
   margin-bottom: 3.5%;
+  text-decoration: none;
+}
+
+.sortbar a {
+  color: white;
+}
+
+.sortbar a:hover {
+  color: lavender;
 }
 
 .sort-btn {
@@ -32,6 +41,6 @@
   }
 
   .sort-menu {
-      font-size: 70%;
+    font-size: 70%;
   }
 }

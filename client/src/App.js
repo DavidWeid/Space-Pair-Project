@@ -33,12 +33,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Navbar
+        {/* <Navbar
           brand="Science"
           pageOne="Data"
           pageTwo="Forum"
           pageThree="Profile"
-        />
+        /> */}
         <Wrapper>
           <Route exact path="/Forum" component={Forum} />
           <Route exact path="/Data" component={Data} />
