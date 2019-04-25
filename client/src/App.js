@@ -9,9 +9,7 @@ import Data from "./pages/Data";
 import Profile from "./pages/Profile";
 
 // Components
-import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
-import ExampleCall from "./components/ExampleCall";
 
 class App extends Component {
   state = {
@@ -19,9 +17,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // Just for showing some of the photos we expect to get back
-    // Will not use for real version
-    // this.getExamplePhotos();
   }
 
   getExamplePhotos() {
@@ -33,17 +28,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* <Navbar
-          brand="Science"
-          pageOne="Data"
-          pageTwo="Forum"
-          pageThree="Profile"
-        /> */}
         <Wrapper>
           <Route exact path="/Forum" component={Forum} />
           <Route exact path="/Data" component={Data} />
           <Route exact path="/Profile" component={Profile} />
-          {/* <ExampleCall photos={this.state.photos} /> */}
         </Wrapper>
       </Router>
     );
