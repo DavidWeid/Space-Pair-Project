@@ -36,7 +36,7 @@ const FormRover = props => {
           </button>
         </div>
 
-        {props.rover ? (
+        {props.show_sol ? (
           <div className="solGroup">
             <label>Sol</label>
             <input type="number" className="solInput" onChange={(e) => props.selectSolDay(e)} value={props.sol} />
@@ -51,6 +51,8 @@ const FormRover = props => {
           sol={props.sol}
           cameras_manifest={props.cameras_manifest}
           selectCamera={props.selectCamera}
+          total_day_photos={props.total_day_photos}
+          show_sol={props.show_sol}
         />
 
         {props.camera ? (<div>

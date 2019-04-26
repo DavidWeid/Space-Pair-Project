@@ -2,9 +2,14 @@ import React from "react";
 import "./style.css";
 
 const Camera = props => {
-  // console.log(props.cameras_manifest)
   return (
     <div className="cameraSection">
+
+      {props.show_sol ? (
+        <p className="totDayPics text-center">Photos: {props.total_day_photos}</p>
+      ):(
+        <div></div>
+      )}
 
       {props.cameras_manifest.length > 0 ? <div>
         <p className="camTitle">Select Camera</p>
