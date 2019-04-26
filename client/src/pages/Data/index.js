@@ -3,6 +3,7 @@ import "./data.css";
 import API from "../../utils/API";
 import FormRover from "../../components/FormRover";
 import RoverPic from "../../components/RoverPic";
+import Banner from "../../components/Banner"
 
 
 class Data extends Component {
@@ -17,7 +18,8 @@ class Data extends Component {
     cameras_manifest: [],
     max_sol: "",
     total_pictures: "",
-    total_day_photos: "",
+    total_day_photos: 0,
+    show_sol: false
   };
 
   // Get pictures from all cameras given rover and sol
@@ -50,7 +52,8 @@ class Data extends Component {
         this.setState({
           picture_manifest: roverData.photos,
           max_sol: roverData.max_sol,
-          total_pictures: roverData.total_pictures
+          total_pictures: roverData.total_pictures,
+          show_sol: true
         })
       })
       .catch(err => console.log(err))
@@ -64,7 +67,9 @@ class Data extends Component {
       rover: newRover,
       camera: "",
       sol: "",
-      cameras_manifest: []
+      cameras_manifest: [],
+      total_day_photos: 0,
+      show_sol: false
     })
     this.hitRoverManifest(newRover);
   }
@@ -85,9 +90,9 @@ class Data extends Component {
     const iSaidRightSol = rightSol[0];
     if (iSaidRightSol) {
       console.log(iSaidRightSol);
-      return this.setState({cameras_manifest: iSaidRightSol.cameras});
+      return this.setState({ cameras_manifest: iSaidRightSol.cameras, total_day_photos: iSaidRightSol.total_photos });
     }
-    return this.setState({cameras_manifest: []});
+    return this.setState({ cameras_manifest: [], total_day_photos: 0 });
   }
 
   // Input form FormRover/Cameras Component
@@ -114,6 +119,13 @@ class Data extends Component {
 
   render() {
     return <div>
+      <div className="dataBanner">
+        <Banner
+          backgroundImage="https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+          Welcome to the Rover Page
+        </Banner>
+      </div>
+
       <FormRover
         rover={this.state.rover}
         sol={this.state.sol}
@@ -124,6 +136,8 @@ class Data extends Component {
         selectCamera={this.selectCamera}
         selectSolDay={this.selectSolDay}
         getPhotos={this.getPhotos}
+        total_day_photos={this.state.total_day_photos}
+        show_sol={this.state.show_sol}
       />
       <div className="roverPicGrid">
         <div className="spaceTaker"></div>
@@ -137,7 +151,7 @@ class Data extends Component {
             )}
         </div>
       </div>
-    </div>;
+    </div>
   }
 }
 
