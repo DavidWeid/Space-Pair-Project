@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Post = require("../../models/Post");
 
 // Basic Get Route without sort
+// "/api/posts/"
 router.get("/", (req, res) => {
   Post.find()
     .then(result => res.json(result))
@@ -12,7 +13,7 @@ router.get("/", (req, res) => {
 // If sorted again, we could flip flop between ascending or descending
 
 // Sort Get Route Ascending
-router.get("/asc/:sort", (req, res) => {
+router.get("/sort/asc/:sort", (req, res) => {
   Post.find()
     .sort({ [req.params.sort]: 1 })
     .then(result => res.json(result))
@@ -20,7 +21,7 @@ router.get("/asc/:sort", (req, res) => {
 });
 
 // Sort Get Route Descending
-router.get("/des/:sort", (req, res) => {
+router.get("/sort/des/:sort", (req, res) => {
   Post.find()
     .sort({ [req.params.sort]: -1 })
     .then(result => res.json(result))

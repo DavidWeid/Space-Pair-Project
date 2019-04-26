@@ -25,9 +25,11 @@
 }
 
 .post-btn {
+    width: auto;
+    font-size: 90%;
     background-color: #dcdde1;
     border: 1px #f5f6fa solid;
-    padding: 1%;
+    padding: 1% 2%;
     word-wrap: normal;
 }
 

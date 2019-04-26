@@ -39,6 +39,12 @@ export default {
     return Axios.get("/api/posts/");
   },
 
+  // order = "asc" or "des"
+  // sort = sort-what, or sort-by
+  sortPosts(order, sort) {
+    return Axios.get(`/api/posts/sort/${order}/${sort}`)
+  },
+
   getRoverManifest(rover) {
     return Axios.get(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`)
   }

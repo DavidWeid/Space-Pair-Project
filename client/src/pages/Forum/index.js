@@ -35,15 +35,19 @@ class Forum extends Component {
         likes: 3,
         createdAt: Date.now(),
         articleTitle: "The Space Age Invades Marvel's Cinematic Universe",
-        articleImg: "https://cdn.mos.cms.futurecdn.net/23SQ7ZFTRMqMgwPDDWpXdP-970-80.jpg",
+        articleImg:
+          "https://cdn.mos.cms.futurecdn.net/23SQ7ZFTRMqMgwPDDWpXdP-970-80.jpg",
         articleAuthor: "Sarah Lewin",
-        articleURL: "https://www.space.com/space-age-invades-marvel-cinematic-universe.html",
-        articleDescription: "As the forces of the universe muster against the ultimate villain Thanos for 'Avengers: Endgame' (2019), Space.com took a look back at how the MCU has related to outer space."
+        articleURL:
+          "https://www.space.com/space-age-invades-marvel-cinematic-universe.html",
+        articleDescription:
+          "As the forces of the universe muster against the ultimate villain Thanos for 'Avengers: Endgame' (2019), Space.com took a look back at how the MCU has related to outer space."
       },
       {
         type: "discussion",
         _id: 102,
-        userComment: "Aliens could be evolved enough to see the realism in videogames, i.e. WE'RE ALL A SIMULATION!",
+        userComment:
+          "Aliens could be evolved enough to see the realism in videogames, i.e. WE'RE ALL A SIMULATION!",
         userID: "9000",
         username: "Gohan",
         commentIDs: [],
@@ -76,6 +80,10 @@ class Forum extends Component {
   handleSortBtn = e => {
     const sortby = e.target.value;
     console.log("Sort Clicked\n", sortby);
+    let order = "asc"
+    API.sortPosts(order, sortby)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   handlePostBtns = e => {
