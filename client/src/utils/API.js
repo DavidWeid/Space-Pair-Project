@@ -47,5 +47,25 @@ export default {
 
   getRoverManifest(rover) {
     return Axios.get(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`)
+  },
+
+  // USER LOGIN/SIGNUP
+
+  userLogin(username, password) {
+    let user = {
+      username,
+      password
+    }
+
+    return Axios.post("/api/users/login", user)
+  },
+
+  userSignup(username, password, email) {
+    let user = {
+      username,
+      password,
+      email
+    }
+    return Axios.post("/api/users/signup", user)
   }
 };
