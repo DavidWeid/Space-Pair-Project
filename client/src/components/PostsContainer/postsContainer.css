@@ -1,9 +1,13 @@
+.card {
+    background-color: #f5f6fa;
+}
+
 .posts-container {
     width: 90%;
 }
 
 .posts-container a {
-    color: darkgoldenrod;
+    color: #192a56;
 }
 
 .post-block {
@@ -21,19 +25,20 @@
 }
 
 .post-btn {
-    background-color: beige;
-    border: 1px white solid;
+    background-color: #dcdde1;
+    border: 1px #f5f6fa solid;
     padding: 1%;
     word-wrap: normal;
 }
 
 .post-btn:hover {
-    background-color: antiquewhite;
+    background-color: #7f8fa6;
     cursor: pointer;
 }
 
 .initial-comment {
     padding: 2%;
+    color: black;
 }
 
 .article-title, .discussion-title {
