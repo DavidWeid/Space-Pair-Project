@@ -6,13 +6,35 @@ const saltRounds = 10;
 const UserSchema = new Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
 
   password: {
     type: String,
     required: true
   },
+
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  postIDs: {
+    type: Array, 
+    default: [],
+  },
+
+  commentIDs: {
+    type: Array,
+    default: []
+  },
+
+  userImage: {
+    type: String,
+    default: "user default pic url goes here if we want to have one"
+  }
 
 
 })
@@ -26,8 +48,6 @@ UserSchema.pre("save", function(next) {
     user.password = hash
     next();
   });
-  // console.log(this.password);
-  // next()
 })
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
@@ -35,12 +55,6 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     if (err) return cb(err);
     cb(null, isMatch)
   })
-  // console.log(candidatePassword);
-  // cb(null, "this is from the comparepassword method level")
 }
-
-// UserSchema.methods.comparePassword = function() {
-//   return "testing 123"
-// }
 
 module.exports = User = mongoose.model("User", UserSchema);
