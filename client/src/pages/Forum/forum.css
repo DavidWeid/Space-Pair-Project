@@ -27,7 +27,7 @@
 @media all and (max-width: 500px) {
   .forum-container {
     min-width: 100%;
-    margin: 1em auto !important;
+    margin-top: 0;
   }
 
   .form-row {
