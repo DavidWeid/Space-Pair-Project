@@ -35,6 +35,11 @@ const PostSchema = new Schema({
   },
 
   likes: {
+    type: Array,
+    default: []
+  },
+
+  likesLength: {
     type: Number,
     default: 0
   },
@@ -144,7 +149,12 @@ PostSchema.pre("save", function(next) {
   if (!this.createdAt) {
     this.createdAt = Date.now();
   }
+
+  this.likesLength = this.likes.length;
+  
   next();
 });
+
+
 
 module.exports = Post = mongoose.model("Post", PostSchema);

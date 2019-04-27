@@ -12,9 +12,6 @@ const RoverPic = props => {
         <p>Earth Day: {props.photo.earth_date}</p>
         <a href={props.photo.img_src} rel="noopener noreferrer" target="_blank">Full Pic</a>
       </div>
-      <div className="imgButtonArea">
-      
-      </div>
     </div>
   )
 }
