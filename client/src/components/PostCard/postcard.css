@@ -1,0 +1,60 @@
+.card {
+  background-color: #f5f6fa;
+}
+
+.posts-container {
+  width: 90%;
+}
+
+.posts-container a {
+  color: #192a56;
+}
+
+.post-block {
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.info-row {
+  padding-top: 3%;
+  font-size: 85%;
+}
+
+.date-stamp {
+  font-size: 75%;
+}
+
+.post-btn {
+  width: fit-content;
+  font-size: 90%;
+  background-color: #dcdde1;
+  border: 1px #f5f6fa solid;
+  padding: 1% 2%;
+  word-wrap: normal;
+}
+
+.post-btn:hover {
+  background-color: #7f8fa6;
+  cursor: pointer;
+}
+
+.initial-comment {
+  padding: 2%;
+  color: black;
+}
+
+.article-title,
+.discussion-title {
+  font-size: 110%;
+  font-weight: 600;
+}
+
+.article-description {
+  font-size: 95%;
+}
+
+@media all and (min-width: 1440px) {
+  .posts-container {
+    width: 50%;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 class Profile extends Component {
   state = {
@@ -9,7 +9,11 @@ class Profile extends Component {
   componentDidMount() {}
 
   render() {
-    return <div>Profile Page</div>;
+    return (
+      <div>
+        <h1>Profile Page</h1>
+      </div>
+    );
   }
 }
 
