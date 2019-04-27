@@ -2,12 +2,13 @@
   display: grid;
   border-top: .5px red solid;
   grid-template-columns: 325px auto;
+  top: 0;
+  padding-top: calc(25vh - 40px)
 }
 
 .roverPicHolder{
-  padding-top: 140px;
   display: grid;
-  grid-template-columns: 300px 300px;
+  grid-template-columns: 300px 300px 300px;
   width: fit-content;
   margin: auto;
   grid-column-gap: 20px;
@@ -15,5 +16,5 @@
 
 .dataPage{
   min-height: 100vh;
-  padding-bottom: 2000px;
+  /* padding-bottom: 2000px; */
 }
