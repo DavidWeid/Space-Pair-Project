@@ -100,7 +100,7 @@ class Forum extends Component {
           Welcome to the Space Forum
         </Banner>
         <SortBar
-          sortOne="top"
+          sortOne="recent"
           sortTwo="popular"
           pageOne="Data"
           pageTwo="Forum"

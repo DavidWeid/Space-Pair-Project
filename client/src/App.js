@@ -4,6 +4,7 @@ import "./App.css";
 import API from "./utils/API";
 
 // Pages
+import Main from "./pages/Main";
 import Forum from "./pages/Forum";
 import Data from "./pages/Data";
 import Profile from "./pages/Profile";
@@ -29,6 +30,7 @@ class App extends Component {
     return (
       <Router>
         <Wrapper>
+          <Route exact path="/" component={Main} />
           <Route exact path="/Forum" component={Forum} />
           <Route exact path="/Data" component={Data} />
           <Route exact path="/Profile" component={Profile} />
