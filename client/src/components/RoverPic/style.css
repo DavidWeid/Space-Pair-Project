@@ -5,6 +5,9 @@
   padding: 2px 0;
   background-color: rgb(87, 33, 1);
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .picBody h1, h2, h3, h4, h5, h6, p {
