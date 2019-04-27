@@ -80,7 +80,7 @@ class Forum extends Component {
   handleSortBtn = e => {
     const sortby = e.target.value;
     console.log("Sort Clicked\n", sortby);
-    let order = "asc"
+    let order = "asc";
     API.sortPosts(order, sortby)
       .then(res => console.log(res))
       .catch(err => console.log(err));

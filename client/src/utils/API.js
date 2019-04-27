@@ -42,11 +42,13 @@ export default {
   // order = "asc" or "des"
   // sort = sort-what, or sort-by
   sortPosts(order, sort) {
-    return Axios.get(`/api/posts/sort/${order}/${sort}`)
+    return Axios.get(`/api/posts/sort/${order}/${sort}`);
   },
 
   getRoverManifest(rover) {
-    return Axios.get(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`)
+    return Axios.get(
+      `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`
+    );
   },
 
   // USER LOGIN/SIGNUP
@@ -55,9 +57,9 @@ export default {
     let user = {
       username,
       password
-    }
+    };
 
-    return Axios.post("/api/users/login", user)
+    return Axios.post("/api/users/login", user);
   },
 
   userSignup(username, password, email) {
@@ -65,7 +67,7 @@ export default {
       username,
       password,
       email
-    }
-    return Axios.post("/api/users/signup", user)
+    };
+    return Axios.post("/api/users/signup", user);
   }
 };
