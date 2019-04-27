@@ -1,4 +1,4 @@
-/* .roverPicGrid{
+.roverPicGrid{
   display: grid;
   border-top: .5px red solid;
   grid-template-columns: 325px auto;
@@ -6,8 +6,12 @@
 
 .roverPicHolder{
   padding-top: 140px;
-  background-color: rgb(205, 228, 247);
-}  */
+  display: grid;
+  grid-template-columns: 300px 300px;
+  width: fit-content;
+  margin: auto;
+  grid-column-gap: 20px;
+} 
 
 .dataPage{
   min-height: 100vh;

@@ -6,7 +6,8 @@ nav{
   position: fixed;
   top: 0px;
   left: 0px;
-  padding: 190px 10px 0px 10px;
+  padding: 0px 10px;
+  padding-top: calc(25vh + 10px);
   width: 325px;
   overflow: hidden;
   height: 100%; 
