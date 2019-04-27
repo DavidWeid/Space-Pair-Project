@@ -5,7 +5,7 @@ import "./navbar.css";
 
 const Navbar = props => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <Link className="navbar-brand" to={`/${props.pageOne}`}>
+    <Link className="navbar-brand" to={`/${props.home}`}>
       {props.brand}
     </Link>
 
