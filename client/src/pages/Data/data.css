@@ -1,24 +1,15 @@
-.roverPicGrid{
+/* .roverPicGrid{
   display: grid;
   border-top: .5px red solid;
   grid-template-columns: 325px auto;
 }
 
-/* .spaceTaker{
-  background-color: red;
-} */
-
 .roverPicHolder{
   padding-top: 140px;
-
   background-color: rgb(205, 228, 247);
-} 
+}  */
 
-.dataBanner{
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75%;
+.dataPage{
+  min-height: 100vh;
+  padding-bottom: 2000px;
 }

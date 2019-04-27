@@ -1,0 +1,24 @@
+.bruceText{
+  text-align: center;
+  background-color: black;
+  color: white;
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  top: 75px;
+  z-index: 5;
+  letter-spacing: 2px;
+
+}
+
+.bruceText-fixed{
+  text-align: center;
+  background-color: black;
+  color: white;
+  position: fixed;
+  top: 0;
+  padding: 10px;
+  width: 100%;
+  letter-spacing: 2px;
+  z-index: 5;
+}

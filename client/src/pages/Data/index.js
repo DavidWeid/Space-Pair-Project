@@ -3,7 +3,10 @@ import "./data.css";
 import API from "../../utils/API";
 import FormRover from "../../components/FormRover";
 import RoverPic from "../../components/RoverPic";
-import Banner from "../../components/Banner"
+import BruceBanner from "../../components/BruceBanner";
+import BruceText from "../../components/BruceText";
+
+const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
 
 
 class Data extends Component {
@@ -19,8 +22,10 @@ class Data extends Component {
     max_sol: "",
     total_pictures: "",
     total_day_photos: 0,
-    show_sol: false
+    show_sol: false,
+    yOffset: 0
   };
+
 
   // Get pictures from all cameras given rover and sol
   hitRoverSolPictures = (rover, sol) => {
@@ -117,15 +122,25 @@ class Data extends Component {
     return this.hitRoverSolCameraPictures(rover, sol, camera);
   }
 
+  scrollPos = e => {
+    console.log(e)
+  }
   render() {
-    return <div>
-      <div className="dataBanner">
-        <Banner
-          backgroundImage="https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-          Welcome to the Rover Page
-        </Banner>
-      </div>
-
+    return <div className="dataPage" onScroll={(e) => this.scrollPos(e)}>
+      <BruceBanner backgroundImage={urlPic} />
+      <BruceText />
+      <div className="roverPicGrid">
+        <div className="spaceTaker"></div>
+        <div className="roverPicHolder">
+          {this.state.photos.length > 0 ? (
+            this.state.photos.map(photo =>
+              <RoverPic key={photo.id} photo={photo} />
+            )
+          ) : (
+              <div></div>
+            )}
+        </div>
+      </div> */}
       <FormRover
         rover={this.state.rover}
         sol={this.state.sol}
@@ -139,18 +154,7 @@ class Data extends Component {
         total_day_photos={this.state.total_day_photos}
         show_sol={this.state.show_sol}
       />
-      <div className="roverPicGrid">
-        <div className="spaceTaker"></div>
-        <div className="roverPicHolder">
-          {this.state.photos.length > 0 ? (
-            this.state.photos.map(photo =>
-              <RoverPic key={photo.id} photo={photo} />
-            )
-          ) : (
-              <div></div>
-            )}
-        </div>
-      </div>
+
     </div>
   }
 }
