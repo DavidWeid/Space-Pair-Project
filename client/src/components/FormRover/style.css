@@ -4,14 +4,14 @@ nav{
 
 .formRover{
   position: fixed;
-  top:0px;
+  top: 18.75%;
   left: 0px;
-  padding: 76px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
   width: 325px;
   overflow: hidden;
-  height: 100vh; 
+  height: 82.25%; 
   background-color: whitesmoke;
-  z-index: 3;
+  z-index: 13;
   border-right: .5px red solid;
 }
 
