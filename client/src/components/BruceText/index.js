@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
 
+import { Link } from "react-router-dom";
+
 class BruceText extends Component {
 
   state = {
@@ -27,7 +29,15 @@ class BruceText extends Component {
 
   render() {
     return (
-      <div className={this.state.switchClass ? "bruceText-fixed" : "bruceText"}>Welcome to the Rover Page</div>
+      <div className={this.state.switchClass ? "bruceText-fixed" : "bruceText"}>
+        <div className="bannerBar">
+          <Link className={window.location.pathname === "/" ? "banLink activeBanLink" : "banLink"} to="/">Home</Link>
+          <Link className={window.location.pathname === "/Forum" ? "banLink activeBanLink" : "banLink"} to="/Forum">Forum</Link>
+          <span className="banLink">Welcome to the Rover Page</span>
+          <Link className={window.location.pathname === "/Data" ? "banLink activeBanLink" : "banLink"} to="/Data">Data</Link>
+          <Link className={window.location.pathname === "/Profile" ? "banLink activeBanLink" : "banLink"} to="/Profile">Profile</Link>
+        </div>
+      </div>
     )
   }
 }
