@@ -89,7 +89,7 @@ class Forum extends Component {
     if (userSortby === "recent") {
       sortby = "createdAt";
     } else if (userSortby === "popular") {
-      sortby = "likes";
+      sortby = "likesLength";
     }
     
     let order;
