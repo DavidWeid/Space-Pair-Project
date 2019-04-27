@@ -8,6 +8,10 @@ import PostsContainer from "../../components/PostsContainer";
 
 class Forum extends Component {
   state = {
+    numUsers: 0,
+    numPosts: 3,
+    numComments: 0,
+    postOrderClicked: false,
     posts: [
       {
         type: "roverPic",
@@ -78,9 +82,25 @@ class Forum extends Component {
   };
 
   handleSortBtn = e => {
-    const sortby = e.target.value;
-    console.log("Sort Clicked\n", sortby);
-    let order = "asc";
+    const userSortby = e.target.value;
+    console.log("Sort Clicked\n", userSortby);
+
+    let sortby;
+    if (userSortby === "recent") {
+      sortby = "createdAt";
+    } else if (userSortby === "popular") {
+      sortby = "likes";
+    }
+    
+    let order;
+    if (this.state.postOrderClicked === false) {
+      order = "asc";
+      this.setState({ postOrderClicked: true });
+    } else {
+      order = "des";
+      this.setState({ postOrderClicked: false });
+    }
+    console.log(order);
     API.sortPosts(order, sortby)
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -111,9 +131,9 @@ class Forum extends Component {
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">
               <Row className="justify-content-center">Info (About)</Row>
-              <Row>Users: 0</Row>
-              <Row>Posts: 0</Row>
-              <Row>Comments: 0</Row>
+              <Row>Users: {this.state.numUsers}</Row>
+              <Row>Posts: {this.state.numPosts}</Row>
+              <Row>Comments: {this.state.numComments}</Row>
             </Col>
             <Col
               md="9"
