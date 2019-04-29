@@ -10,13 +10,15 @@ passport.use(new LocalStrategy(
   function(email, password, done) {
     // console.log(email, password)
     db.User.findOne({ email })
+
       .then(function(dbUser) {
+        console.log(dbUser)
         if (!dbUser) {
           return done(null, false, {
             message: "Incorrect email."
           });
         }
-        dbUser.comparePassword(password, function(what, isMatch) {
+        dbUser.comparePassword(password, (what, isMatch) => {
           console.log(what, isMatch);
           if (isMatch) {
             return done(null, dbUser)
@@ -27,7 +29,9 @@ passport.use(new LocalStrategy(
         });
         
       })
-      .catch(err => err)
+      .catch(err => {
+        return {error:"this sucks"}
+      })
 
   }
 ));

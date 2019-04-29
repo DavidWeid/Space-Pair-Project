@@ -53,9 +53,9 @@ export default {
 
   // USER LOGIN/SIGNUP
 
-  userLogin(username, password) {
+  userLogin(email, password) {
     let user = {
-      username,
+      email,
       password
     };
 
@@ -69,5 +69,9 @@ export default {
       email
     };
     return Axios.post("/api/users/signup", user);
+  },
+
+  userCheck() {
+    return Axios.get("/api/users/test")
   }
 };
