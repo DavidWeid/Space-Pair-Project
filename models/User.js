@@ -22,7 +22,7 @@ const UserSchema = new Schema({
   },
 
   postIDs: {
-    type: Array, 
+    type: Array,
     default: [],
   },
 
@@ -52,8 +52,10 @@ UserSchema.pre("save", function(next) {
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) return cb(err);
+    if (err) cb(err);
+    console.log(isMatch + " inside of User model")
     cb(null, isMatch)
+
   })
 }
 
