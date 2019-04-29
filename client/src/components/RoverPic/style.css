@@ -5,8 +5,8 @@
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: rgb(87, 33, 1);
+  justify-content: space-between;
+  background-color: rgba(36, 0, 0, 0.938);
   /* background-color: rgb(182, 182, 182); */
 }
 
@@ -20,15 +20,12 @@
   max-width: 300px;
   height: auto;
   display: block;
-  margin: 0 auto;
-  /* align-self: flex-start; */
+  margin: auto;
 }
 
 .infoBox{
   padding: 10px;
-  background-color: rgb(87, 33, 1);
-  border-top: .5px black solid;
-  /* align-self: flex-end; */
+  background-color: rgb(87, 0, 0);
 }
 
 .camFullName{
