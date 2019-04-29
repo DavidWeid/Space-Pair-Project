@@ -26,8 +26,12 @@ class Login extends Component {
 
   login = (e) => {
     e.preventDefault();
-    API.userLogin(this.state.username, this.state.password)
-      .then(res => console.log(res))
+    API.userLogin(this.state.email, this.state.password)
+      .then(res => {
+        // console.log(res)
+        console.log(res.data.user);
+        this.props.changeUserState(res.data.user)
+      })
       .catch(err => console.log(err));
   }
 
@@ -46,11 +50,11 @@ class Login extends Component {
           <div className="login">
             <form>
               <div className="loginFormGroup">
-                <label>Username:</label>
+                <label>Email:</label>
                 <input
                   type="text"
-                  name="username"
-                  value={this.state.username}
+                  name="email"
+                  value={this.state.email}
                   onChange={(e) => this.handleInputUpdate(e)}
                 />
               </div>

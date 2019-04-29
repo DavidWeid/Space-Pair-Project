@@ -31,8 +31,9 @@ router.post("/signup", (req, res) => {
 //     })
 // })
 
-router.post("/login", passport.authenticate("local"), (req,res) => {
-  res.json({user: true})
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  console.log("how to send actual res and not 401")
+  res.json({ user: true })
 })
 
 router.delete("/:id", (req, res) => {
@@ -49,7 +50,7 @@ router.put("/update/info/:id", (req, res) => {
 
 router.put("/update/posts/:id", (req, res) => {
   User.findByIdAndUpdate(req.params.id, { $push: { postIDs: req.body.postIDs } })
-    .then(result => res.json({result, updated: true}))
+    .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }))
 })
 
@@ -59,11 +60,11 @@ router.put("/update/comments/:id", (req, res) => {
     .catch(err => res.status(404).json({ error: err }))
 })
 
-router.get("/test", (req,res) => {
+router.get("/test", (req, res) => {
   if (req.user) {
-    return res.json(req.user)
+    return res.json({user:true})
   }
-  return res.json({user: false})
+  return res.json({ user: false })
 })
 
 module.exports = router;
