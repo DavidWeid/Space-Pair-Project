@@ -19,7 +19,7 @@ class BruceText extends Component {
   }
 
   handleScroll = () => {
-    console.log(window.pageYOffset)
+    // console.log(window.pageYOffset)
     if (window.pageYOffset >= 75 && this.state.switchClass === false) {
       this.setState({ switchClass: true })
     } else if (window.pageYOffset < 75 && this.state.switchClass === true) {

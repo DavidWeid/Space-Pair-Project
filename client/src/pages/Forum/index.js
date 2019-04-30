@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import "./forum.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "reactstrap";
-import Banner from "../../components/Banner";
-import SortBar from "../../components/SortBar";
+// import Banner from "../../components/Banner";
+// import SortBar from "../../components/SortBar";
+import BruceBanner from "../../components/BruceBanner";
+import BruceText from "../../components/BruceText";
 import PostsContainer from "../../components/PostsContainer";
+
+let user;
 
 class Forum extends Component {
   state = {
+    user: true,
     numUsers: 0,
     numPosts: 3,
     numComments: 0,
@@ -66,14 +71,13 @@ class Forum extends Component {
 
   componentDidMount() {
     this.loadAllPosts();
-    // this.hitExampleAPI();
+    this.setState({ user: this.props.user });
   }
 
-  // hitExampleAPI() {
-  //   API.exampleAPI()
-  //     .then(res => console.log(res.data))
-  //     .catch(err => console.log(err));
-  // }
+  verifyUser = () => {
+    console.log(this.state.user);
+    user = this.state.user;
+  };
 
   loadAllPosts = () => {
     API.getAllPosts()
@@ -108,16 +112,28 @@ class Forum extends Component {
   };
 
   handlePostBtns = e => {
+    this.verifyUser();
+    console.log(user);
     const userAction = e.target.getAttribute("value");
     console.log(userAction);
     const postId = e.target.id;
     console.log(postId);
+    if (user && userAction === "like") {
+      console.log("User wants to like.");
+      // API call to update the user with new post id (add to likes array)
+      // API call to update the post with new user id (add to likes array)
+    } else if (user && userAction === "save") {
+      console.log("User wants to save.");
+      // API call to update user with a saved article id
+    } else if (!user) {
+      console.log("Please log in to 'Like', 'Comment', or 'Save'.");
+    }
   };
 
   render() {
     return (
       <div style={{ height: "100%" }}>
-        <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+        {/* <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
           Welcome to the Space Forum
         </Banner>
         <SortBar
@@ -127,7 +143,9 @@ class Forum extends Component {
           pageTwo="Forum"
           pageThree="Profile"
           handleSortBtn={this.handleSortBtn}
-        />
+        /> */}
+        <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
+        <BruceText bannerMessage="Welcome to the Space Forum" />
         <Container fluid className="forum-container">
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">
