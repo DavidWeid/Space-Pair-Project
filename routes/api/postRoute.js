@@ -28,7 +28,7 @@ router.get("/sort/des/:sort", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-// Get Route (one book by id)
+// Get Route (one post by id)
 
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
