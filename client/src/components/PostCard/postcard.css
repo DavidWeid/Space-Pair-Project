@@ -36,6 +36,7 @@
 .post-btn:hover {
   background-color: #7f8fa6;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .initial-comment {

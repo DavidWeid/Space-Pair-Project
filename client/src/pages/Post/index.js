@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import "./post.css";
 import { Container, Row, Col } from "reactstrap";
 import API from "../../utils/API";
-import Banner from "../../components/Banner";
-import SortBar from "../../components/SortBar";
-import PostsContainer from "../../components/PostsContainer";
+// import Banner from "../../components/Banner";
+// import SortBar from "../../components/SortBar";
+import BruceBanner from "../../components/BruceBanner";
+import BruceText from "../../components/BruceText";
+import SinglePostContainer from "../../components/SinglePostContainer";
 
 class Post extends Component {
   state = {
@@ -38,30 +41,16 @@ class Post extends Component {
 
   render() {
     return (
-      //   <Container>
-      //     <Row>
-      //       <Col>
-      //         <PostsContainer posts={this.state.post} />
-      //       </Col>
-      //     </Row>
-      //   </Container>
       <div style={{ height: "100%" }}>
-        <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
-          Welcome to the Space Forum
-        </Banner>
-        <SortBar
-          pageOne="Data"
-          pageTwo="Forum"
-          pageThree="Profile"
-          handleSortBtn={this.handleSortBtn}
-        />
-        <Container fluid className="forum-container">
-          <Row className="forum-row">
-            <Col xs="12" className="posts-column d-flex justify-content-center">
-              <PostsContainer
-                handlePostBtns={this.handlePostBtns}
-                posts={this.state.post}
-              />
+        <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+          {" "}
+        </BruceBanner>
+        <BruceText bannerMessage="Add Your thoughts to the Space Forum" />
+
+        <Container fluid className="forum-container comment-container">
+          <Row className="post-row">
+            <Col xs="12" className="post-column d-flex justify-content-center">
+              <SinglePostContainer post={this.state.post} />
             </Col>
           </Row>
         </Container>
