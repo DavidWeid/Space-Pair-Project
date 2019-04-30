@@ -2,13 +2,11 @@
   text-align: center;
   background-color: #000;
   color: white;
-  position: relative;
-  /* padding: 10px; */
+  position: absolute;
   width: 100%;
   top: 75px;
   z-index: 5;
   letter-spacing: 2px;
-
 }
 
 .bruceText-fixed{
