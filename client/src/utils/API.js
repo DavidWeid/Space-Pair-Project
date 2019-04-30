@@ -49,8 +49,12 @@ export default {
     return Axios.get(`/api/posts/${id}`);
   },
 
+  getComments(id) {
+    return Axios.get(`/api/comments/${id}`);
+  },
+
   // To create a new post
-  createComment(commentData) {
+  saveComment(commentData) {
     return Axios.post(`/api/comments`);
   },
 
