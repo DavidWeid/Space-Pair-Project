@@ -2,5 +2,6 @@
 module.exports = {
   Test: require("./test"),
   Model: require("./Post"),
-  User: require("./User")
+  User: require("./User"),
+  Comment: require("./Comment")
 };
