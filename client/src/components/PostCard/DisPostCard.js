@@ -1,6 +1,7 @@
 import React from "react";
 import "./postcard.css";
 import { Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const DisPostCard = props => {
   return (
@@ -37,14 +38,14 @@ const DisPostCard = props => {
               >
                 Like
               </button>
-              <button
-                onClick={props.handlePostBtns}
+              <Link
+                to={`/Posts/${props.id}`}
                 className="post-btn comment-btn"
                 id={props.id}
                 value="comment"
               >
                 Comment
-              </button>
+              </Link>
               <button
                 onClick={props.handlePostBtns}
                 className="post-btn save-btn"

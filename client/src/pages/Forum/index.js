@@ -66,18 +66,18 @@ class Forum extends Component {
 
   componentDidMount() {
     this.loadAllPosts();
-    this.hitExampleAPI();
+    // this.hitExampleAPI();
   }
 
-  hitExampleAPI() {
-    API.exampleAPI()
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-  }
+  // hitExampleAPI() {
+  //   API.exampleAPI()
+  //     .then(res => console.log(res.data))
+  //     .catch(err => console.log(err));
+  // }
 
   loadAllPosts = () => {
     API.getAllPosts()
-      .then(res => console.log(res))
+      .then(res => console.log(res.data))
       .catch(err => console.log(err));
   };
 
@@ -91,7 +91,7 @@ class Forum extends Component {
     } else if (userSortby === "popular") {
       sortby = "likesLength";
     }
-    
+
     let order;
     if (this.state.postOrderClicked === false) {
       order = "asc";
@@ -101,6 +101,7 @@ class Forum extends Component {
       this.setState({ postOrderClicked: false });
     }
     console.log(order);
+    // This .then() needs to do: this.setState({ posts: res.data }) where res.data = array of posts
     API.sortPosts(order, sortby)
       .then(res => console.log(res))
       .catch(err => console.log(err));
