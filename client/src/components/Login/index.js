@@ -5,6 +5,7 @@ import API from "../../utils/API"
 class Login extends Component {
   state = {
     login: true,
+    show: false,
     username: "",
     email: "",
     password: "",
@@ -16,18 +17,11 @@ class Login extends Component {
     this.setState({ [keyData]: valueData })
   }
 
-  slide = () => {
-    const box = document.getElementById("box");
-    let pos = 0;
-    const timer = setInterval(function(){
-      if (pos >= 200) {
-        clearInterval(timer);
-        box.style.height = "200px"
-      } else {
-        pos++;
-        box.style.height = pos + "px"
-      }
-    }, 2)
+  showLogin = (e) => {
+    e.preventDefault();
+    if (!this.props.user) {
+      this.setState({ show: !this.state.show })
+    }
   }
 
   switchForm = (e) => {
@@ -42,9 +36,9 @@ class Login extends Component {
     e.preventDefault();
     API.userLogin(this.state.email, this.state.password)
       .then(res => {
-        // console.log(res)
         console.log(res.data.user);
         this.props.changeUserState(res.data.user)
+        this.setState({ show: false })
       })
       .catch(err => console.log(err));
   }
@@ -58,13 +52,13 @@ class Login extends Component {
 
   render() {
     return (
-      <div id="box" className="heightUser">
-        <button onClick={()=> this.slide()}>click</button>
+      <div className="heightUser">
+        <div className="banLink" onClick={(e) => this.showLogin(e)}>{this.props.user ? "Logout" : "Login"}</div>
         {!this.props.user ? (
-          <div className="loginArea">
-            {this.state.login ? (
+          <div id="box" className="loginArea" style={{ display: this.state.show ? "block" : "none" }}>
 
-              <div className="login">
+            {this.state.login ? (
+              <div id="loginForm" className="login form-padding">
                 <form>
                   <div className="loginFormGroup">
                     <label>Email:</label>
@@ -103,7 +97,7 @@ class Login extends Component {
 
             ) : (
 
-                <div className="signup">
+                <div id="signupForm" className="signup form-padding">
                   <form>
                     <div className="loginFormGroup">
                       <label>Email:</label>

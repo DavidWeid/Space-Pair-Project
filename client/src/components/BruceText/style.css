@@ -31,6 +31,8 @@
   color: white;
   padding: 10px;
   text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
 }
 
 .activeBanLink{
