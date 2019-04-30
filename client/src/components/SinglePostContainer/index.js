@@ -26,6 +26,9 @@ const SinglePostContainer = props => {
             username={post.username}
             userComment={post.userComment}
             time={postTime}
+            handleInputChange={props.handleInputChange}
+            handleFormSubmit={props.handleFormSubmit}
+            value={props.value}
           />
         );
       case "article":
@@ -41,6 +44,9 @@ const SinglePostContainer = props => {
             articleTitle={post.articleTitle}
             articleURL={post.articleURL}
             articleDescription={post.articleDescription}
+            handleInputChange={props.handleInputChange}
+            handleFormSubmit={props.handleFormSubmit}
+            value={props.value}
           />
         );
       case "discussion":
@@ -54,6 +60,9 @@ const SinglePostContainer = props => {
             userComment={post.userComment}
             time={postTime}
             discussionTitle={post.discussionTitle}
+            handleInputChange={props.handleInputChange}
+            handleFormSubmit={props.handleFormSubmit}
+            value={props.value}
           />
         );
       default:

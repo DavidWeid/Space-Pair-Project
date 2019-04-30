@@ -27,7 +27,8 @@ class Post extends Component {
         roverSol: "45",
         roverEarthDate: "2004-03-11"
       }
-    ]
+    ],
+    comment: ""
   };
 
   componentDidMount() {
@@ -38,6 +39,23 @@ class Post extends Component {
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
+
+  handleInputChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+    console.log(this.state.comment);
+    if (this.state.comment) {
+      API.saveComment({
+        comment: this.state.comment,
+        author: this.state.user,
+        post: this.state.post._id
+      });
+    }
+  };
 
   render() {
     return (
@@ -50,7 +68,7 @@ class Post extends Component {
         <Container fluid className="forum-container comment-container">
           <Row className="post-row">
             <Col xs="12" className="post-column d-flex justify-content-center">
-              <SinglePostContainer post={this.state.post} />
+              <SinglePostContainer value={this.state.comment} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} post={this.state.post} />
             </Col>
           </Row>
         </Container>

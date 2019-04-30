@@ -2,6 +2,11 @@
   width: 35%;
 }
 
+.form-row {
+  padding-top: 3%;
+  border-top: 1px #dcdde1 solid;
+}
+
 @media all and (max-width: 1200px) {
     .comment-post-container {
         width: 45%;
