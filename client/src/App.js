@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import API from "./utils/API";
 
@@ -8,6 +8,7 @@ import Main from "./pages/Main";
 import Forum from "./pages/Forum";
 import Data from "./pages/Data";
 import Profile from "./pages/Profile";
+import Post from "./pages/Post";
 
 // Components
 import Wrapper from "./components/Wrapper";
@@ -17,8 +18,7 @@ class App extends Component {
     photos: []
   };
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   getExamplePhotos() {
     API.exampleAPI()
@@ -30,10 +30,13 @@ class App extends Component {
     return (
       <Router>
         <Wrapper>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/Forum" component={Forum} />
-          <Route exact path="/Data" component={Data} />
-          <Route exact path="/Profile" component={Profile} />
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/Forum" component={Forum} />
+            <Route exact path="/Data" component={Data} />
+            <Route exact path="/Profile" component={Profile} />
+            <Route exact path="/Posts/:id" component={Post} />
+          </Switch>
         </Wrapper>
       </Router>
     );

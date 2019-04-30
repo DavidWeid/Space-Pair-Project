@@ -28,6 +28,14 @@ router.get("/sort/des/:sort", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// Get Route (one book by id)
+
+router.get("/:id", (req, res) => {
+  Post.findById(req.params.id)
+    .then(result => res.json(result))
+    .catch(err => res.status(500).json(err));
+});
+
 // Post Route
 
 // This is not gated at the backend because it can handle all post types.

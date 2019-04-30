@@ -45,6 +45,10 @@ export default {
     return Axios.get(`/api/posts/sort/${order}/${sort}`);
   },
 
+  getPost(id) {
+    return Axios.get(`/api/posts/${id}`);
+  },
+
   getRoverManifest(rover) {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`
@@ -72,6 +76,6 @@ export default {
   },
 
   userCheck() {
-    return Axios.get("/api/users/test")
+    return Axios.get("/api/users/test");
   }
 };
