@@ -128,7 +128,7 @@ class Data extends Component {
   render() {
     return <div className="dataPage" onScroll={(e) => this.scrollPos(e)}>
       <BruceBanner backgroundImage={urlPic} />
-      <BruceText bannerMessage="Welcome to the Rover Page" />
+      <BruceText user={this.props.user} changeUserState={this.props.changeUserState} bannerMessage="Welcome to the Rover Page" />
       <div className="roverPicGrid">
         <div className="spaceTaker"></div>
         <div className="roverPicHolder">
