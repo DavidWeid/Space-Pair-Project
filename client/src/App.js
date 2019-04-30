@@ -15,7 +15,6 @@ import Wrapper from "./components/Wrapper";
 
 class App extends Component {
   state = {
-    photos: [],
     user: false
   };
 
