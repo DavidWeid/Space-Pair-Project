@@ -1,7 +1,8 @@
 .comment-container {
-    height: 100%;
+    background-color: #2f3640;
 }
 
 .comment-post-container {
     margin-top: 3%;
+    height: 50%;
 }

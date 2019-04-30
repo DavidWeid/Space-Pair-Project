@@ -76,7 +76,9 @@ class Forum extends Component {
 
   verifyUser = () => {
     console.log(this.state.user);
-    user = this.state.user;
+    API.userCheck()
+      .then(res => this.setState({ user: res }))
+      .catch(err => console.log(err));
   };
 
   loadAllPosts = () => {
@@ -145,7 +147,11 @@ class Forum extends Component {
           handleSortBtn={this.handleSortBtn}
         /> */}
         <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
-        <BruceText bannerMessage="Welcome to the Space Forum" />
+        <BruceText
+          bannerMessage="Welcome to the Space Forum"
+          user={this.props.user}
+          changeUserState={this.props.changeUserState}
+        />
         <Container fluid className="forum-container">
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">

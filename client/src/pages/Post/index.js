@@ -10,6 +10,10 @@ import SinglePostContainer from "../../components/SinglePostContainer";
 
 class Post extends Component {
   state = {
+    user: {
+      user: true,
+      _id: 1
+    },
     post: [
       {
         type: "roverPic",
@@ -28,13 +32,17 @@ class Post extends Component {
         roverEarthDate: "2004-03-11"
       }
     ],
-    comment: ""
+    comment: "",
+    comments: []
   };
 
   componentDidMount() {
     // API.getPost(this.props.match.params.id)
     //   .then(res => this.setState({ post: res.data }))
     //   .catch(err => console.log(err));
+    API.getComments(this.props.match.params.id)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
     API.getPost(this.props.match.params.id)
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -50,9 +58,9 @@ class Post extends Component {
     console.log(this.state.comment);
     if (this.state.comment) {
       API.saveComment({
-        comment: this.state.comment,
-        author: this.state.user,
-        post: this.state.post._id
+        message: this.state.comment,
+        userID: this.state.user._id,
+        postID: this.state.post._id
       });
     }
   };
@@ -65,10 +73,15 @@ class Post extends Component {
         </BruceBanner>
         <BruceText bannerMessage="Add Your thoughts to the Space Forum" />
 
-        <Container fluid className="forum-container comment-container">
+        <Container fluid className="comment-container">
           <Row className="post-row">
-            <Col xs="12" className="post-column d-flex justify-content-center">
-              <SinglePostContainer value={this.state.comment} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} post={this.state.post} />
+            <Col xs="12" className="d-flex justify-content-center">
+              <SinglePostContainer
+                value={this.state.comment}
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+                post={this.state.post}
+              />
             </Col>
           </Row>
         </Container>
