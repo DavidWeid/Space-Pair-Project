@@ -1,42 +1,29 @@
 import React, { Component } from "react";
 // import API from "../../utils/API";
+import "./profile.css"
+
 import Login from "../../components/Login";
+import BruceBanner from "../../components/BruceBanner"
+import BruceText from "../../components/BruceText"
+
 import API from "../../utils/API";
 
-class Profile extends Component {
-  state = {
-    user: false
-  };
+const urlPic = "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
 
+class Profile extends Component {
+  
   componentWillMount() {
     API.userCheck()
       .then(result => console.log(result.data))
       .catch(err => console.log(err))
   }
 
-  shouldComponentUpdate() {
-    this.sendToPage()
-    return true
-  }
-
-  changeUserState = (user) => {
-    if (user) {
-      return this.setState({ user: true })
-    }
-    return this.setState({ user: false })
-  }
-  
-  sendToPage() {
-    console.log("updated");
-    window.location.pathname = "/"
-    return true;
-  }
-
   render() {
     return (
-      <div>
-        <h1>Profile Page</h1>
-        <Login changeUserState={this.changeUserState} />
+      <div className="padd">
+        <BruceBanner backgroundImage={urlPic} />
+        <BruceText bannerMessage="Welcome to your Profile Page" />
+        <Login user={this.props.user} changeUserState={this.props.changeUserState} />
       </div>
     );
   }

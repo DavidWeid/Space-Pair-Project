@@ -15,27 +15,59 @@ import Wrapper from "./components/Wrapper";
 
 class App extends Component {
   state = {
-    photos: []
+    photos: [],
+    user: false
   };
 
-  componentDidMount() {}
-
-  getExamplePhotos() {
-    API.exampleAPI()
-      .then(res => this.setState({ photos: res.data.photos }))
-      .catch(err => console.log(err));
+  componentWillMount() {
+    API.userCheck()
+      .then(result => console.log(result.data))
+      .catch(err => console.log(err))
   }
+
+  shouldComponentUpdate() {
+    // this.sendToPage()
+    return true
+  }
+
+  changeUserState = (user) => {
+    if (user) {
+      return this.setState({ user: true })
+    }
+    return this.setState({ user: false })
+  }
+
+  sendToPage() {
+    console.log("updated");
+    window.location.pathname = "/"
+  }
+
+  // getExamplePhotos() {
+  //   API.exampleAPI()
+  //     .then(res => this.setState({ photos: res.data.photos }))
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     return (
       <Router>
         <Wrapper>
           <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/Forum" component={Forum} />
-            <Route exact path="/Data" component={Data} />
-            <Route exact path="/Profile" component={Profile} />
-            <Route exact path="/Posts/:id" component={Post} />
+            <Route exact path="/" render={(props) =>
+              <Main {...props} user={this.state.user} changeUserState={this.changeUserState} />}
+            />
+            <Route exact path="/Forum" render={(props) =>
+              <Forum {...props} user={this.state.user} changeUserState={this.changeUserState} />}
+            />
+            <Route exact path="/Data" render={(props) =>
+              <Data {...props} user={this.state.user} changeUserState={this.changeUserState} />}
+            />
+            <Route exact path="/Profile" render={(props) =>
+              <Profile {...props} user={this.state.user} changeUserState={this.changeUserState} />}
+            />
+            <Route exact path="/Posts/:id" render={(props) =>
+              <Post {...props} user={this.state.user} changeUserState={this.changeUserState} />}
+            />
           </Switch>
         </Wrapper>
       </Router>

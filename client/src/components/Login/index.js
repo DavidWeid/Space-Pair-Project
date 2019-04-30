@@ -16,6 +16,20 @@ class Login extends Component {
     this.setState({ [keyData]: valueData })
   }
 
+  slide = () => {
+    const box = document.getElementById("box");
+    let pos = 0;
+    const timer = setInterval(function(){
+      if (pos >= 200) {
+        clearInterval(timer);
+        box.style.height = "200px"
+      } else {
+        pos++;
+        box.style.height = pos + "px"
+      }
+    }, 2)
+  }
+
   switchForm = (e) => {
     e.preventDefault();
     this.setState({ login: !this.state.login })
@@ -44,83 +58,104 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="loginArea">
-        {this.state.login ? (
+      <div id="box" className="heightUser">
+        <button onClick={()=> this.slide()}>click</button>
+        {!this.props.user ? (
+          <div className="loginArea">
+            {this.state.login ? (
 
-          <div className="login">
-            <form>
-              <div className="loginFormGroup">
-                <label>Email:</label>
-                <input
-                  type="text"
-                  name="email"
-                  value={this.state.email}
-                  onChange={(e) => this.handleInputUpdate(e)}
-                />
-              </div>
-              <div className="loginFormGroup">
-                <label>Password:</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={(e) => this.handleInputUpdate(e)}
-                />
-              </div>
-              <button
-                type="submit"
-                className="formSubBtn"
-                onClick={(e) => this.login(e)}
-              >Submit
-              </button>
+              <div className="login">
+                <form>
+                  <div className="loginFormGroup">
+                    <label>Email:</label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={this.state.email}
+                      onChange={(e) => this.handleInputUpdate(e)}
+                    />
+                  </div>
+                  <div className="loginFormGroup">
+                    <label>Password:</label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={(e) => this.handleInputUpdate(e)}
+                    />
+                  </div>
+                  <div className="formButtons">
+                    <button
+                      type="submit"
+                      className="formSubBtn"
+                      onClick={(e) => this.login(e)}
+                    >Submit
+                    </button>
+                    <button
+                      onClick={(e) => this.switchForm(e)}
+                      className="formSubBtn"
+                    >Sign Up
+                    </button>
+                  </div>
 
-              <button onClick={(e) => this.switchForm(e)} className="formSubBtn">Sign Up</button>
-            </form>
+                </form>
+              </div>
+
+            ) : (
+
+                <div className="signup">
+                  <form>
+                    <div className="loginFormGroup">
+                      <label>Email:</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={(e) => this.handleInputUpdate(e)}
+                      />
+                    </div>
+                    <div className="loginFormGroup">
+                      <label>Username:</label>
+                      <input
+                        type="text"
+                        name="username"
+                        value={this.state.username}
+                        onChange={(e) => this.handleInputUpdate(e)}
+                      />
+                    </div>
+                    <div className="loginFormGroup">
+                      <label>Password:</label>
+                      <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={(e) => this.handleInputUpdate(e)}
+                      />
+                    </div>
+                    <div className="formButtons">
+                      <button
+                        type="submit"
+                        className="formSubBtn"
+                        onClick={(e) => this.signup(e)}
+                      >Submit
+                      </button>
+                      <button
+                        onClick={(e) => this.switchForm(e)}
+                        className="formSubBtn"
+                      >Login
+                      </button>
+                    </div>
+                  </form>
+                </div>)}
+
+
           </div>
-
         ) : (
-
-            <div className="signup">
-              <form>
-                <div className="loginFormGroup">
-                  <label>Email:</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={(e) => this.handleInputUpdate(e)}
-                  />
-                </div>
-                <div className="loginFormGroup">
-                  <label>Username:</label>
-                  <input
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    onChange={(e) => this.handleInputUpdate(e)}
-                  />
-                </div>
-                <div className="loginFormGroup">
-                  <label>Password:</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={(e) => this.handleInputUpdate(e)}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="formSubBtn"
-                  onClick={(e) => this.signup(e)}
-                >Submit
-                </button>
-                <button onClick={(e) => this.switchForm(e)} className="formSubBtn">Login</button>
-              </form>
-            </div>)}
-
+            <div></div>
+          )}
 
       </div>
+
     )
   }
 }
