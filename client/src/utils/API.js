@@ -49,6 +49,11 @@ export default {
     return Axios.get(`/api/posts/${id}`);
   },
 
+  // To create a new post
+  createComment(commentData) {
+    return Axios.post(`/api/comments`);
+  },
+
   getRoverManifest(rover) {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`

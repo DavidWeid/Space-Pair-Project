@@ -1,0 +1,21 @@
+.comment-post-container {
+  width: 35%;
+}
+
+@media all and (max-width: 1200px) {
+    .comment-post-container {
+        width: 45%;
+    }
+}
+
+@media all and (max-width: 800px) {
+  .comment-post-container {
+    width: 75%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .comment-post-container {
+    width: 98%;
+  }
+}
