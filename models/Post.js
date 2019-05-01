@@ -13,8 +13,8 @@ const PostSchema = new Schema({
 
   userComment: {
     // Intital comment made by the user about why they are saving/sharing post
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
 
   userID: {
