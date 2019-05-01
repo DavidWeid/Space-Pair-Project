@@ -53,9 +53,13 @@ export default {
     return Axios.get(`/api/comments/${id}`);
   },
 
-  // To create a new post
+  // To create a new comment
   saveComment(commentData) {
     return Axios.post(`/api/comments`);
+  },
+
+  savePost(postData) {
+    return Axios.post("/api/posts", postData);
   },
 
   getRoverManifest(rover) {

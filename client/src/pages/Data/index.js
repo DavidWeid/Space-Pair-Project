@@ -122,6 +122,24 @@ class Data extends Component {
     return this.hitRoverSolCameraPictures(rover, sol, camera);
   }
 
+  handleSaveButton = (e) => {
+    e.preventDefault();
+    const dat = e.target.dataset
+    const newSave = {
+      type: dat.type,
+      userID: dat.user_id,
+      roverName: dat.rover_name,
+      roverImg: dat.rover_img,
+      roverCamera: dat.rover_camera,
+      roverSol: dat.rover_sol,
+      roverEarthDate: dat.rover_earth_date
+    }
+
+    API.savePost(newSave)
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
+  }
+
   scrollPos = e => {
     console.log(e)
   }
@@ -134,7 +152,7 @@ class Data extends Component {
         <div className="roverPicHolder">
           {this.state.photos.length > 0 ? (
             this.state.photos.map(photo =>
-              <RoverPic key={photo.id} photo={photo} />
+              <RoverPic key={photo.id} photo={photo} handleSaveButton={this.handleSaveButton} />
             )
           ) : (
               <div></div>

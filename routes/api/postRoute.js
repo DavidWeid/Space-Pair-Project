@@ -41,6 +41,7 @@ router.get("/:id", (req, res) => {
 // This is not gated at the backend because it can handle all post types.
 // We need to make sure to gate this in the front end!
 router.post("/", (req, res) => {
+  console.log(req.body)
   const newPost = new Post(req.body);
   newPost
     .save()
