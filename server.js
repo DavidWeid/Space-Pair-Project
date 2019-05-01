@@ -54,30 +54,56 @@ const createUser = async () => {
     username: "Majin Buu",
     password: "bubblegum",
     email: "buu@you.com",
-    userImage: "https://cdn.dribbble.com/users/779803/screenshots/2297550/majin-boo-2.jpg"
+    userImage:
+      "https://cdn.dribbble.com/users/779803/screenshots/2297550/majin-boo-2.jpg"
+  });
+  const user2 = new models.User({
+    username: "Cell",
+    password: "plantbased",
+    email: "green@plant.com",
+    userImage: ""
+  });
+  const post1 = new models.Model({
+    type: "roverPic",
+    userID: user1._id,
+    username: user1.username,
+    roverName: "Spirit",
+    roverImg:
+      "http://mars.nasa.gov/mer/gallery/all/2/f/001/2F126468064EDN0000P1001L0M1-BR.JPG",
+    roverCamera: "FHAZ",
+    roverSol: "1",
+    roverEarthDate: "2004-01-05"
+  });
+  const post2 = new models.Model({
+    type: "article",
+    userID: user1._id,
+    username: user1.username,
+    articleTitle: "ISS power glitch delays Dragon launch",
+    articleImg: "https://spacenews.com/wp-content/uploads/2014/11/DragonISSCR2_NASA4X3-879x485.jpg",
+    articleAuthor: "Jeff Foust",
+    articleURL: "https://spacenews.com/iss-power-glitch-delays-dragon-launch/",
+    articleDescription: "A power problem on the International Space Station has postponed the launch of a SpaceX cargo spacecraft by at least two days, pending an effort to fix the issue."
   });
   const comment1 = new models.Comment({
     message: "I love rockets!",
     userID: user1._id,
-    postID: "post1._id"
+    postID: post1._id
   });
-  const post1 = new models.Model({
-    type: "roverPic",
-    userComment: comment1.message,
-    userID: user1._id,
-    username: user1.username,
-    commentIDs: [comment1._id],
-    roverName: "Spirit",
-    roverImg: "http://mars.nasa.gov/mer/gallery/all/2/f/001/2F126468064EDN0000P1001L0M1-BR.JPG",
-    roverCamera: "FHAZ",
-    roverSol: "1",
-    roverEarthDate: "2004-01-05"
+  const comment2 = new models.Comment({
+    message: "Dragons are cool...",
+    userID: user2._id,
+    postID: post2._id
   })
-
-  await user1.save();
-
-  await post1.save();
 
   await comment1.save();
 
-}
+  await comment2.save();
+
+  await post1.save();
+
+  await post2.save();
+
+  await user1.save();
+
+  await user2.save();
+};
