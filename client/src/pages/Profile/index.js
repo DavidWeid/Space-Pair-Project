@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import API from "../../utils/API";
 import "./profile.css"
 
 import BruceBanner from "../../components/BruceBanner"
@@ -12,9 +11,12 @@ const urlPic = "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jp
 class Profile extends Component {
 
   componentWillMount() {
-    API.userCheck()
-      .then(result => console.log(result.data))
-      .catch(err => console.log(err))
+    if (this.props.user) {
+      API.getAllPostsFromUser()
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
+    }
+
   }
 
   render() {
