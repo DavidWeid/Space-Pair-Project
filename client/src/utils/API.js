@@ -62,6 +62,11 @@ export default {
     return Axios.post("/api/posts", postData);
   },
 
+  //This sends the postID not the userID, userID is carried in req.user when logged in
+  addPostIDtoUser(postID) {
+    return Axios.put(`api/users/update/posts/${postID}`)
+  },
+
   getRoverManifest(rover) {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`

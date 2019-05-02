@@ -13,7 +13,6 @@ const RoverPic = props => {
         <a href={props.photo.img_src} rel="noopener noreferrer" target="_blank">Full Pic</a>
         <button
           data-type="roverPic"
-          data-user_id="5cc46dc5d34ab63bbc53b227"
           data-rover_name={props.photo.rover.name}
           data-rover_img={props.photo.img_src}
           data-rover_camera={props.photo.camera.name}

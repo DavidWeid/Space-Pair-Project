@@ -16,23 +16,7 @@ router.post("/signup", (req, res) => {
     .catch(err => res.json(err));
 })
 
-// router.post("/login", (req, res) => {
-//   console.log(req.body)
-//   User.findOne({ username: req.body.username })
-//     .then(user => {
-//       user.comparePassword(req.body.password, function(err, resp) {
-//         if (err) res.json(err);
-//         console.log(resp)
-//         res.json(resp);
-//       })
-//     })
-//     .catch(err => {
-//       res.status(404).json({ error: "There is no user by that username" })
-//     })
-// })
-
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  console.log("how to send actual res and not 401")
   res.json({ user: true })
 })
 
@@ -49,7 +33,8 @@ router.put("/update/info/:id", (req, res) => {
 })
 
 router.put("/update/posts/:id", (req, res) => {
-  User.findByIdAndUpdate(req.params.id, { $push: { postIDs: req.body.postIDs } })
+  console.log(req.user._id + " here I am")
+  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }))
 })
