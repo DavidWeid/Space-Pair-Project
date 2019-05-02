@@ -24,16 +24,17 @@
   background-color: #333;
   position: absolute;
   opacity: .9;
-  top: 0;
   height: 100%;
-  width: 100vw;
+  width: 100%;
 }
 
 .picModal{
-  max-height: 90vh;
+  height: 90vh;
   width: 50vw;
   position: absolute;
-  top: 2.5vh;
+  top: 0;
+  margin-top: 5vh;
+  margin-bottom: auto;
   left: 25vw;
   background-color: whitesmoke;
   z-index: 25;

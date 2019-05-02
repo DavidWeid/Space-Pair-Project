@@ -26,7 +26,8 @@ class Data extends Component {
     yOffset: 0,
     more: false,
     modalImg: "",
-    modalCamera: ""
+    modalCamera: "",
+    yOffset: 0,
   };
 
 
@@ -162,10 +163,25 @@ class Data extends Component {
     this.setState({ more: !this.state.more, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera })
   }
 
+  getScrollHeight = (e) => {
+    e.preventDefault();
+    this.setState({ yOffset: window.pageYOffset })
+  }
+
   render() {
+
+    const styleTop = {
+      top: window.pageYOffset
+    }
+
     return <div className="dataPage">
       <BruceBanner backgroundImage={urlPic} />
-      <BruceText user={this.props.user} changeUserState={this.props.changeUserState} bannerMessage="Welcome to the Rover Page" />
+      <BruceText
+        user={this.props.user}
+        changeUserState={this.props.changeUserState}
+        bannerMessage="Welcome to the Rover Page"
+        
+      />
       <div className="roverPicGrid">
         <div className="spaceTaker"></div>
         <div className="roverPicHolder">
@@ -198,8 +214,8 @@ class Data extends Component {
       />
       {this.state.more ? (
         <div>
-          <div className="backdrop"></div>
-          <div className="picModal">
+          <div className="backdrop" style={styleTop}></div>
+          <div className="picModal" style={styleTop}>
             <RoverPicSelect
               rover={this.state.rover}
               sol={this.state.sol}
