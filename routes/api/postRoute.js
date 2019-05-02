@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Post = require("../../models/Post");
+const User = require("../../models/User");
 
 // Basic Get Route without sort
 // "/api/posts/"
@@ -36,17 +37,32 @@ router.get("/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// Get all posts by one user
+
+router.get("/user/:id", (req, res) => {
+  Post.find({ userID: req.params.id })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+})
+
 // Post Route
 
 // This is not gated at the backend because it can handle all post types.
 // We need to make sure to gate this in the front end!
 router.post("/", (req, res) => {
-  console.log(req.body)
-  const newPost = new Post(req.body);
-  newPost
-    .save()
-    .then(result => res.json(result))
-    .catch(err => res.status(500).json(err));
+  if (req.user) {
+    const newPost = new Post(req.body);
+    newPost.userID = req.user._id;
+    newPost
+      .save()
+      .then(result => {
+        res.json({ sent: true, result: result });
+      })
+      .catch(err => res.status(500).json({ eror: "err" }));
+  } else {
+    res.json({ user: false })
+  }
+
 });
 
 // Delete Route

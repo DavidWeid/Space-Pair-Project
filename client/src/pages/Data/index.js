@@ -127,7 +127,6 @@ class Data extends Component {
     const dat = e.target.dataset
     const newSave = {
       type: dat.type,
-      userID: dat.user_id,
       roverName: dat.rover_name,
       roverImg: dat.rover_img,
       roverCamera: dat.rover_camera,
@@ -135,8 +134,19 @@ class Data extends Component {
       roverEarthDate: dat.rover_earth_date
     }
 
+    // This sends in the info about the new post in from roverPic
+    // then in the response, sends an update to the user for the postID
     API.savePost(newSave)
-      .then(result => console.log(result))
+      .then(result => {
+        console.log(result)
+        if (result.data.user === false) {
+          return console.log("You are not logged in an no post was saved");
+        } else if (result.data.sent === true){
+          API.addPostIDtoUser(result.data.result._id)
+            .then(resultAgain =>  console.log(resultAgain))
+            .catch(err => console.log(err));
+        }
+      })
       .catch(err => console.log(err));
   }
 
