@@ -21,8 +21,14 @@ const RoverPic = props => {
           onClick={(e) => props.handleSaveButton(e)}
         >Save
         </button>
-      </div>
+        <button
+          data-img={props.photo.img_src}
+          data-camera={props.photo.camera.name}
+          onClick={(e) => props.showModal(e)}
+        >More Info
+        </button>
     </div>
+    </div >
   )
 }
 
