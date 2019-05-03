@@ -10,10 +10,11 @@ moment().format();
 
 const SinglePostContainer = props => {
   const post = props.post;
+  const comments = props.comments;
   console.log(post);
 
   const displayPost = post.map(post => {
-    const postTime = moment.unix(`${post.createdAt}`).format("MMM D, h:mm");
+    const postTime = moment(`${post.createdAt}`).format("MMM D, h:mm");
 
     switch (post.type) {
       case "roverPic":
@@ -29,6 +30,7 @@ const SinglePostContainer = props => {
             handleInputChange={props.handleInputChange}
             handleFormSubmit={props.handleFormSubmit}
             value={props.value}
+            comments={comments}
           />
         );
       case "article":

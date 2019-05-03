@@ -27,7 +27,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to MongoDB
-const eraseDatabaseOnSync = false;
+const eraseDatabaseOnSync = true;
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/science-forum-db", {
     useNewUrlParser: true
@@ -79,10 +79,37 @@ const createUser = async () => {
     userID: user1._id,
     username: user1.username,
     articleTitle: "ISS power glitch delays Dragon launch",
-    articleImg: "https://spacenews.com/wp-content/uploads/2014/11/DragonISSCR2_NASA4X3-879x485.jpg",
+    articleImg:
+      "https://spacenews.com/wp-content/uploads/2014/11/DragonISSCR2_NASA4X3-879x485.jpg",
     articleAuthor: "Jeff Foust",
     articleURL: "https://spacenews.com/iss-power-glitch-delays-dragon-launch/",
-    articleDescription: "A power problem on the International Space Station has postponed the launch of a SpaceX cargo spacecraft by at least two days, pending an effort to fix the issue."
+    articleDescription:
+      "A power problem on the International Space Station has postponed the launch of a SpaceX cargo spacecraft by at least two days, pending an effort to fix the issue."
+  });
+  const post3 = new models.Model({
+    type: "roverPic",
+    userID: user2._id,
+    username: user2.username,
+    commentIDs: [],
+    roverName: "Opportunity",
+    roverImg:
+      "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
+    roverCamera: "FHAZ",
+    roverSol: "45",
+    roverEarthDate: "2004-03-11"
+  });
+  const post4 = new models.Model({
+    type: "article",
+    userID: user1._id,
+    username: user1.username,
+    articleTitle: "The Space Age Invades Marvel's Cinematic Universe",
+    articleImg:
+      "https://cdn.mos.cms.futurecdn.net/23SQ7ZFTRMqMgwPDDWpXdP-970-80.jpg",
+    articleAuthor: "Sarah Lewin",
+    articleURL:
+      "https://www.space.com/space-age-invades-marvel-cinematic-universe.html",
+    articleDescription:
+      "As the forces of the universe muster against the ultimate villain Thanos for 'Avengers: Endgame' (2019), Space.com took a look back at how the MCU has related to outer space."
   });
   const comment1 = new models.Comment({
     message: "I love rockets!",
@@ -93,17 +120,26 @@ const createUser = async () => {
     message: "Dragons are cool...",
     userID: user2._id,
     postID: post2._id
-  })
+  });
+  const comment3 = new models.Comment({
+    message: "What even is this?",
+    userID: user2._id,
+    postID: post1._id
+  });
+  const comment4 = new models.Comment({
+    message: "Nice and round",
+    userID: user1._id,
+    postID: post1._id
+  });
 
   await comment1.save();
-
   await comment2.save();
-
+  await comment3.save();
+  await comment4.save();
   await post1.save();
-
   await post2.save();
-
+  await post3.save();
+  await post4.save();
   await user1.save();
-
   await user2.save();
 };

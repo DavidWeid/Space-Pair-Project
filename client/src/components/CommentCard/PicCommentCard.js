@@ -3,6 +3,20 @@ import { Container, Row, Col } from "reactstrap";
 import { TextArea, FormBtn } from "../Form";
 
 const PicCommentCard = props => {
+  console.log(props.comments);
+
+  let initialComment;
+
+  if (!props.userComment) {
+    initialComment = "";
+  } else {
+    initialComment = `${props.username}: ${props.userComment}`;
+  }
+
+  const displayComments = props.comments.map(comment => {
+    return <p key={comment._id}>{comment.message}</p>;
+  });
+
   return (
     <div>
       <div className="card">
@@ -15,9 +29,8 @@ const PicCommentCard = props => {
           </Row>
           <Row>
             <Col>
-              <p className="card-text initial-comment">
-                {props.username}: {props.userComment}
-              </p>
+              <p className="card-text initial-comment">{initialComment}</p>
+              {displayComments}
             </Col>
           </Row>
           <Row className="form-row">

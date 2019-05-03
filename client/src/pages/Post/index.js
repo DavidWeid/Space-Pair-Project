@@ -10,41 +10,18 @@ import SinglePostContainer from "../../components/SinglePostContainer";
 
 class Post extends Component {
   state = {
-    user: {
-      user: true,
-      _id: 1
-    },
-    post: [
-      {
-        type: "roverPic",
-        _id: 100,
-        userComment: "I love rover pics!",
-        userID: "9001",
-        username: "Vegeta",
-        commentIDs: ["1", "2"],
-        likes: 1,
-        createdAt: Date.now(),
-        roverName: "Opportunity",
-        roverImg:
-          "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
-        roverCamera: "FHAZ",
-        roverSol: "45",
-        roverEarthDate: "2004-03-11"
-      }
-    ],
+    user: this.props.user,
+    post: [],
     comment: "",
     comments: []
   };
 
   componentDidMount() {
-    // API.getPost(this.props.match.params.id)
-    //   .then(res => this.setState({ post: res.data }))
-    //   .catch(err => console.log(err));
-    API.getComments(this.props.match.params.id)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
     API.getPost(this.props.match.params.id)
-      .then(res => console.log(res))
+      .then(res => this.setState({ post: [res.data] }))
+      .catch(err => console.log(err));
+    API.getComments(this.props.match.params.id)
+      .then(res => this.setState({ comments: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -81,6 +58,7 @@ class Post extends Component {
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 post={this.state.post}
+                comments={this.state.comments}
               />
             </Col>
           </Row>
