@@ -24,7 +24,7 @@ const CommentSchema = new Schema({
   createdAt: {
     type: Date
   }
-})
+});
 
 CommentSchema.pre("save", function(next) {
   if (!this.createdAt) {
@@ -34,4 +34,4 @@ CommentSchema.pre("save", function(next) {
   next();
 });
 
-module.exports = Comment = mongoose.model("Comment", CommentSchema)
+module.exports = Comment = mongoose.model("Comment", CommentSchema);

@@ -14,13 +14,17 @@ const PicCommentCard = props => {
   }
 
   const displayComments = props.comments.map(comment => {
-    return <p key={comment._id}>{comment.username}: {comment.message}</p>;
+    return (
+      <p key={comment._id}>
+        {comment.username}: {comment.message}
+      </p>
+    );
   });
 
   return (
     <div>
       <div className="card">
-        <img src={props.img} className="card-img-top" alt={process.type} />
+        <img src={props.img} className="card-img-top" alt={props.type} />
         <Container fluid className="card-body">
           <Row className="info-row">
             <Col xs="12" sm="4">

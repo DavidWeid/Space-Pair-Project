@@ -9,9 +9,9 @@
 }
 
 @media all and (max-width: 1200px) {
-    .comment-post-container {
-        width: 45%;
-    }
+  .comment-post-container {
+    width: 45%;
+  }
 }
 
 @media all and (max-width: 800px) {
