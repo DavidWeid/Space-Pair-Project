@@ -170,10 +170,6 @@ class Data extends Component {
 
   render() {
 
-    const styleTop = {
-      top: window.pageYOffset
-    }
-
     return <div className="dataPage">
       <BruceBanner backgroundImage={urlPic} />
       {/* <BruceText
@@ -214,8 +210,8 @@ class Data extends Component {
       />
       {this.state.more ? (
         <div>
-          <div className="backdrop" style={styleTop}></div>
-          <div className="picModal" style={styleTop}>
+          <div className="backdrop"></div>
+          <div className="picModal">
             <RoverPicSelect
               rover={this.state.rover}
               sol={this.state.sol}

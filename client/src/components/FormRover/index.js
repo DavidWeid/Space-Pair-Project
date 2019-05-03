@@ -55,7 +55,7 @@ const FormRover = props => {
           show_sol={props.show_sol}
         />
 
-        {props.camera ? (<div>
+        {props.camera ? (
           <button
             className="searchBtn"
             onClick={(e) => props.getPhotos(e)}
@@ -63,7 +63,7 @@ const FormRover = props => {
             data-sol={props.sol}
             data-camera={props.camera}
           >Search</button>
-        </div>) : (<div></div>)}
+        ) : (<div></div>)}
       </Form>
     </div>
   )
