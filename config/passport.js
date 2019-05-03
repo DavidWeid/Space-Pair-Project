@@ -12,14 +12,14 @@ passport.use(new LocalStrategy(
     db.User.findOne({ email })
 
       .then(function(dbUser) {
-        console.log(dbUser)
+        // console.log(dbUser)
         if (!dbUser) {
           return done(null, false, {
             message: "Incorrect email."
           });
         }
         dbUser.comparePassword(password, (what, isMatch) => {
-          console.log(what, isMatch);
+          // console.log(what, isMatch);
           if (isMatch) {
             return done(null, dbUser)
           }

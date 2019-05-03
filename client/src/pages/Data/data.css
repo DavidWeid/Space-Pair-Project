@@ -18,3 +18,31 @@
   min-height: 100vh;
   /* padding-bottom: 2000px; */
 }
+
+.backdrop{
+  z-index: 21;
+  background-color: #333;
+  position: absolute;
+  opacity: .9;
+  height: 100%;
+  width: 100%;
+}
+
+.picModal{
+  height: 90vh;
+  width: 50vw;
+  position: absolute;
+  top: 0;
+  margin-top: 5vh;
+  margin-bottom: auto;
+  left: 25vw;
+  background-color: whitesmoke;
+  z-index: 25;
+}
+
+.picModal img{
+  width: 400px;
+  height: auto;
+  display: block;
+  margin: auto;
+}

@@ -14,7 +14,7 @@ router.post("/", (req,res) => {
     .catch(err => res.status(500).json(err))
 })
 
-router.get("/:postId", (req,res) => {
+router.get("/postcomments/:postId", (req,res) => {
   Comment.find({postID:req.params.postId})
     .sort({createdAt:1})
     .then(result => res.json(result))

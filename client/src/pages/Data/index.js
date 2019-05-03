@@ -5,13 +5,13 @@ import FormRover from "../../components/FormRover";
 import RoverPic from "../../components/RoverPic";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
+import RoverPicSelect from "../../components/RoverPicSelect";
 
 const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
 
 
 class Data extends Component {
   state = {
-    key: "value",
     rover: "",
     sol: "",
     earthDay: "",
@@ -23,7 +23,11 @@ class Data extends Component {
     total_pictures: "",
     total_day_photos: 0,
     show_sol: false,
-    yOffset: 0
+    yOffset: 0,
+    more: false,
+    modalImg: "",
+    modalCamera: "",
+    yOffset: 0,
   };
 
 
@@ -95,9 +99,13 @@ class Data extends Component {
     const iSaidRightSol = rightSol[0];
     if (iSaidRightSol) {
       console.log(iSaidRightSol);
-      return this.setState({ cameras_manifest: iSaidRightSol.cameras, total_day_photos: iSaidRightSol.total_photos });
+      return this.setState({
+        cameras_manifest: iSaidRightSol.cameras,
+        total_day_photos: iSaidRightSol.total_photos,
+        earthDay: iSaidRightSol.earth_date
+      });
     }
-    return this.setState({ cameras_manifest: [], total_day_photos: 0 });
+    return this.setState({ cameras_manifest: [], total_day_photos: 0, earthDat: "" });
   }
 
   // Input form FormRover/Cameras Component
@@ -141,28 +149,50 @@ class Data extends Component {
         console.log(result)
         if (result.data.user === false) {
           return console.log("You are not logged in an no post was saved");
-        } else if (result.data.sent === true){
+        } else if (result.data.sent === true) {
           API.addPostIDtoUser(result.data.result._id)
-            .then(resultAgain =>  console.log(resultAgain))
+            .then(resultAgain => console.log(resultAgain))
             .catch(err => console.log(err));
         }
       })
       .catch(err => console.log(err));
   }
 
-  scrollPos = e => {
-    console.log(e)
+  showModal = (e) => {
+    e.preventDefault();
+    this.setState({ more: !this.state.more, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera })
   }
+
+  getScrollHeight = (e) => {
+    e.preventDefault();
+    this.setState({ yOffset: window.pageYOffset })
+  }
+
   render() {
-    return <div className="dataPage" onScroll={(e) => this.scrollPos(e)}>
+
+    const styleTop = {
+      top: window.pageYOffset
+    }
+
+    return <div className="dataPage">
       <BruceBanner backgroundImage={urlPic} />
-      <BruceText user={this.props.user} changeUserState={this.props.changeUserState} bannerMessage="Welcome to the Rover Page" />
+      <BruceText
+        user={this.props.user}
+        changeUserState={this.props.changeUserState}
+        bannerMessage="Welcome to the Rover Page"
+        
+      />
       <div className="roverPicGrid">
         <div className="spaceTaker"></div>
         <div className="roverPicHolder">
           {this.state.photos.length > 0 ? (
             this.state.photos.map(photo =>
-              <RoverPic key={photo.id} photo={photo} handleSaveButton={this.handleSaveButton} />
+              <RoverPic
+                key={photo.id}
+                photo={photo}
+                handleSaveButton={this.handleSaveButton}
+                showModal={this.showModal}
+              />
             )
           ) : (
               <div></div>
@@ -182,6 +212,24 @@ class Data extends Component {
         total_day_photos={this.state.total_day_photos}
         show_sol={this.state.show_sol}
       />
+      {this.state.more ? (
+        <div>
+          <div className="backdrop" style={styleTop}></div>
+          <div className="picModal" style={styleTop}>
+            <RoverPicSelect
+              rover={this.state.rover}
+              sol={this.state.sol}
+              earth_date={this.state.earthDay}
+              img={this.state.modalImg}
+              camera={this.state.modalCamera}
+              handleSaveButton={this.handleSaveButton}
+              showModal={this.showModal}
+            />
+          </div>
+        </div>
+      ) : (
+          <div></div>
+        )}
 
     </div>
   }
