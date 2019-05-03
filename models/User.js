@@ -31,6 +31,11 @@ const UserSchema = new Schema({
     default: []
   },
 
+  likes:{
+    type: Array,
+    deafult: []
+  },
+
   userImage: {
     type: String,
     default: "user default pic url goes here if we want to have one"

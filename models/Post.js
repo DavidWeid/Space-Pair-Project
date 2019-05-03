@@ -49,6 +49,11 @@ const PostSchema = new Schema({
     default: Date.now
   },
 
+  savedUsers: {
+    type: Array,
+    default: []
+  },
+
   // End Common information -----------------------------------------------------------------
 
   // Selective Information, each post will fullfill all of the options in the correct section to save
