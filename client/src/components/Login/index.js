@@ -42,7 +42,10 @@ class Login extends Component {
       })
       .catch(err => {
         console.log("this is from login component")
+        alert("You have entered incorrect password or email");
+        this.setState({password: ""})
         console.log(err)
+
       });
   }
 
