@@ -17,13 +17,27 @@ class Post extends Component {
   };
 
   componentDidMount() {
+    this.getPost();
+    this.getComments();
+  }
+
+  getPost = () => {
     API.getPost(this.props.match.params.id)
       .then(res => this.setState({ post: [res.data] }))
       .catch(err => console.log(err));
+  };
+
+  getComments = () => {
     API.getComments(this.props.match.params.id)
       .then(res => this.setState({ comments: res.data }))
       .catch(err => console.log(err));
-  }
+  };
+
+  saveComment = (postID, comment) => {
+    API.saveComment(postID, comment)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
 
   handleInputChange = e => {
     const { name, value } = e.target;
@@ -32,13 +46,13 @@ class Post extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log(this.state.comment);
+    let comment = { message: this.state.comment };
+    console.log("Comment", comment);
+    let postID = this.state.post[0]._id;
     if (this.state.comment) {
-      API.saveComment({
-        message: this.state.comment,
-        userID: this.state.user._id,
-        postID: this.state.post._id
-      });
+      this.saveComment(postID, comment);
+      this.getComments();
+      this.setState({ comment: "" });
     }
   };
 

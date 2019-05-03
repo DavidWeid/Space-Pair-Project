@@ -47,8 +47,8 @@ export default {
   },
 
   // To create a new comment
-  saveComment(commentData) {
-    return Axios.post(`/api/comments`);
+  saveComment(postID, comment) {
+    return Axios.post(`/api/comments/new/${postID}`, comment);
   },
 
   savePost(postData) {
@@ -61,7 +61,7 @@ export default {
   },
 
   addUserIDtoPost(postID) {
-    return Axios.put(`/api/posts/saved/${postID}`)
+    return Axios.put(`/api/posts/saved/${postID}`);
   },
 
   updatePostLikesWithUserID(postID) {

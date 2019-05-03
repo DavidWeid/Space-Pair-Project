@@ -7,8 +7,14 @@ router.get("/", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-router.post("/", (req, res) => {
-  const newComment = new Comment(req.body);
+router.post("/new/:postID", (req, res) => {
+  console.log(req.body);
+  const newComment = new Comment({
+    message: req.body.message,
+    postID: req.params.postID,
+    userID: req.user._id,
+    username: req.user.username
+  });
   newComment
     .save()
     .then(result => res.json(result))
