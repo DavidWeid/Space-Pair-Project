@@ -60,6 +60,10 @@ export default {
     return Axios.put(`/api/users/update/posts/${postID}`);
   },
 
+  addUserIDtoPost(postID) {
+    return Axios.put(`/api/posts/saved/${postID}`)
+  },
+
   updatePostLikesWithUserID(postID) {
     return Axios.put(`/api/posts/liked/${postID}`);
   },

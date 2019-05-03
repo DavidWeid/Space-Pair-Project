@@ -91,7 +91,10 @@ class Forum extends Component {
         .catch(err => console.log(err));
     } else if (this.state.user && userAction === "save") {
       console.log("User wants to save.");
-      // API call to update user with a saved article id
+      API.addPostIDtoUser(postId)
+        .then(res => console.log(res))
+        .then(API.addUserIDtoPost(postId))
+        .catch(err => console.log(err));
     } else if (!this.state.user) {
       console.log("Please log in to 'Like', 'Comment', or 'Save'.");
     }
