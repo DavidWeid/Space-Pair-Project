@@ -72,7 +72,11 @@ const SinglePostContainer = props => {
     }
   });
 
-  return <div className="d-flex flex-column comment-post-container">{displayPost}</div>;
+  return (
+    <div className="d-flex flex-column comment-post-container">
+      {displayPost}
+    </div>
+  );
 };
 
 export default SinglePostContainer;

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Comment = require("../../models/Comment")
+const Comment = require("../../models/Comment");
 
 router.get("/", (req, res) => {
   Comment.find()
@@ -7,18 +7,19 @@ router.get("/", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-router.post("/", (req,res) => {
+router.post("/", (req, res) => {
   const newComment = new Comment(req.body);
-  newComment.save()
+  newComment
+    .save()
     .then(result => res.json(result))
-    .catch(err => res.status(500).json(err))
-})
+    .catch(err => res.status(500).json(err));
+});
 
-router.get("/postcomments/:postId", (req,res) => {
-  Comment.find({postID:req.params.postId})
-    .sort({createdAt:1})
+router.get("/postcomments/:postId", (req, res) => {
+  Comment.find({ postID: req.params.postId })
+    .sort({ createdAt: 1 })
     .then(result => res.json(result))
-    .catch(err => res.status(404).json(err))
-})
+    .catch(err => res.status(404).json(err));
+});
 
 module.exports = router;

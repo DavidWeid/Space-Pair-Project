@@ -14,7 +14,7 @@ const PicCommentCard = props => {
   }
 
   const displayComments = props.comments.map(comment => {
-    return <p key={comment._id}>{comment.message}</p>;
+    return <p key={comment._id}>{comment.username}: {comment.message}</p>;
   });
 
   return (

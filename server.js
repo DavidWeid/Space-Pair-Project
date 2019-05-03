@@ -114,22 +114,26 @@ const createUser = async () => {
   const comment1 = new models.Comment({
     message: "I love rockets!",
     userID: user1._id,
-    postID: post1._id
+    postID: post1._id,
+    username: user1.username
   });
   const comment2 = new models.Comment({
     message: "Dragons are cool...",
     userID: user2._id,
-    postID: post2._id
+    postID: post2._id,
+    username: user2.username
   });
   const comment3 = new models.Comment({
     message: "What even is this?",
     userID: user2._id,
-    postID: post1._id
+    postID: post1._id,
+    username: user2.username
   });
   const comment4 = new models.Comment({
     message: "Nice and round",
     userID: user1._id,
-    postID: post1._id
+    postID: post1._id,
+    username: user1.username
   });
 
   await comment1.save();

@@ -17,6 +17,10 @@ const CommentSchema = new Schema({
     required: true
   },
 
+  username: {
+    type: String
+  },
+
   createdAt: {
     type: Date
   }
