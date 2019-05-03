@@ -5,7 +5,7 @@ const RoverPicSelect = props => {
   return (
     <div>
       <div className="roverSelectBox">
-        <img src={props.img} alt="rover picture" />
+        <img src={props.img} alt="rover" />
         <div className="roverSelectInfo">
           <h2>Rover: {props.rover}</h2>
           <h5>Sol: {props.sol}</h5>

@@ -4,13 +4,12 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PicPostCard = props => {
-
   let initialComment;
 
   if (!props.userComment) {
     initialComment = "";
   } else {
-    initialComment = `${props.username}: ${props.userComment}`
+    initialComment = `${props.username}: ${props.userComment}`;
   }
 
   return (
@@ -20,9 +19,7 @@ const PicPostCard = props => {
         <Container fluid className="card-body">
           <Row>
             <Col>
-              <p className="card-text initial-comment">
-                {initialComment}
-              </p>
+              <p className="card-text initial-comment">{initialComment}</p>
             </Col>
           </Row>
 

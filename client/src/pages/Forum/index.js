@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./forum.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "reactstrap";
-import Banner from "../../components/Banner";
-import SortBar from "../../components/SortBar";
+// import Banner from "../../components/Banner";
+// import SortBar from "../../components/SortBar";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import PostsContainer from "../../components/PostsContainer";
@@ -50,6 +50,35 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
+  updateNums = () => {
+    console.log(this.state.posts);
+    this.setState({ numPosts: this.state.posts.length });
+  };
+
+  sortPosts = (order, sortby) => {
+    API.sortPosts(order, sortby)
+      .then(res => this.setState({ posts: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  updatePostLikesWithUserID = postId => {
+    API.updatePostLikesWithUserID(postId)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  updateUserLikesWithPostID = postId => {
+    API.updateUserLikesWithPostID(postId)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  addPostIDtoUser = postId => {
+    API.addPostIDtoUser(postId)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
   handleSortBtn = e => {
     const userSortby = e.target.value;
     console.log("Sort Clicked\n", userSortby);
@@ -70,9 +99,7 @@ class Forum extends Component {
       this.setState({ postOrderClicked: false });
     }
     console.log(order);
-    API.sortPosts(order, sortby)
-      .then(res => this.setState({ posts: res.data }))
-      .catch(err => console.log(err));
+    this.sortPosts(order, sortby);
   };
 
   handlePostBtns = e => {
@@ -82,22 +109,19 @@ class Forum extends Component {
     console.log(userAction);
     const postId = e.target.id;
     console.log(postId);
+
     if (this.state.user && userAction === "like") {
       console.log("User wants to like.");
-      API.updatePostLikesWithUserID(postId)
-        .then(res => console.log(res))
-        .then(API.updateUserLikesWithPostID(postId))
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+      this.updatePostLikesWithUserID(postId);
+      this.updateUserLikesWithPostID(postId);
     } else if (this.state.user && userAction === "save") {
       console.log("User wants to save.");
-      API.addPostIDtoUser(postId)
-        .then(res => console.log(res))
-        .then(API.addUserIDtoPost(postId))
-        .catch(err => console.log(err));
+      this.addPostIDtoUser(postId);
     } else if (!this.state.user) {
       console.log("Please log in to 'Like', 'Comment', or 'Save'.");
     }
+
+    this.loadAllPosts();
   };
 
   render() {
@@ -117,7 +141,7 @@ class Forum extends Component {
         /> */}
         <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
         <BruceText
-          bannerMessage="Welcome to the Space Forum"
+          bannerMessage="Space Forum"
           user={this.props.user}
           changeUserState={this.props.changeUserState}
         />

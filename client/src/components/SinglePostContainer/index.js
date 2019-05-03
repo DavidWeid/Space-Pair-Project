@@ -49,6 +49,7 @@ const SinglePostContainer = props => {
             handleInputChange={props.handleInputChange}
             handleFormSubmit={props.handleFormSubmit}
             value={props.value}
+            comments={comments}
           />
         );
       case "discussion":
@@ -65,6 +66,7 @@ const SinglePostContainer = props => {
             handleInputChange={props.handleInputChange}
             handleFormSubmit={props.handleFormSubmit}
             value={props.value}
+            comments={comments}
           />
         );
       default:
