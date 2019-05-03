@@ -77,7 +77,7 @@ class Forum extends Component {
   verifyUser = () => {
     console.log(this.state.user);
     API.userCheck()
-      .then(res => this.setState({ user: res }))
+      .then(res => this.setState({ user: res.data.user }))
       .catch(err => console.log(err));
   };
 
@@ -114,7 +114,7 @@ class Forum extends Component {
 
   handlePostBtns = e => {
     this.verifyUser();
-    console.log(user);
+    console.log(this.state.user);
     const userAction = e.target.getAttribute("value");
     console.log(userAction);
     const postId = e.target.id;
@@ -136,21 +136,26 @@ class Forum extends Component {
       <div style={{ height: "100%" }}>
         {/* <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
           Welcome to the Space Forum
+
         </Banner> */}
-        {/* <SortBar
+      
+
+       
+        <SortBar
+
           sortOne="recent"
           sortTwo="popular"
           pageOne="Data"
           pageTwo="Forum"
           pageThree="Profile"
           handleSortBtn={this.handleSortBtn}
-        /> */}
-        <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
+        />
+        {/* <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
         <BruceText
           bannerMessage="Welcome to the Space Forum"
           user={this.props.user}
           changeUserState={this.props.changeUserState}
-        />
+        /> */}
         <Container fluid className="forum-container">
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">
