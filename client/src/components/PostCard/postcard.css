@@ -54,6 +54,18 @@
   font-size: 95%;
 }
 
+@media all and (min-width: 800px) {
+  .posts-container {
+    width: 60%;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .posts-container {
+    width: 65%;
+  }
+}
+
 @media all and (min-width: 1440px) {
   .posts-container {
     width: 50%;
