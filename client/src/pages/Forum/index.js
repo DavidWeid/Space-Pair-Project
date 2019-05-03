@@ -134,9 +134,9 @@ class Forum extends Component {
   render() {
     return (
       <div style={{ height: "100%" }}>
-        <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+        {/* <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
           Welcome to the Space Forum
-        </Banner>
+        </Banner> */}
         {/* <SortBar
           sortOne="recent"
           sortTwo="popular"

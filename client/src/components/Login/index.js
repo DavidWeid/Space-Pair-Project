@@ -40,7 +40,10 @@ class Login extends Component {
         this.props.changeUserState(res.data.user)
         this.setState({ show: false })
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log("this is from login component")
+        console.log(err)
+      });
   }
 
   signup = (e) => {
