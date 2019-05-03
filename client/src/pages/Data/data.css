@@ -46,3 +46,22 @@
   display: block;
   margin: auto;
 }
+
+@media (max-width:1290px) {
+  .roverPicHolder{
+    grid-template-columns: 300px 300px;
+  }
+}
+
+@media (max-width:1000px) {
+  .roverPicGrid {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width:650px) {
+  .roverPicHolder{
+    grid-template-columns: 300px;
+  }
+}

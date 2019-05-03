@@ -176,12 +176,12 @@ class Data extends Component {
 
     return <div className="dataPage">
       <BruceBanner backgroundImage={urlPic} />
-      <BruceText
+      {/* <BruceText
         user={this.props.user}
         changeUserState={this.props.changeUserState}
         bannerMessage="Welcome to the Rover Page"
         
-      />
+      /> */}
       <div className="roverPicGrid">
         <div className="spaceTaker"></div>
         <div className="roverPicHolder">
@@ -198,7 +198,7 @@ class Data extends Component {
               <div></div>
             )}
         </div>
-      </div> */}
+      </div>
       <FormRover
         rover={this.state.rover}
         sol={this.state.sol}

@@ -8,7 +8,9 @@ const Camera = props => {
       {props.show_sol ? (
         <p className="totDayPics text-center">Photos: {props.total_day_photos}</p>
       ):(
-        <div></div>
+        <div>
+          
+        </div>
       )}
 
       {props.cameras_manifest.length > 0 ? <div>

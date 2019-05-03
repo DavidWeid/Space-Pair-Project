@@ -33,3 +33,25 @@
 .activeCam{
   background-color: black;
 }
+
+@media (max-width: 1000px) {
+  .cameraSection{
+    width: 175px;
+    margin: auto;
+  }
+
+  .cameraButtons{
+    /* display: flex; */
+    grid-template-columns: auto auto auto;
+    width: 175px;
+    margin: auto;
+  }
+
+  .cameraSection p{
+    font-size: 10px;
+  }
+
+  .camBtn{
+    font-size: 10px;
+  }
+}
