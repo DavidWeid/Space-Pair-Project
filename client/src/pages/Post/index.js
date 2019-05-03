@@ -10,43 +10,34 @@ import SinglePostContainer from "../../components/SinglePostContainer";
 
 class Post extends Component {
   state = {
-    user: {
-      user: true,
-      _id: 1
-    },
-    post: [
-      {
-        type: "roverPic",
-        _id: 100,
-        userComment: "I love rover pics!",
-        userID: "9001",
-        username: "Vegeta",
-        commentIDs: ["1", "2"],
-        likes: 1,
-        createdAt: Date.now(),
-        roverName: "Opportunity",
-        roverImg:
-          "http://mars.nasa.gov/mer/gallery/all/1/f/045/1F132186339EFF05AIP1201L0M1-BR.JPG",
-        roverCamera: "FHAZ",
-        roverSol: "45",
-        roverEarthDate: "2004-03-11"
-      }
-    ],
+    user: this.props.user,
+    post: [],
     comment: "",
     comments: []
   };
 
   componentDidMount() {
-    // API.getPost(this.props.match.params.id)
-    //   .then(res => this.setState({ post: res.data }))
-    //   .catch(err => console.log(err));
-    API.getComments(this.props.match.params.id)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+    this.getPost();
+    this.getComments();
+  }
+
+  getPost = () => {
     API.getPost(this.props.match.params.id)
+      .then(res => this.setState({ post: [res.data] }))
+      .catch(err => console.log(err));
+  };
+
+  getComments = () => {
+    API.getComments(this.props.match.params.id)
+      .then(res => this.setState({ comments: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  saveComment = (postID, comment) => {
+    API.saveComment(postID, comment)
       .then(res => console.log(res))
       .catch(err => console.log(err));
-  }
+  };
 
   handleInputChange = e => {
     const { name, value } = e.target;
@@ -55,13 +46,13 @@ class Post extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log(this.state.comment);
+    let comment = { message: this.state.comment };
+    console.log("Comment", comment);
+    let postID = this.state.post[0]._id;
     if (this.state.comment) {
-      API.saveComment({
-        message: this.state.comment,
-        userID: this.state.user._id,
-        postID: this.state.post._id
-      });
+      this.saveComment(postID, comment);
+      this.getComments();
+      this.setState({ comment: "" });
     }
   };
 
@@ -81,6 +72,7 @@ class Post extends Component {
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 post={this.state.post}
+                comments={this.state.comments}
               />
             </Col>
           </Row>

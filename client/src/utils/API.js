@@ -4,7 +4,6 @@ import Axios from "axios";
 const key = process.env.REACT_APP_NASA_KEY;
 
 export default {
- 
   exampleAPI() {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=45&camera=FHAZ&api_key=${key}`
@@ -40,16 +39,16 @@ export default {
   },
 
   getPost(id) {
-    return Axios.get(`/api/posts/${id}`);
+    return Axios.get(`/api/posts/postID/${id}`);
   },
 
   getComments(id) {
-    return Axios.get(`/api/comments/${id}`);
+    return Axios.get(`/api/comments/postcomments/${id}`);
   },
 
   // To create a new comment
-  saveComment(commentData) {
-    return Axios.post(`/api/comments`);
+  saveComment(postID, comment) {
+    return Axios.post(`/api/comments/new/${postID}`, comment);
   },
 
   savePost(postData) {
@@ -58,7 +57,19 @@ export default {
 
   //This sends the postID not the userID, userID is carried in req.user when logged in
   addPostIDtoUser(postID) {
-    return Axios.put(`/api/users/update/posts/${postID}`)
+    return Axios.put(`/api/users/update/posts/${postID}`);
+  },
+
+  addUserIDtoPost(postID) {
+    return Axios.put(`/api/posts/saved/${postID}`);
+  },
+
+  updatePostLikesWithUserID(postID) {
+    return Axios.put(`/api/posts/liked/${postID}`);
+  },
+
+  updateUserLikesWithPostID(postID) {
+    return Axios.put(`/api/users/liked/${postID}`);
   },
 
   getRoverManifest(rover) {
@@ -89,6 +100,5 @@ export default {
 
   userCheck() {
     return Axios.get("/api/users/test");
-  },
-  
+  }
 };

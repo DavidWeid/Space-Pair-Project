@@ -30,9 +30,8 @@ router.post("/", (req, res) => {
       })
       .catch(err => res.status(500).json({ eror: "err" }));
   } else {
-    res.json({ user: false })
+    res.json({ user: false });
   }
-
 });
 
 // Get Route (one post by id)
@@ -62,18 +61,30 @@ router.put("/put/:id", (req, res) => {
     .catch(err => res.json(err));
 });
 
+router.put("/liked/:id", (req, res) => {
+  console.log("User that's liking", req.user._id);
+  Post.findByIdAndUpdate(req.params.id, { $push: { likes: req.user._id } })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
+
+router.put("/saved/:id", (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, { $push: { savedUsers: req.user._id } })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
+
 router.get(`/wtf`, (req, res) => {
   // console.log(req.user)
-  res.json(true)
-})
+  res.json(true);
+});
 
 //Get all posts by one user in app
 router.get("/user", (req, res) => {
-  console.log(req.user._id)
   Post.find({ userID: req.user._id })
     .then(result => res.json(result))
     .catch(err => res.json(err));
-})
+});
 
 // Get all posts by one user in postman
 
@@ -81,7 +92,7 @@ router.get("/postman/:id", (req, res) => {
   Post.find({ userID: req.params.id })
     .then(result => res.json(result))
     .catch(err => res.json(err));
-})
+});
 
 // For Sorting, I think we could keep state in react that sees what we last sorted
 // If sorted again, we could flip flop between ascending or descending
@@ -104,6 +115,6 @@ router.get("/sort/des/:sort", (req, res) => {
 
 router.get("/this/is/just/a/test", (req, res) => {
   res.json({ ok: true });
-})
+});
 
 module.exports = router;

@@ -156,10 +156,8 @@ PostSchema.pre("save", function(next) {
   }
 
   this.likesLength = this.likes.length;
-  
+
   next();
 });
-
-
 
 module.exports = Post = mongoose.model("Post", PostSchema);
