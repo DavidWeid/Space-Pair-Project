@@ -136,26 +136,22 @@ class Forum extends Component {
       <div style={{ height: "100%" }}>
         {/* <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
           Welcome to the Space Forum
-
         </Banner> */}
-      
 
-       
-        <SortBar
-
+        {/* <SortBar
           sortOne="recent"
           sortTwo="popular"
           pageOne="Data"
           pageTwo="Forum"
           pageThree="Profile"
           handleSortBtn={this.handleSortBtn}
-        />
-        {/* <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
+        /> */}
+        <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
         <BruceText
           bannerMessage="Welcome to the Space Forum"
           user={this.props.user}
           changeUserState={this.props.changeUserState}
-        /> */}
+        />
         <Container fluid className="forum-container">
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">
