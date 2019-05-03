@@ -4,6 +4,15 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const DisPostCard = props => {
+  
+  let initialComment;
+
+  if (!props.userComment) {
+    initialComment = "";
+  } else {
+    initialComment = `${props.username}: ${props.userComment}`
+  }
+  
   return (
     <div className="post-block discussion-post">
       <div className="card">
@@ -20,7 +29,7 @@ const DisPostCard = props => {
           <Row>
             <Col>
               <p className="card-text initial-comment">
-                {props.username}: {props.userComment}
+                {initialComment}
               </p>
             </Col>
           </Row>

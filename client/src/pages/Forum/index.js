@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./forum.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "reactstrap";
-// import Banner from "../../components/Banner";
-// import SortBar from "../../components/SortBar";
+import Banner from "../../components/Banner";
+import SortBar from "../../components/SortBar";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import PostsContainer from "../../components/PostsContainer";
@@ -107,9 +107,8 @@ class Forum extends Component {
       this.setState({ postOrderClicked: false });
     }
     console.log(order);
-    // This .then() needs to do: this.setState({ posts: res.data }) where res.data = array of posts
     API.sortPosts(order, sortby)
-      .then(res => console.log(res))
+      .then(res => this.setState({ posts: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -135,10 +134,10 @@ class Forum extends Component {
   render() {
     return (
       <div style={{ height: "100%" }}>
-        {/* <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+        <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
           Welcome to the Space Forum
         </Banner>
-        <SortBar
+        {/* <SortBar
           sortOne="recent"
           sortTwo="popular"
           pageOne="Data"
