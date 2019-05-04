@@ -9,12 +9,16 @@ const moment = require("moment");
 moment().format();
 
 const PostsContainer = props => {
+  // posts is an array of post objects [{}, {}, {}]
   const posts = props.posts;
   console.log(posts);
 
+  // listPosts will be the new array to be display, an array of PostCards [<Card/>, <Card/>, <Card/>]
   const listPosts = posts.map(post => {
     const postTime = moment(`${post.createdAt}`).format("MMM D, h:mm");
 
+    // switch determines the type of Card component (Picture, Article, Discussion)
+    // Note: we're passing the CURRENT User to the PostCard
     switch (post.type) {
       case "roverPic":
         return (

@@ -72,6 +72,14 @@ export default {
     return Axios.put(`/api/users/liked/${postID}`);
   },
 
+  removePostFromUserLikes(postId) {
+    return Axios.put(`/api/users/unliked/${postId}`);
+  },
+
+  removeUserFromPostLikes(postId) {
+    return Axios.put(`/api/posts/unliked/${postId}`);
+  },
+
   getRoverManifest(rover) {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`

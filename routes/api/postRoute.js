@@ -68,6 +68,12 @@ router.put("/liked/:id", (req, res) => {
     .catch(err => res.json(err));
 });
 
+router.put("/unliked/:id", (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, { $pull: { likes: req.user._id } })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
+
 router.put("/saved/:id", (req, res) => {
   Post.findByIdAndUpdate(req.params.id, { $push: { savedUsers: req.user._id } })
     .then(result => res.json(result))
