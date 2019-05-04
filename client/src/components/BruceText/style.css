@@ -1,15 +1,16 @@
-.bruceText{
+.bruceText {
   text-align: center;
   background-color: #000;
   color: white;
   position: absolute;
   width: 100%;
-  top: 75px;
+  /* top: 75px; */
+  top: 9.3%;
   z-index: 5;
   letter-spacing: 2px;
 }
 
-.bruceText-fixed{
+.bruceText-fixed {
   text-align: center;
   background-color: #000;
   color: white;
@@ -20,14 +21,18 @@
   z-index: 5;
 }
 
-.bannerBar{
+.bannerBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
 }
 
-.banLink{
+.navcontainer {
+  justify-content: center;
+}
+
+.banLink {
   color: white;
   padding: 10px;
   text-transform: uppercase;
@@ -35,12 +40,24 @@
   user-select: none;
 }
 
-.activeBanLink{
+.activeBanLink {
   background-color: rgb(107, 1, 1);
   font-weight: 700;
 }
 
-.banLink:hover{
+.banLink:hover {
   color: rgb(151, 0, 0);
   color: white;
+}
+
+.sort-btn {
+  color: white;
+}
+
+.sort-btn:hover {
+  color: #dcdde1;
+}
+
+.drop-item {
+  text-transform: capitalize;
 }

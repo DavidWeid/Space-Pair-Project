@@ -1,12 +1,12 @@
-.heightUser{
+.heightUser {
   position: relative;
 }
 
-.popArea{
+.popArea {
   display: none;
 }
 
-.loginArea{
+.loginArea {
   width: 325px;
   border: 1px darkred solid;
   background-color: #dcdde1;
@@ -17,19 +17,19 @@
   color: black;
 }
 
-.loginFormGroup{
+.loginFormGroup {
   display: flex;
   justify-content: space-between;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   width: 100%;
   font-size: 15px;
 }
 
-.form-padding{
+.form-padding {
   padding: 15px;
 }
 
-.formButtons{
+.formButtons {
   display: flex;
   width: 80%;
   margin: auto;
@@ -53,12 +53,20 @@
   padding: 15px;
 }
 
-@keyframes slide-up{
-  0% {height: 300px}
-  100% {height: 0px}
+@keyframes slide-up {
+  0% {
+    height: 300px;
+  }
+  100% {
+    height: 0px;
+  }
 }
 
-@keyframes slide-down{
-  0% {height: 0px}
-  100% {height: 300px}
+@keyframes slide-down {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 300px;
+  }
 }
