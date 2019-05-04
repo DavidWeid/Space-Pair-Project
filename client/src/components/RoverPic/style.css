@@ -8,6 +8,14 @@
   justify-content: space-between;
   background-color: rgba(36, 0, 0, 0.938);
   /* background-color: rgb(182, 182, 182); */
+  box-shadow: 0px 5px 5px black;
+  transition: all, .25s;
+}
+
+.picBody:hover{
+  box-shadow: none;
+  background-color: black;
+  transition: all, .25s;
 }
 
 .picBody h1, h2, h3, h4, h5, h6, p {
@@ -26,6 +34,8 @@
 .infoBox{
   padding: 10px;
   background-color: rgb(87, 0, 0);
+  text-align: center;
+
 }
 
 .camFullName{
@@ -33,7 +43,13 @@
   font-style: italic;
 }
 
-.infoBox a{
-  color: white;
-  text-decoration: underline;
+.roverPicButtons{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.roverPicBtn{
+  border: 1px black solid;
+  outline: none;
 }

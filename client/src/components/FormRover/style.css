@@ -19,6 +19,7 @@ nav{
 .roverSelectButtons{
   width: fit-content;
   margin: auto;
+  border-radius: 5px;
   background-color:  rgb(122, 41, 21);
 }
 
@@ -83,16 +84,22 @@ nav{
     height: auto;
     position: absolute;
     top: 0;
-    padding: 0px;
+    padding: 2px;
     padding-top: 25vh;
     align-items: center;
     justify-content: center;
+    border-right: none;
   }
 
   .formRover form{
     display: grid;
-    grid-template-columns: 60px 60px 1fr 40px;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    /* grid-template-columns: 60px 60px 1fr 40px; */
+    grid-template-columns: 1fr 1fr 2fr 1fr;
+  }
+
+  .formRover form div{
+    align-self: center;
+    justify-self: center;
   }
 
   .roverSelectButtons, .solGroup{
@@ -101,16 +108,30 @@ nav{
     font-size: 13px;
   }
 
+  .roverSelectButtons{
+    width: 80%;
+    margin: 0 auto 0 0;
+    background-color: transparent;
+  }
+
   .solGroup{
     width: 60px;
+    font-size: 16px;
+    align-self: center;
     text-align: center;
+    margin: auto;
   }
 
   .searchBtn{
-    font-size: 10px;
+    display: block;
+    font-size: 14px;
     padding: 2.5px;
-    position: absolute;
-    bottom: 5px;
+    align-self: end;
+    height: 100%;
+    width: 80%;
+    margin: 0 0 0 auto;
+    min-width: 50px;
+    background-color: rgb(2, 70, 2);
   }
 
   .solInput{
@@ -118,14 +139,28 @@ nav{
     margin-left: 5px;
     text-align: center;
   }
-  
 
   .roverBtn{
     border: 1px black solid;
-    background-color: rgb(122, 41, 21);
-    color: white;
     padding: 5px 2.5px;
     font-size: 10px;
-    width: 60px;
+    width: 100%;
+    min-width: 60px;
   }
+
+  .roverBtn:nth-child(1){
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-right: 1px black solid;
+    border-bottom: none;
+  }
+  
+  .roverBtn:nth-child(3){
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-left: 1px black solid;
+    border-top: none;
+  }
+
+  
 }

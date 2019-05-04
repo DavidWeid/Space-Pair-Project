@@ -22,7 +22,8 @@
 .backdrop{
   z-index: 21;
   background-color: #333;
-  position: absolute;
+  position: fixed;
+  top: 0;
   opacity: .9;
   height: 100%;
   width: 100%;
@@ -31,12 +32,13 @@
 .picModal{
   height: 90vh;
   width: 50vw;
-  position: absolute;
+  min-width: 450px;
+  position: fixed;
   top: 0;
   margin-top: 5vh;
   margin-bottom: auto;
   left: 25vw;
-  background-color: whitesmoke;
+  background-color: white;
   z-index: 25;
 }
 
