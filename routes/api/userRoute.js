@@ -62,4 +62,12 @@ router.get("/test", (req, res) => {
   return res.json({ user: false });
 });
 
+router.get("/forum/info", (req, res) => {
+  if (req.user) {
+    User.findById(req.user._id)
+      .then(result => res.json(result))
+      .catch(err => res.status(404).json({ error: err }));
+  }
+});
+
 module.exports = router;
