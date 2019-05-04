@@ -37,6 +37,8 @@
 
 .post-btn:hover {
   background-color: #7f8fa6;
+  background-color: #e84118;
+  color: #dcdde1;
   cursor: pointer;
   text-decoration: none;
 }
