@@ -99,7 +99,7 @@ router.get("/postman/:id", (req, res) => {
 
 // Sort Get Route Ascending
 router.get("/sort/asc/:sort", (req, res) => {
-  Post.find()
+  Post.find({ shared: true })
     .sort({ [req.params.sort]: 1 })
     .then(result => res.json(result))
     .catch(err => res.status(500).json(err));
@@ -107,7 +107,7 @@ router.get("/sort/asc/:sort", (req, res) => {
 
 // Sort Get Route Descending
 router.get("/sort/des/:sort", (req, res) => {
-  Post.find()
+  Post.find({ shared: true })
     .sort({ [req.params.sort]: -1 })
     .then(result => res.json(result))
     .catch(err => res.status(500).json(err));

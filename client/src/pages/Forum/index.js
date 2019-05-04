@@ -43,7 +43,7 @@ class Forum extends Component {
   };
 
   loadAllPosts = () => {
-    API.getAllPosts()
+    API.sortPosts("des", "createdAt")
       .then(res => this.setState({ posts: res.data }))
       .catch(err => console.log(err));
   };
