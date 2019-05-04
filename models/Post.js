@@ -11,6 +11,11 @@ const PostSchema = new Schema({
     required: true
   },
 
+  shared: {
+    type: Boolean,
+    default: false
+  },
+
   userComment: {
     // Intital comment made by the user about why they are saving/sharing post
     type: String

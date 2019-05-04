@@ -57,7 +57,7 @@ router.put("/liked/:postID", (req, res) => {
 
 router.get("/test", (req, res) => {
   if (req.user) {
-    return res.json({ user: true });
+    return res.json({ user: req.user });
   }
   return res.json({ user: false });
 });
