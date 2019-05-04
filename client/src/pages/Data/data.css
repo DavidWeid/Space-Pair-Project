@@ -15,7 +15,7 @@
 } 
 
 .dataPage{
-  min-height: 100vh;
+  height: 100%;
   /* padding-bottom: 2000px; */
 }
 
@@ -59,6 +59,10 @@
   .roverPicGrid {
     display: flex;
     flex-direction: column;
+  }
+
+  .roverPicHolder{
+    padding-top: 1vh;
   }
 }
 

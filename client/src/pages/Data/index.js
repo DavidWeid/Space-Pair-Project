@@ -8,8 +8,6 @@ import BruceText from "../../components/BruceText";
 import RoverPicSelect from "../../components/RoverPicSelect";
 
 const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-
-
 class Data extends Component {
   state = {
     rover: "",
@@ -26,8 +24,7 @@ class Data extends Component {
     yOffset: 0,
     more: false,
     modalImg: "",
-    modalCamera: "",
-    yOffset: 0,
+    modalCamera: ""
   };
 
 
@@ -172,12 +169,12 @@ class Data extends Component {
 
     return <div className="dataPage">
       <BruceBanner backgroundImage={urlPic} />
-      {/* <BruceText
+      <BruceText
         user={this.props.user}
         changeUserState={this.props.changeUserState}
-        bannerMessage="Welcome to the Rover Page"
+        bannerMessage="Rovers"
         
-      /> */}
+      />
       <div className="roverPicGrid">
         <div className="spaceTaker"></div>
         <div className="roverPicHolder">

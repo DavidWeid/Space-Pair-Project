@@ -14,7 +14,7 @@ const Camera = props => {
       )}
 
       {props.cameras_manifest.length > 0 ? <div>
-        <p className="camTitle">Select Camera</p>
+        {/* <p className="camTitle">Select Camera</p> */}
         <div className="cameraButtons">
           <button
             data-camera="all"
