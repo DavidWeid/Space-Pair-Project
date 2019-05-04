@@ -28,3 +28,23 @@
   justify-content: center;
   margin-top: 10px;
 }
+
+@media (max-width: 1000px) {
+  .roverSelectBox{
+    width: 100%;
+  }
+
+  .roverSelectBox img{
+    width: 96%;
+    margin-right: 2%;
+    height: auto;
+  }
+
+}
+  
+@media (max-width: 450px) {
+  .roverSelectBox img{
+    width: 96%;
+    margin-right: 2%;
+  }
+}

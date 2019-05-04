@@ -6,7 +6,7 @@ import BruceText from "../../components/BruceText"
 
 import API from "../../utils/API";
 
-const urlPic = "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+const urlPic = "https://images.pexels.com/photos/87080/space-shuttle-start-discovery-spaceport-87080.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 
 class Profile extends Component {
 
@@ -23,7 +23,7 @@ class Profile extends Component {
     return (
       <div className="padd">
         <BruceBanner backgroundImage={urlPic} />
-        <BruceText user={this.props.user} changeUserState={this.props.changeUserState} bannerMessage="Welcome to your Profile Page" />
+        <BruceText user={this.props.user} changeUserState={this.props.changeUserState} bannerMessage="Profile" />
       </div>
     );
   }

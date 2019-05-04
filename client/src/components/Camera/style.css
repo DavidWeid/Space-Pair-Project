@@ -36,15 +36,14 @@
 
 @media (max-width: 1000px) {
   .cameraSection{
-    width: 175px;
-    margin: auto;
+    width: 96%;
+    margin-right: 2px;
   }
 
   .cameraButtons{
-    /* display: flex; */
+    width: 100%;
     grid-template-columns: auto auto auto;
-    width: 175px;
-    margin: auto;
+    grid-gap: 2px;
   }
 
   .cameraSection p{
@@ -53,5 +52,6 @@
 
   .camBtn{
     font-size: 10px;
+    padding: 3px 1px;
   }
 }
