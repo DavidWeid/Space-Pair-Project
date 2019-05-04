@@ -73,7 +73,7 @@ class BruceText extends Component {
           </div>
 
           <button
-            className="navbar-toggler"
+            className="navbar-toggler map-btn"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNavAltMarkup"

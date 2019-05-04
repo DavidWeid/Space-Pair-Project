@@ -61,7 +61,7 @@ class Login extends Component {
         {this.props.user ? (
           <div className="banLink" onClick={e => this.showLogin(e)}>
             <span>
-              <i className="fas fa-user-astronaut fa-2x" />
+              <i className="fas fa-user-astronaut fa-lg" />
             </span>
           </div>
         ) : (
