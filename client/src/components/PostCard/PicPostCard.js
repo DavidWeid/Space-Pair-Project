@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PicPostCard = props => {
-  console.log("User Info on Pic PostCard: ", props.userInfo);
+  // console.log("User Info on Pic PostCard: ", props.userInfo);
 
   // If there's no intial comment, don't make space for it
   let initialComment;
@@ -19,6 +19,8 @@ const PicPostCard = props => {
   // User isn't logged in: "like" button says "Like" and userLikedStatus = "notLiked"
   let likeBtnVisual = "Like";
   let userLikedStatus = "notLiked";
+  let saveBtnVisual = "Save";
+  let userSavedStatus = "notSaved";
 
   // User is logged in: "like" button shows icon IF liked and userLikedStatus = "liked" IF liked
   if (props.userInfo.likes !== undefined) {
@@ -34,6 +36,22 @@ const PicPostCard = props => {
         </span>
       );
       userLikedStatus = "liked";
+    }
+  }
+
+  if (props.userInfo.postIDs !== undefined) {
+    if (props.userInfo.postIDs.indexOf(props.id) === -1) {
+      console.log("This post hasn't been saved by the user.", props.id);
+      saveBtnVisual = "Save";
+      userSavedStatus = "notSaved";
+    } else {
+      console.log("This post has been saved by the user.", props.id);
+      saveBtnVisual = (
+        <span>
+          <i className="fas fa-save" />
+        </span>
+      );
+      userSavedStatus = "saved";
     }
   }
 
@@ -75,8 +93,9 @@ const PicPostCard = props => {
                 className="post-btn save-btn"
                 id={props.id}
                 value="save"
+                user-saved={userSavedStatus}
               >
-                Save
+                {saveBtnVisual}
               </button>
             </Col>
           </Row>

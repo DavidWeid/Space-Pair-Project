@@ -80,6 +80,10 @@ export default {
     return Axios.put(`/api/posts/unliked/${postId}`);
   },
 
+  removePostFromUser(postId) {
+    return Axios.put(`/api/users/unsaved/${postId}`);
+  },
+
   getRoverManifest(rover) {
     return Axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${key}`
@@ -112,5 +116,13 @@ export default {
 
   grabUserInfo() {
     return Axios.get("/api/users/forum/info");
+  },
+
+  grabTotalUsers() {
+    return Axios.get("/api/users/count");
+  },
+
+  grabTotalComments() {
+    return Axios.get("/api/comments/count");
   }
 };

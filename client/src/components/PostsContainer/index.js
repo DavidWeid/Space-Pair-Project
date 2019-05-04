@@ -11,7 +11,7 @@ moment().format();
 const PostsContainer = props => {
   // posts is an array of post objects [{}, {}, {}]
   const posts = props.posts;
-  console.log(posts);
+  // console.log(posts);
 
   // listPosts will be the new array to be display, an array of PostCards [<Card/>, <Card/>, <Card/>]
   const listPosts = posts.map(post => {

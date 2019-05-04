@@ -34,7 +34,7 @@ router.put("/update/info/:id", (req, res) => {
 });
 
 router.put("/update/posts/:id", (req, res) => {
-  console.log(req.user._id + " here I am");
+  console.log("User that's updating " + req.user._id);
   User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
@@ -62,6 +62,13 @@ router.put("/unliked/:postID", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
+router.put("/unsaved/:postID", (req, res) => {
+  console.log("User wants to unsave");
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { postIDs: req.params.postID }
+  });
+});
+
 router.get("/test", (req, res) => {
   if (req.user) {
     return res.json({ user: req.user });
@@ -75,6 +82,12 @@ router.get("/forum/info", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.status(404).json({ error: err }));
   }
+});
+
+router.get("/count", (req, res) => {
+  User.countDocuments({})
+    .then(result => res.json(result))
+    .catch(err => res.status(404).json({ err: err }));
 });
 
 module.exports = router;

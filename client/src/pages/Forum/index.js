@@ -20,6 +20,7 @@ class Forum extends Component {
     this.loadAllPosts();
     this.verifyUser();
     this.grabUserInfo();
+    this.updateNums();
   }
 
   // Check if User is logged in
@@ -37,15 +38,23 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
+  // On-page-mount, grab total count of Users and Comments for display
+  updateNums = () => {
+    API.grabTotalUsers()
+      .then(res => this.setState({ numUsers: res.data }))
+      .then(
+        API.grabTotalComments().then(res =>
+          this.setState({ numComments: res.data })
+        )
+      )
+      .catch(err => console.log(err));
+  };
+
   // Grab all posts that have been shared (shared: true), display newest first
   loadAllPosts = () => {
     API.sortPosts("des", "createdAt")
       .then(res => this.setState({ posts: res.data }))
       .catch(err => console.log(err));
-  };
-
-  updateNums = () => {
-    // This needs to update this.state.numUsers and this.state.numComments
   };
 
   // Sort posts by order (asc / des) and sortby (likes / recent)
@@ -88,6 +97,12 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
+  removePostIDfromUser = postId => {
+    API.removePostFromUser(postId)
+      .then(res => console.log("Remove PostID from User Posts: ", res))
+      .catch(err => console.log(err));
+  };
+
   // User clicks "Sort" btn to either sort by "Recent" or "Popular"
   // Recent = createdAt; Popular = likesLength;
   // User can switch between "asc" and "des" by clicking "Recent" or "Popular" multiple times
@@ -122,8 +137,10 @@ class Forum extends Component {
     this.verifyUser();
     const userAction = e.target.getAttribute("value");
     const userLikedStatus = e.target.getAttribute("user-liked");
+    const userSavedStatus = e.target.getAttribute("user-saved");
     const postId = e.target.id;
-    console.log(userLikedStatus);
+    console.log("user-liked: ", userLikedStatus);
+    console.log("user-saved: ", userSavedStatus);
 
     if (
       this.state.user &&
@@ -141,9 +158,20 @@ class Forum extends Component {
       console.log("User wants to unlike: ", postId);
       this.removeUserIDfromPostLikes(postId);
       this.removePostIDfromUserLikes(postId);
-    } else if (this.state.user && userAction === "save") {
+    } else if (
+      this.state.user &&
+      userAction === "save" &&
+      userSavedStatus === "notSaved"
+    ) {
       console.log("User wants to save: ", postId);
       this.addPostIDtoUser(postId);
+    } else if (
+      this.state.user &&
+      userAction === "save" &&
+      userSavedStatus !== "notSaved"
+    ) {
+      console.log("user wants to unsave: ", postId);
+      this.removePostIDfromUser(postId);
     } else if (!this.state.user) {
       console.log("Please log in to 'Like', 'Comment', or 'Save'!");
     }
@@ -188,7 +216,9 @@ class Forum extends Component {
                   <p className="info-box-item">
                     Posts: {this.state.posts.length}
                   </p>
-                  <p className="info-box-item">Users: ??</p>
+                  <p className="info-box-item">
+                    Members: {this.state.numUsers}
+                  </p>
                   <p className="info-box-item">
                     Comments: {this.state.numComments}
                   </p>
