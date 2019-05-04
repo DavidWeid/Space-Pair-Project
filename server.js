@@ -88,6 +88,7 @@ const createUser = async () => {
   });
   const post3 = new models.Model({
     type: "roverPic",
+    shared: true,
     userID: user2._id,
     username: user2.username,
     commentIDs: [],
