@@ -62,7 +62,7 @@ class Post extends Component {
         <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
           {" "}
         </BruceBanner>
-        <BruceText bannerMessage="Add Your thoughts to the Space Forum" />
+        <BruceText bannerMessage="Thoughts" />
 
         <Container fluid className="comment-container">
           <Row className="post-row">

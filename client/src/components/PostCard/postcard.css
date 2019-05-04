@@ -1,18 +1,20 @@
 .card {
   background-color: #f5f6fa;
+  border-radius: 2%;
+  box-shadow: 1px 1px 6px black;
 }
 
-.posts-container {
-  width: 90%;
+.card:hover {
+  box-shadow: 3px 3px 12px black;
 }
 
-.posts-container a {
-  color: #192a56;
+.card-img-top {
+  border-radius: 3% 3% 0 0;
 }
 
 .post-block {
   width: 100%;
-  margin-bottom: 3%;
+  margin-bottom: 5%;
 }
 
 .info-row {
@@ -35,6 +37,8 @@
 
 .post-btn:hover {
   background-color: #7f8fa6;
+  background-color: #e84118;
+  color: #dcdde1;
   cursor: pointer;
   text-decoration: none;
 }
@@ -52,22 +56,4 @@
 
 .article-description {
   font-size: 95%;
-}
-
-@media all and (min-width: 800px) {
-  .posts-container {
-    width: 60%;
-  }
-}
-
-@media all and (min-width: 1200px) {
-  .posts-container {
-    width: 65%;
-  }
-}
-
-@media all and (min-width: 1440px) {
-  .posts-container {
-    width: 50%;
-  }
 }

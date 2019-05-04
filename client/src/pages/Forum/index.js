@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./forum.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "reactstrap";
-// import Banner from "../../components/Banner";
-// import SortBar from "../../components/SortBar";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import PostsContainer from "../../components/PostsContainer";
@@ -127,31 +125,28 @@ class Forum extends Component {
   render() {
     return (
       <div style={{ height: "100%" }}>
-        {/* <Banner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
-          Welcome to the Space Forum
-        </Banner> */}
-
-        {/* <SortBar
-          sortOne="recent"
-          sortTwo="popular"
-          pageOne="Data"
-          pageTwo="Forum"
-          pageThree="Profile"
-          handleSortBtn={this.handleSortBtn}
-        /> */}
         <BruceBanner backgroundImage="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
         <BruceText
-          bannerMessage="Space Forum"
+          bannerMessage="Forum"
           user={this.props.user}
           changeUserState={this.props.changeUserState}
+          sortOne="recent"
+          sortTwo="popular"
+          handleSortBtn={this.handleSortBtn}
         />
         <Container fluid className="forum-container">
           <Row className="forum-row">
             <Col md="3" xs="12" className="info-column">
-              <Row className="justify-content-center">Info (About)</Row>
-              <Row>Users: {this.state.numUsers}</Row>
-              <Row>Posts: {this.state.numPosts}</Row>
-              <Row>Comments: {this.state.numComments}</Row>
+              <Row className="info-box">
+                <Col>
+                  <p className="info-box-item info-box-header">About</p>
+                  <p className="info-box-item">Users: {this.state.numUsers}</p>
+                  <p className="info-box-item">Posts: {this.state.numPosts}</p>
+                  <p className="info-box-item">
+                    Comments: {this.state.numComments}
+                  </p>
+                </Col>
+              </Row>
             </Col>
             <Col
               md="9"
