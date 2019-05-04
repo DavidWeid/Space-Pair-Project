@@ -4,6 +4,9 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PicPostCard = props => {
+  
+  console.log("User Info on Pic PostCard: ", props.userInfo);
+  
   let initialComment;
 
   if (!props.userComment) {

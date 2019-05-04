@@ -100,5 +100,9 @@ export default {
 
   userCheck() {
     return Axios.get("/api/users/test");
+  },
+
+  grabUserInfo() {
+    return Axios.get("/api/users/forum/info");
   }
 };

@@ -27,6 +27,7 @@ const PostsContainer = props => {
             userComment={post.userComment}
             handlePostBtns={props.handlePostBtns}
             time={postTime}
+            userInfo={props.userInfo}
           />
         );
       case "article":
@@ -43,6 +44,7 @@ const PostsContainer = props => {
             articleTitle={post.articleTitle}
             articleURL={post.articleURL}
             articleDescription={post.articleDescription}
+            userInfo={props.userInfo}
           />
         );
       case "discussion":
@@ -57,6 +59,7 @@ const PostsContainer = props => {
             handlePostBtns={props.handlePostBtns}
             time={postTime}
             discussionTitle={post.discussionTitle}
+            userInfo={props.userInfo}
           />
         );
       default:

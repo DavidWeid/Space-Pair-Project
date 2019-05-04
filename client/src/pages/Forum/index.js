@@ -9,36 +9,29 @@ import PostsContainer from "../../components/PostsContainer";
 class Forum extends Component {
   state = {
     user: this.props.user,
+    userInfo: {},
     numUsers: 0,
     numPosts: 0,
     numComments: 0,
     postOrderClicked: false,
-    posts: [
-      // {
-      //   type: "discussion",
-      //   _id: 102,
-      //   userComment:
-      //     "Aliens could be evolved enough to see the realism in videogames, i.e. WE'RE ALL A SIMULATION!",
-      //   userID: "9000",
-      //   username: "Gohan",
-      //   commentIDs: [],
-      //   likes: 0,
-      //   createdAt: Date.now(),
-      //   discussionTitle: "Would Aliens like Videogames",
-      //   discussionTheme: "Aliens",
-      //   discussionImg: ""
-      // }
-    ]
+    posts: []
   };
 
   componentDidMount() {
     this.loadAllPosts();
     this.verifyUser();
+    this.grabUserInfo();
   }
 
   verifyUser = () => {
     API.userCheck()
       .then(res => this.setState({ user: res.data.user }))
+      .catch(err => console.log(err));
+  };
+
+  grabUserInfo = () => {
+    API.grabUserInfo()
+      .then(res => this.setState({ userInfo: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -67,7 +60,7 @@ class Forum extends Component {
 
   updateUserLikesWithPostID = postId => {
     API.updateUserLikesWithPostID(postId)
-      .then(res => console.log(res))
+      .then(res => console.log("Update user likes with post id: ", res))
       .catch(err => console.log(err));
   };
 
@@ -112,14 +105,17 @@ class Forum extends Component {
       console.log("User wants to like.");
       this.updatePostLikesWithUserID(postId);
       this.updateUserLikesWithPostID(postId);
+      this.grabUserInfo();
     } else if (this.state.user && userAction === "save") {
       console.log("User wants to save.");
       this.addPostIDtoUser(postId);
+      this.grabUserInfo();
     } else if (!this.state.user) {
       console.log("Please log in to 'Like', 'Comment', or 'Save'.");
     }
 
     this.loadAllPosts();
+    this.grabUserInfo();
   };
 
   render() {
@@ -156,6 +152,7 @@ class Forum extends Component {
               <PostsContainer
                 handlePostBtns={this.handlePostBtns}
                 posts={this.state.posts}
+                userInfo={this.state.userInfo}
               />
             </Col>
           </Row>
