@@ -34,7 +34,7 @@ router.put("/update/info/:id", (req, res) => {
 });
 
 router.put("/update/posts/:id", (req, res) => {
-  console.log(req.user._id + " here I am");
+  console.log("User that's updating " + req.user._id);
   User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
@@ -55,6 +55,20 @@ router.put("/liked/:postID", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
+router.put("/unliked/:postID", (req, res) => {
+  console.log("User wants to unlike");
+  User.findByIdAndUpdate(req.user._id, { $pull: { likes: req.params.postID } })
+    .then(result => res.json(result))
+    .catch(err => res.status(404).json({ error: err }));
+});
+
+router.put("/unsaved/:postID", (req, res) => {
+  console.log("User wants to unsave");
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { postIDs: req.params.postID }
+  });
+});
+
 router.get("/test", (req, res) => {
   if (req.user) {
     return res.json({ user: req.user });
@@ -64,10 +78,16 @@ router.get("/test", (req, res) => {
 
 router.get("/forum/info", (req, res) => {
   if (req.user) {
-    User.findById(req.user._id)
+    User.findById(req.user._id, { email: 0, password: 0 })
       .then(result => res.json(result))
       .catch(err => res.status(404).json({ error: err }));
   }
+});
+
+router.get("/count", (req, res) => {
+  User.countDocuments({})
+    .then(result => res.json(result))
+    .catch(err => res.status(404).json({ err: err }));
 });
 
 module.exports = router;

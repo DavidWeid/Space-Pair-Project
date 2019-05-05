@@ -28,4 +28,10 @@ router.get("/postcomments/:postId", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+router.get("/count", (req, res) => {
+  Comment.countDocuments({})
+    .then(result => res.json(result))
+    .catch(err => res.status(404).json({ err: err }));
+});
+
 module.exports = router;
