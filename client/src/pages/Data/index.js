@@ -29,17 +29,6 @@ class Data extends Component {
     modalImg: "",
     modalCamera: "",
     share: false,
-
-
-    // Save Information
-    sharedSave: false,
-    typeSave: "roverPic",
-    nameSave: "",
-    imgSave: "",
-    cameraSave: "",
-    solSave: "",
-    earthDateSave: "",
-    userComment: ""
   };
 
 
@@ -145,13 +134,16 @@ class Data extends Component {
   savePostAPI = (newSave) => {
     API.savePost(newSave)
       .then(result => {
-        console.log(result)
         if (result.data.user === false) {
           return console.log("You are not logged in an no post was saved");
         } else if (result.data.sent === true) {
           API.addPostIDtoUser(result.data.result._id)
-            .then(resultAgain => console.log(resultAgain))
+            .then(resultAgain => {
+              console.log(resultAgain);
+              this.setState({shared: false, more: false})
+            })
             .catch(err => console.log(err));
+          console.log(result)
         }
       })
       .catch(err => console.log(err));
@@ -162,7 +154,7 @@ class Data extends Component {
     // Just save it to the DB
     const dat = e.target.dataset;
     const newSave = {
-      type: this.state.typeSave,
+      type: "roverPic",
       shared: false,
       roverName: dat.name,
       roverImg: dat.img,
@@ -179,7 +171,7 @@ class Data extends Component {
     e.preventDefault()
     const dat = e.target.dataset;
     const newSave = {
-      type: this.state.typeSave,
+      type: "roverPic",
       shared: true,
       userComment: this.state.userComment,
       roverName: dat.name,

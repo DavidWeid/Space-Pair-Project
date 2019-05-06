@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
       .then(result => {
         res.json({ sent: true, result: result });
       })
-      .catch(err => res.status(500).json({ eror: "err" }));
+      .catch(err => res.json({ error: err, why:"i dont know" }));
   } else {
     res.json({ user: false });
   }
