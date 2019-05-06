@@ -1,15 +1,32 @@
 .card {
   background-color: #f5f6fa;
-  border-radius: 2%;
+  /* border-radius: 2%; */
   box-shadow: 1px 1px 6px black;
+  border: 2px black solid;
 }
 
 .card:hover {
   box-shadow: 3px 3px 12px black;
 }
 
-.card-img-top {
+/* .card-img-top {
   border-radius: 3% 3% 0 0;
+} */
+
+.card-img-top {
+  border: 2px black solid;
+  border-radius: 0;
+}
+
+.post-owner-div {
+  padding: 2% 0 2% 2%;
+  /* border-radius: 3% 3% 0 0; */
+  background-color: #c23616;
+  color: #dcdde1;
+}
+
+.post-owner {
+  font-weight: 600;
 }
 
 .post-block {
@@ -56,4 +73,9 @@
 
 .article-description {
   font-size: 95%;
+}
+
+.comment-value {
+  font-size: 90%;
+  vertical-align: middle;
 }

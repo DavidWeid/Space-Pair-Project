@@ -58,6 +58,9 @@ const PicPostCard = props => {
   return (
     <div className="post-block pic-post">
       <div className="card">
+        <div className="post-owner-div">
+          <span className="post-owner">{props.username}</span> shared:
+        </div>
         <img src={props.img} className="card-img-top" alt={props.type} />
         <Container fluid className="card-body">
           <Row>
@@ -86,7 +89,12 @@ const PicPostCard = props => {
                 id={props.id}
                 value="comment"
               >
-                Comment
+                Comment{" "}
+                {props.numComments === 0 ? (
+                  ""
+                ) : (
+                  <span className="comment-value">{props.numComments}</span>
+                )}
               </Link>
               <button
                 onClick={props.handlePostBtns}
