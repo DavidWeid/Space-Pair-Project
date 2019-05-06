@@ -58,7 +58,9 @@ const PicPostCard = props => {
   return (
     <div className="post-block pic-post">
       <div className="card">
-        <div className="post-owner-div"><span className="post-owner">{props.username}</span> shared:</div>
+        <div className="post-owner-div">
+          <span className="post-owner">{props.username}</span> shared:
+        </div>
         <img src={props.img} className="card-img-top" alt={props.type} />
         <Container fluid className="card-body">
           <Row>
