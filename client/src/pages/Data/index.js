@@ -7,7 +7,10 @@ import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import RoverPicSelect from "../../components/RoverPicSelect";
 
-const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+// const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+
+const urlPic = "https://fsmedia.imgix.net/b0/51/61/91/ac74/4bcc/82c6/7753a571b8fc/a-simple-model-of-mars-using-mental-ray-shaders-and-slight-displacement-view-is-looking-towards-the.jpeg?crop=edges&fit=crop&auto=format%2Ccompress&dpr=2&h=900&w=1200"
+
 class Data extends Component {
   state = {
     rover: "",
@@ -173,24 +176,28 @@ class Data extends Component {
         user={this.props.user}
         changeUserState={this.props.changeUserState}
         bannerMessage="Rovers"
-        
+
       />
-      <div className="roverPicGrid">
-        <div className="spaceTaker"></div>
-        <div className="roverPicHolder">
-          {this.state.photos.length > 0 ? (
-            this.state.photos.map(photo =>
-              <RoverPic
-                key={photo.id}
-                photo={photo}
-                handleSaveButton={this.handleSaveButton}
-                showModal={this.showModal}
-              />
-            )
-          ) : (
-              <div></div>
-            )}
-        </div>
+      
+      <div>
+        {this.state.photos.length > 0 ? (
+          <div className="roverPicGrid">
+            <div className="spaceTaker"></div>
+            <div className="roverPicHolder">
+              {this.state.photos.map(photo => 
+                <RoverPic
+                  key={photo.id}
+                  photo={photo}
+                  handleSaveButton={this.handleSaveButton}
+                  showModal={this.showModal}
+                />
+              )}
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
       </div>
       <FormRover
         rover={this.state.rover}

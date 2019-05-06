@@ -6,7 +6,7 @@ const RoverPicSelect = props => {
     <div className="roverSelectBox">
       <img src={props.img} alt="rover" />
       <div className="roverSelectInfo">
-        <h2>Rover: <span className="capital">{props.rover}</span></h2>
+        <h2><span className="capital">{props.rover}</span></h2>
         <h5>Sol: {props.sol}</h5>
         <h5>Camera: {props.camera}</h5>
         <div className="roverModalButtons">

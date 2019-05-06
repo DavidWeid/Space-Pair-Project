@@ -1,20 +1,20 @@
 .picBody{
-  width: 300px;
+  width: 100%;
   margin: 0 auto 1em auto;
-  padding: 2px 0;
   color: white;
+  background-color: black;
+  box-shadow: 0px 5px 5px black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgba(36, 0, 0, 0.938);
-  /* background-color: rgb(182, 182, 182); */
-  box-shadow: 0px 5px 5px black;
   transition: all, .25s;
+  border-radius: 5px;
+  position: relative;
 }
 
 .picBody:hover{
   box-shadow: none;
-  background-color: black;
+  background-color: #8E6A5A;
   transition: all, .25s;
 }
 
@@ -27,15 +27,20 @@
   width: auto;
   max-width: 300px;
   height: auto;
-  display: block;
   margin: auto;
+  display: block;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .infoBox{
   padding: 10px;
-  background-color: rgb(87, 0, 0);
-  text-align: center;
-
+  margin: 0 auto;
+  width: 100%;
+  background-color: #663926;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .camFullName{
@@ -52,4 +57,5 @@
 .roverPicBtn{
   border: 1px black solid;
   outline: none;
+  border-radius: 5px;
 }
