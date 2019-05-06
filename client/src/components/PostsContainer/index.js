@@ -16,6 +16,8 @@ const PostsContainer = props => {
   // listPosts will be the new array to be display, an array of PostCards [<Card/>, <Card/>, <Card/>]
   const listPosts = posts.map(post => {
     const postTime = moment(`${post.createdAt}`).format("MMM D, h:mm");
+    let numComments = post.commentIDs.length;
+    // console.log(numComments);
 
     // switch determines the type of Card component (Picture, Article, Discussion)
     // Note: we're passing the CURRENT User to the PostCard
@@ -32,6 +34,7 @@ const PostsContainer = props => {
             handlePostBtns={props.handlePostBtns}
             time={postTime}
             userInfo={props.userInfo}
+            numComments={numComments}
           />
         );
       case "article":
