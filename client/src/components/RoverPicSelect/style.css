@@ -33,6 +33,20 @@
   margin-top: 10px;
 }
 
+.topBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.shareText{
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+  border-radius: 5px;
+}
+
 @media (max-width: 1000px) {
   .roverSelectBox{
     width: 100%;

@@ -57,5 +57,31 @@
 .roverPicBtn{
   border: 1px black solid;
   outline: none;
-  border-radius: 5px;
+  font-size: 14px;
+  transition: all, .25s
+}
+
+.roverPicBtn:nth-child(1) {
+  border-top-left-radius: 10%;
+  border-bottom-left-radius: 10%;
+  border-right: none;
+}
+
+.roverPicBtn:nth-child(3) {
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+  border-left: none;
+}
+
+.roverPicBtn:hover{
+  background-color: black;
+  color: white;
+  transform: scale(1.1);
+  transition: all, .25s
+}
+
+.centerBox{
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 1em;
 }

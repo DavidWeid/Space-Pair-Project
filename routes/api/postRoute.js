@@ -23,6 +23,7 @@ router.post("/", (req, res) => {
   if (req.user) {
     const newPost = new Post(req.body);
     newPost.userID = req.user._id;
+    newPost.username = req.user.username;
     newPost
       .save()
       .then(result => {
