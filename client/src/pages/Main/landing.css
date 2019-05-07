@@ -14,16 +14,22 @@
   height: 100%;
   width: 50%;
   background-color: #f5f6fa;
+  background-color: #192a56;
   color: #273c75;
   color: #192a56;
+  color: #f5f6fa;
   font-size: 150%;
 }
 
 .bg-right {
   display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 50%;
   background-color: #192a56;
+  background-color: #663926;
   color: #f5f6fa;
 }
 
@@ -32,10 +38,10 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 45%;
+  width: 90%;
+  height: 80%;
   /* background-color: #f5f6fa; */
-  padding: 3% 10%;
+  padding: 3% 5%;
   border-radius: 2%;
   /* box-shadow: 1px 1px 10px #2f3640; */
   /* background-color: #192a56; */
@@ -45,23 +51,78 @@
   margin: 3% 0;
 }
 
+.landing-icon {
+  margin-right: 0;
+}
+
 .action-wrd {
   font-weight: 600;
   font-size: 110%;
   color: #192a56;
   color: #e84118;
+  letter-spacing: 1px;
+}
+
+.enter-div {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  padding: 3% 5%;
+  border-radius: 2%;
+}
+
+.btn-start {
+  position: relative;
+  width: 20%;
+  height: 15%;
+}
+
+.fa-door-open {
+  opacity: 0;
+  transition: all, 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-start:hover .fa-door-open {
+  opacity: 1;
+}
+
+.fa-door-closed {
+  opacity: 1;
+  transition: all, 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-start:hover .fa-door-closed {
+  opacity: 0;
 }
 
 @media all and (max-width: 900px) {
-    .action-div {
-        width: 100%;
-    }
+  .action-div {
+    width: 100%;
+  }
 }
 
 @media all and (max-width: 700px) {
+  .bg-right {
+    width: 40%;
+    background-color: #192a56;
+  }
+
   .bg-left {
     background-color: #f5f6fa;
+    color: #192a56;
     font-size: 125%;
+    width: 60%;
   }
 
   .action-div {
