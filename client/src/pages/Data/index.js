@@ -7,7 +7,10 @@ import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import RoverPicSelect from "../../components/RoverPicSelect";
 
-const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+// const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+
+const urlPic = "https://fsmedia.imgix.net/b0/51/61/91/ac74/4bcc/82c6/7753a571b8fc/a-simple-model-of-mars-using-mental-ray-shaders-and-slight-displacement-view-is-looking-towards-the.jpeg?crop=edges&fit=crop&auto=format%2Ccompress&dpr=2&h=900&w=1200"
+
 class Data extends Component {
   state = {
     rover: "",
@@ -24,7 +27,8 @@ class Data extends Component {
     yOffset: 0,
     more: false,
     modalImg: "",
-    modalCamera: ""
+    modalCamera: "",
+    share: false,
   };
 
 
@@ -127,37 +131,73 @@ class Data extends Component {
     return this.hitRoverSolCameraPictures(rover, sol, camera);
   }
 
-  handleSaveButton = (e) => {
-    e.preventDefault();
-    const dat = e.target.dataset
-    const newSave = {
-      type: dat.type,
-      roverName: dat.rover_name,
-      roverImg: dat.rover_img,
-      roverCamera: dat.rover_camera,
-      roverSol: dat.rover_sol,
-      roverEarthDate: dat.rover_earth_date
-    }
-
-    // This sends in the info about the new post in from roverPic
-    // then in the response, sends an update to the user for the postID
+  savePostAPI = (newSave) => {
     API.savePost(newSave)
       .then(result => {
-        console.log(result)
         if (result.data.user === false) {
           return console.log("You are not logged in an no post was saved");
         } else if (result.data.sent === true) {
           API.addPostIDtoUser(result.data.result._id)
-            .then(resultAgain => console.log(resultAgain))
+            .then(resultAgain => {
+              console.log(resultAgain);
+              this.setState({shared: false, more: false})
+            })
             .catch(err => console.log(err));
+          console.log(result)
         }
       })
       .catch(err => console.log(err));
   }
 
+  handleSaveButton = (e) => {
+    e.preventDefault();
+    // Just save it to the DB
+    const dat = e.target.dataset;
+    const newSave = {
+      type: "roverPic",
+      shared: false,
+      roverName: dat.name,
+      roverImg: dat.img,
+      roverCamera: dat.camera,
+      roverSol: dat.sol,
+      roverEarthDate: dat.earth_date
+    }
+    // This sends in the info about the new post in from roverPic
+    // then in the response, sends an update to the user for the postID
+    this.savePostAPI(newSave);
+  }
+
+  handleShareSave = e => {
+    e.preventDefault()
+    const dat = e.target.dataset;
+    const newSave = {
+      type: "roverPic",
+      shared: true,
+      userComment: this.state.userComment,
+      roverName: dat.name,
+      roverImg: dat.img,
+      roverCamera: dat.camera,
+      roverSol: dat.sol,
+      roverEarthDate: dat.earth_date
+    }
+    this.savePostAPI(newSave);
+  }
+
+  handleShareButton = (e) => {
+    e.preventDefault();
+    console.log("share clicked")
+    // Want to open more info modal, then save post w/ comment and share = true
+    this.setState({ share: true, more: true, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera })
+  }
+
+  handleCommentChange = e => {
+    e.preventDefault();
+    this.setState({ userComment: e.target.value })
+  }
+
   showModal = (e) => {
     e.preventDefault();
-    this.setState({ more: !this.state.more, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera })
+    this.setState({ more: !this.state.more, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera, share: false })
   }
 
   getScrollHeight = (e) => {
@@ -173,24 +213,29 @@ class Data extends Component {
         user={this.props.user}
         changeUserState={this.props.changeUserState}
         bannerMessage="Rovers"
-        
+
       />
-      <div className="roverPicGrid">
-        <div className="spaceTaker"></div>
-        <div className="roverPicHolder">
-          {this.state.photos.length > 0 ? (
-            this.state.photos.map(photo =>
-              <RoverPic
-                key={photo.id}
-                photo={photo}
-                handleSaveButton={this.handleSaveButton}
-                showModal={this.showModal}
-              />
-            )
-          ) : (
-              <div></div>
-            )}
-        </div>
+
+      <div>
+        {this.state.photos.length > 0 ? (
+          <div className="roverPicGrid">
+            <div className="spaceTaker"></div>
+            <div className="roverPicHolder">
+              {this.state.photos.map(photo =>
+                <RoverPic
+                  key={photo.id}
+                  photo={photo}
+                  handleShareButton={this.handleShareButton}
+                  handleSaveButton={this.handleSaveButton}
+                  showModal={this.showModal}
+                />
+              )}
+            </div>
+          </div>
+        ) : (
+            <div></div>
+          )}
+
       </div>
       <FormRover
         rover={this.state.rover}
@@ -204,19 +249,24 @@ class Data extends Component {
         getPhotos={this.getPhotos}
         total_day_photos={this.state.total_day_photos}
         show_sol={this.state.show_sol}
+
       />
       {this.state.more ? (
         <div>
           <div className="backdrop"></div>
           <div className="picModal">
             <RoverPicSelect
+              share={this.state.share}
               rover={this.state.rover}
               sol={this.state.sol}
               earth_date={this.state.earthDay}
               img={this.state.modalImg}
               camera={this.state.modalCamera}
               handleSaveButton={this.handleSaveButton}
+              handleShareButton={this.handleShareButton}
               showModal={this.showModal}
+              handleCommentChange={this.handleCommentChange}
+              handleShareSave={this.handleShareSave}
             />
           </div>
         </div>

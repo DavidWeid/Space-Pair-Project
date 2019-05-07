@@ -12,8 +12,9 @@
   padding: 3px;
   width: 100%;
   border: 1px black solid;
-  background-color: rgb(122, 41, 21);
+  background-color: #663926;
   color: white;
+  border-radius: 3%;
 }
 
 .camTitle{

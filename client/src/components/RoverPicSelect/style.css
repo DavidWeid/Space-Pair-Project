@@ -2,20 +2,24 @@
   height: 100%;
   display: grid;
   grid-template-columns: auto;
-  text-align: center;
+  border-radius: 3%;
 }
 
 .roverSelectBox img{
   display: block;
   margin: 0 auto;
   align-self: center;
+  border-radius: 3%;
 }
 
 .roverSelectInfo{
   align-self: center;
   height: 100%;
-  background-color: rgb(57,00,00);
+  padding: 10px;
+  background-color: #663926;
   color: whitesmoke;
+  border-bottom-left-radius: 3%;
+  border-bottom-right-radius: 3%;
 }
 
 .capital{
@@ -27,6 +31,20 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+.topBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.shareText{
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+  border-radius: 5px;
 }
 
 @media (max-width: 1000px) {

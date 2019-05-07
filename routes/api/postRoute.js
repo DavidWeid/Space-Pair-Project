@@ -23,12 +23,13 @@ router.post("/", (req, res) => {
   if (req.user) {
     const newPost = new Post(req.body);
     newPost.userID = req.user._id;
+    newPost.username = req.user.username;
     newPost
       .save()
       .then(result => {
         res.json({ sent: true, result: result });
       })
-      .catch(err => res.status(500).json({ eror: "err" }));
+      .catch(err => res.json({ error: err, why:"i dont know" }));
   } else {
     res.json({ user: false });
   }
