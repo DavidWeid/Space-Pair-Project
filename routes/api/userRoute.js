@@ -35,7 +35,14 @@ router.put("/update/info/:id", (req, res) => {
 
 router.put("/update/posts", (req, res) => {
   console.log("User that's updating " + req.user._id);
-  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID , roverImgArray: req.body.roverImgSrc} })
+  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID, roverImgArray: req.body.roverImgSrc } })
+    .then(result => res.json({ result, updated: true }))
+    .catch(err => res.status(404).json({ error: err }));
+});
+
+router.put("/update/postID", (req, res) => {
+  console.log("User that's updating " + req.user._id);
+  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID } })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
 });
@@ -90,13 +97,13 @@ router.get("/count", (req, res) => {
     .catch(err => res.status(404).json({ err: err }));
 });
 
-router.get("/imgArray", (req,res) => {
+router.get("/imgArray", (req, res) => {
   if (req.user) {
     User.findById(req.user._id)
-      .then(result => res.json({user: true, roverImgArray: result.roverImgArray}))
+      .then(result => res.json({ user: true, roverImgArray: result.roverImgArray }))
       .catch(err => res.json(err));
   } else {
-    res.json({user: false})
+    res.json({ user: false })
   }
 
 })

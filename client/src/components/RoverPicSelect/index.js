@@ -8,9 +8,10 @@ const RoverPicSelect = props => {
       <div className="roverSelectInfo">
         <div className="topBox">
           <h3><span className="capital">{props.rover}</span></h3>
-          <div>
+          <div className="roverSelectData">
             <h5>Sol: {props.sol}</h5>
             <h5>Camera: {props.camera}</h5>
+            <a href={props.img} target="_blank">Full Pic</a>
           </div>
         </div>
         {props.share ? (<div className="shareBox">
