@@ -34,8 +34,10 @@ class Login extends Component {
 
   login = e => {
     e.preventDefault();
+    console.log("login button pressed");
     API.userLogin(this.state.email, this.state.password)
       .then(res => {
+        console.log(res)
         console.log(res.data.user);
         this.props.changeUserState(res.data.user);
         this.setState({ show: false });
