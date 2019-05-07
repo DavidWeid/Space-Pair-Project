@@ -56,8 +56,12 @@ export default {
   },
 
   //This sends the postID not the userID, userID is carried in req.user when logged in
-  addPostIDtoUser(postID) {
-    return Axios.put(`/api/users/update/posts/${postID}`);
+  addPostIDAndImgtoUser(postID, roverImgSrc) {
+    const updateObj = {
+      postID: postID,
+      roverImgSrc: roverImgSrc
+    }
+    return Axios.put(`/api/users/update/posts`, updateObj);
   },
 
   addUserIDtoPost(postID) {
@@ -124,5 +128,9 @@ export default {
 
   grabTotalComments() {
     return Axios.get("/api/comments/count");
+  },
+
+  grabRoverImgArray() {
+    return Axios.get("/api/users/imgArray")
   }
 };
