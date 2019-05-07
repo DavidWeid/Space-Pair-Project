@@ -47,6 +47,10 @@
   border-radius: 5px;
 }
 
+.roverSelectData a{
+  color: white;
+}
+
 @media (max-width: 1000px) {
   .roverSelectBox{
     width: 100%;
