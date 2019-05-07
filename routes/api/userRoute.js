@@ -33,9 +33,9 @@ router.put("/update/info/:id", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
-router.put("/update/posts/:id", (req, res) => {
+router.put("/update/posts", (req, res) => {
   console.log("User that's updating " + req.user._id);
-  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
+  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID , roverImgArray: req.body.roverImgSrc} })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
 });
@@ -89,5 +89,16 @@ router.get("/count", (req, res) => {
     .then(result => res.json(result))
     .catch(err => res.status(404).json({ err: err }));
 });
+
+router.get("/imgArray", (req,res) => {
+  if (req.user) {
+    User.findById(req.user._id)
+      .then(result => res.json({user: true, roverImgArray: result.roverImgArray}))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user: false})
+  }
+
+})
 
 module.exports = router;

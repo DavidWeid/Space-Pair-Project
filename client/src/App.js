@@ -31,9 +31,9 @@ class App extends Component {
 
   changeUserState = user => {
     if (user) {
+      console.log(user);
       return this.setState({ user: true });
     }
-    return this.setState({ user: false });
   };
 
   sendToPage() {

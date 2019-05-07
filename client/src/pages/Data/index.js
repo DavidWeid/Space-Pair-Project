@@ -13,6 +13,7 @@ const urlPic = "https://fsmedia.imgix.net/b0/51/61/91/ac74/4bcc/82c6/7753a571b8f
 
 class Data extends Component {
   state = {
+    loggedUser: false,
     rover: "",
     sol: "",
     earthDay: "",
@@ -29,8 +30,12 @@ class Data extends Component {
     modalImg: "",
     modalCamera: "",
     share: false,
+    userImgArray: [],
   };
 
+  componentDidMount() {
+    this.getUserPhotoArray();
+  }
 
   // Get pictures from all cameras given rover and sol
   hitRoverSolPictures = (rover, sol) => {
@@ -55,6 +60,7 @@ class Data extends Component {
   // Get rover manifest from API when user selects a rover
   // Used to help display what cameras are available to get photos from
   hitRoverManifest = rover => {
+    this.getUserPhotoArray();
     API.getRoverManifest(rover)
       .then(result => {
         console.log(result.data.photo_manifest);
@@ -131,16 +137,32 @@ class Data extends Component {
     return this.hitRoverSolCameraPictures(rover, sol, camera);
   }
 
+  getUserPhotoArray = () => {
+    console.log("grabbing user photo array after component update")
+    API.grabRoverImgArray()
+      .then(result => {
+        console.log(result);
+        if (result.data.user) {
+          console.log(result.data.roverImgArray)
+          this.setState({ userImgArray: result.data.roverImgArray })
+        } else {
+          console.log("not a user?")
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
   savePostAPI = (newSave) => {
     API.savePost(newSave)
       .then(result => {
         if (result.data.user === false) {
           return console.log("You are not logged in an no post was saved");
         } else if (result.data.sent === true) {
-          API.addPostIDtoUser(result.data.result._id)
+          API.addPostIDAndImgtoUser(result.data.result._id, result.data.result.roverImg)
             .then(resultAgain => {
               console.log(resultAgain);
-              this.setState({shared: false, more: false})
+              this.setState({ shared: false, more: false });
+              this.getUserPhotoArray();
             })
             .catch(err => console.log(err));
           console.log(result)
@@ -228,6 +250,7 @@ class Data extends Component {
                   handleShareButton={this.handleShareButton}
                   handleSaveButton={this.handleSaveButton}
                   showModal={this.showModal}
+                  userImgArray={this.state.userImgArray}
                 />
               )}
             </div>

@@ -26,6 +26,11 @@ const UserSchema = new Schema({
     default: []
   },
 
+  roverImgArray: {
+    type: Array,
+    default: []
+  },
+
   commentIDs: {
     type: Array,
     default: []
