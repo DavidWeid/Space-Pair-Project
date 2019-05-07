@@ -3,10 +3,12 @@
   /* border-radius: 2%; */
   box-shadow: 1px 1px 6px black;
   border: 2px black solid;
+  transition: all, .25s;
 }
 
 .card:hover {
   box-shadow: 3px 3px 12px black;
+  transition: all, .25s;
 }
 
 /* .card-img-top {
