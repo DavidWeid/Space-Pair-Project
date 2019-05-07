@@ -73,7 +73,9 @@ router.put("/unsaved/:postID", (req, res) => {
   console.log("User wants to unsave");
   User.findByIdAndUpdate(req.user._id, {
     $pull: { postIDs: req.params.postID }
-  });
+  })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
 });
 
 router.get("/test", (req, res) => {
