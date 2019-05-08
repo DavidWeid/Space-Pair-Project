@@ -64,8 +64,10 @@ router.delete("/delete/:id", (req, res) => {
 });
 
 router.put("/deleteImg/", (req, res) => {
-  Post.remove({roverImg: req.body.roverImg, userID: req.user._id})
-    .then(result => res.json(result))
+  Post.findOneAndRemove({roverImg: req.body.roverImg, userID: req.user._id})
+    .then(result => {
+      res.json(result)
+    })
     .catch(err => res.json(err));
 })
 
