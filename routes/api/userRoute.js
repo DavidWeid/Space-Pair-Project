@@ -114,21 +114,24 @@ router.put("/update/comments/:id", (req, res) => {
 // If something is not working this is the reason why!!!!!!
 // Well maybe the reason why
 router.put("/liked/:postID", (req, res) => {
-  console.log(req.user._id);
+  console.log("User that's liking", req.user._id);
+  console.log("Post to be liked", req.params.postID)
   User.findByIdAndUpdate(req.user._id, { $push: { likes: req.params.postID } })
     .then(result => res.json(result))
     .catch(err => res.status(404).json({ error: err }));
 });
 
 router.put("/unliked/:postID", (req, res) => {
-  console.log("User wants to unlike");
+  console.log("User wants to unlike", req.user._id);
+  console.log("Post to be unliked", req.params.postID)
   User.findByIdAndUpdate(req.user._id, { $pull: { likes: req.params.postID } })
     .then(result => res.json(result))
     .catch(err => res.status(404).json({ error: err }));
 });
 
 router.put("/unsaved/:postID", (req, res) => {
-  console.log("User wants to unsave");
+  console.log("User wants to unsave", req.user._id);
+  console.log("Post to be unsaved", req.params.postID)
   User.findByIdAndUpdate(req.user._id, {
     $pull: { postIDs: req.params.postID }
   })

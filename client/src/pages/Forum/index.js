@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./forum.css";
-import API from "../../utils/API";
+import API from "../../utils/forumAPI.js";
 import { Container, Row, Col } from "reactstrap";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
@@ -22,6 +22,13 @@ class Forum extends Component {
     this.grabUserInfo();
     this.updateNums();
   }
+
+  // Grab all posts that have been shared (shared: true), display newest first
+  loadAllPosts = () => {
+    API.sortPosts("des", "createdAt")
+      .then(res => this.setState({ posts: res.data }))
+      .catch(err => console.log(err));
+  };
 
   // Check if User is logged in
   verifyUser = () => {
@@ -50,13 +57,6 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
-  // Grab all posts that have been shared (shared: true), display newest first
-  loadAllPosts = () => {
-    API.sortPosts("des", "createdAt")
-      .then(res => this.setState({ posts: res.data }))
-      .catch(err => console.log(err));
-  };
-
   // Sort posts by order (asc / des) and sortby (likes / recent)
   sortPosts = (order, sortby) => {
     API.sortPosts(order, sortby)
@@ -67,39 +67,51 @@ class Forum extends Component {
   // When a User likes a post, update the post with the User's ID
   updatePostLikesWithUserID = postId => {
     API.updatePostLikesWithUserID(postId)
-      .then(res => console.log("Post updated with User ID: ", res))
+      .then(res =>
+        console.log("Post's 'likes' updated with User's '_id': ", res)
+      )
       .catch(err => console.log(err));
   };
 
   // When a User likes a post, update the User with the post's ID
   updateUserLikesWithPostID = postId => {
     API.updateUserLikesWithPostID(postId)
-      .then(res => console.log("User 'likes' updated with Post ID: ", res))
+      .then(res =>
+        console.log("User's 'likes' updated with Post's '_id': ", res)
+      )
       .catch(err => console.log(err));
   };
 
   // When a User saves a post, update the User with the post's ID
   addPostIDtoUser = postId => {
     API.addPostIDtoUser(postId)
-      .then(res => console.log("User 'postIDs' updated with Post ID: ", res))
+      .then(res =>
+        console.log("User's 'postIDs' updated with Post's '_id': ", res)
+      )
       .catch(err => console.log(err));
   };
 
   removePostIDfromUserLikes = postId => {
     API.removePostFromUserLikes(postId)
-      .then(res => console.log("Remove PostID from User Likes: ", res))
+      .then(res =>
+        console.log("Remove Post's '_id' from User's 'likes': ", res)
+      )
       .catch(err => console.log(err));
   };
 
   removeUserIDfromPostLikes = postId => {
     API.removeUserFromPostLikes(postId)
-      .then(res => console.log("Remove UserID from Post Likes: ", res))
+      .then(res =>
+        console.log("Remove User's '_id' from Post's 'likes': ", res)
+      )
       .catch(err => console.log(err));
   };
 
   removePostIDfromUser = postId => {
     API.removePostFromUser(postId)
-      .then(res => console.log("Remove PostID from User Posts: ", res))
+      .then(res =>
+        console.log("Remove Post's '_id' from User's' 'postIDs': ", res)
+      )
       .catch(err => console.log(err));
   };
 
@@ -128,61 +140,54 @@ class Forum extends Component {
       this.setState({ postOrderClicked: false });
     }
 
+    // Sets state (state.posts)
     this.sortPosts(order, sortby);
   };
 
-  // Post btns are "like", "comment", and "save"
-  // User must be logged in to "like" or "save"
-  handlePostBtns = async e => {
-    this.verifyUser();
-    const userAction = e.target.getAttribute("value");
-    const userLikedStatus = e.target.getAttribute("user-liked");
-    const userSavedStatus = e.target.getAttribute("user-saved");
-    const postId = e.target.id;
-    console.log("user-liked: ", userLikedStatus);
-    console.log("user-saved: ", userSavedStatus);
-
-    if (
-      this.state.user &&
-      userAction === "like" &&
-      userLikedStatus === "notLiked"
-    ) {
-      console.log("User wants to like: ", postId);
-      await this.updatePostLikesWithUserID(postId);
-      await this.updateUserLikesWithPostID(postId);
-
-    } else if (
-      this.state.user &&
-      userAction === "like" &&
-      userLikedStatus !== "notLiked"
-    ) {
-      console.log("User wants to unlike: ", postId);
-      await this.removeUserIDfromPostLikes(postId);
-      await this.removePostIDfromUserLikes(postId);
-
-    } else if (
-      this.state.user &&
-      userAction === "save" &&
-      userSavedStatus === "notSaved"
-    ) {
-      console.log("User wants to save: ", postId);
-      await this.addPostIDtoUser(postId);
-
-    } else if (
-      this.state.user &&
-      userAction === "save" &&
-      userSavedStatus !== "notSaved"
-    ) {
-      console.log("user wants to unsave: ", postId);
-      await this.removePostIDfromUser(postId);
-
-    } else if (!this.state.user) {
-      console.log("Please log in to 'Like', 'Comment', or 'Save'!");
+  handleLikeBtn = async e => {
+    console.log("like btn clicked");
+    if (this.state.user) {
+      const postId = e.target.id;
+      this.updatePostLikesWithUserID(postId);
+      this.updateUserLikesWithPostID(postId);
+      await this.grabUserInfo();
+    } else {
+      console.log("please log in");
     }
+  };
 
-    // Reload our Posts and grab the updated User
-    // this.loadAllPosts();
-    await this.grabUserInfo();
+  handleUnlikeBtn = async e => {
+    console.log("unlike btn clicked");
+    if (this.state.user) {
+      const postId = e.target.id;
+      this.removePostIDfromUserLikes(postId);
+      this.removeUserIDfromPostLikes(postId);
+      await this.grabUserInfo();
+    } else {
+      console.log("please log in");
+    }
+  };
+
+  handleSaveBtn = async e => {
+    console.log("save btn clicked");
+    if (this.state.user) {
+      const postId = e.target.id;
+      this.addPostIDtoUser(postId);
+      await this.grabUserInfo();
+    } else {
+      console.log("please log in");
+    }
+  };
+
+  handleUnsaveBtn = async e => {
+    console.log("unsave btn clicked");
+    if (this.state.user) {
+      const postId = e.target.id;
+      this.removePostIDfromUser(postId);
+      await this.grabUserInfo();
+    } else {
+      console.log("please log in");
+    }
   };
 
   render() {
@@ -236,7 +241,10 @@ class Forum extends Component {
             >
               {/* Here we pass all shared posts and the CURRENT User to the PostsContainer */}
               <PostsContainer
-                handlePostBtns={this.handlePostBtns}
+                handleLikeBtn={this.handleLikeBtn}
+                handleUnlikeBtn={this.handleUnlikeBtn}
+                handleSaveBtn={this.handleSaveBtn}
+                handleUnsaveBtn={this.handleUnsaveBtn}
                 posts={this.state.posts}
                 userInfo={this.state.userInfo}
               />
