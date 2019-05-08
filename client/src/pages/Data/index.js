@@ -247,6 +247,23 @@ class Data extends Component {
     this.setState({ share: true, more: true, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera })
   }
 
+  unshareButton = e => {
+    e.preventDefault();
+    const roverImg = e.target.dataset.img;
+    console.log(roverImg);
+    API.updatePostShared(roverImg, "useless string", false)
+      .then(result =>  {
+        console.log(result);
+        API.removeImgfromUserShared(result.data.roverImg)
+          .then(change => {
+            console.log(change);
+            this.getUserPhotoArray();
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  }
+
   handleCommentChange = e => {
     e.preventDefault();
     this.setState({ userComment: e.target.value })
@@ -287,6 +304,7 @@ class Data extends Component {
                   showModal={this.showModal}
                   userSavedArray={this.state.userSavedArray}
                   userSharedArray={this.state.userSharedArray}
+                  unshareButton={this.unshareButton}
                 />
               )}
             </div>

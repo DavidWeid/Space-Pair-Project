@@ -70,8 +70,27 @@ router.put("/update/posts/shared", (req, res) => {
   } else {
     res.json({user: false});
   }
-
 });
+
+router.put("/update/posts/unshared", (req,res) => {
+  if (req.user) {
+    User.findByIdAndUpdate(req.user._id, { $pull : {roverImgArrayShared: req.body.roverImg}})
+      .then(result => {
+        res.json(result)
+      })
+      .catch(err => res.json(err));
+  }
+})
+
+router.put("/update/posts/unsaved", (req,res) => {
+  if (req.user) {
+    User.findByIdAndUpdate(req.user._id, { $pull : {roverImgArraySaved: req.body.roverImg}})
+      .then(result => {
+        res.json(result)
+      })
+      .catch(err => res.json(err));
+  }
+})
 
 router.put("/update/postID", (req, res) => {
   console.log("User that's updating " + req.user._id);

@@ -27,7 +27,7 @@ class RoverPic extends Component {
 
           <div className="roverPicButtons">
             {/* {console.log(this.props.userImgArray.filter(each => each === this.props.photo.img_src).length)} */}
-            {showSaved ?
+            {showSaved && showShared ?
               <button
                 className="roverPicBtn"
                 data-type="roverPic"
@@ -42,6 +42,14 @@ class RoverPic extends Component {
               :
               <div></div>
             }
+
+            {!showSaved && showShared ?
+              <button
+                className="roverPicBtn"
+              >Unsave</button>
+              :
+              <div></div>}
+
             {showShared ?
               <button
                 className="roverPicBtn"
@@ -55,7 +63,11 @@ class RoverPic extends Component {
               >Share
                 </button>
               :
-              <div></div>
+              <button
+                className="roverPicBtn"
+                data-img={this.props.photo.img_src}
+                onClick={(e) => this.props.unshareButton(e)}
+              >Unshare</button>
             }
             <button
               className="roverPicBtn"

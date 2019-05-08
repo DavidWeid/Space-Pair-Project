@@ -102,7 +102,7 @@ router.put("/shared", (req,res) => {
         })
         .catch(err => res.json(err))
     } else if (!req.body.add) {
-      Post.findOneAndUpdate({roverImg: req.body.roverImg, userID: req.user._id }, { shared: false})
+      Post.findOneAndUpdate({roverImg: req.body.roverImg, userID: req.user._id }, { shared: false, userComment: ""})
         .then(change =>  res.json(change))
         .catch(err => res.json(err))
     }
