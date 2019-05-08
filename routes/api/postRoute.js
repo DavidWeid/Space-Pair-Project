@@ -43,6 +43,16 @@ router.get("/postID/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// Get route for one post by roverImg
+
+// router.get("/postSavedRoverImg/:roverImg", (req,res) => {
+//   if (req.user) {
+//     Post.find({roverImg: req.params.roverImg, userID: req.user._id, shared})
+//       .then(result => res.json(result))
+//       .catch(err => res.json(err));
+//   }
+// })
+
 // Delete Route
 
 // Will have to use Passport to prevent people from deleting anyone's post
@@ -52,6 +62,12 @@ router.delete("/delete/:id", (req, res) => {
     .then(result => res.status(200).json({ deleted: true }))
     .catch(err => res.status(404).json({ error: err }));
 });
+
+router.put("/deleteImg/", (req, res) => {
+  Post.remove({roverImg: req.body.roverImg, userID: req.user._id})
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+})
 
 // Update Route
 
@@ -81,17 +97,37 @@ router.put("/saved/:id", (req, res) => {
     .catch(err => res.json(err));
 });
 
+router.put("/shared", (req,res) => {
+  if (req.user) {
+    console.log(req.body.add, req.body.roverImg)
+    if (req.body.add) {
+      Post.findOneAndUpdate({roverImg: req.body.roverImg, userID: req.user._id }, { shared: true, userComment: req.body.userComment})
+        .then(result =>  {
+          console.log(result)
+          res.json(result)
+        })
+        .catch(err => res.json(err))
+    } else if (!req.body.add) {
+      Post.findOneAndUpdate({roverImg: req.body.roverImg, userID: req.user._id }, { shared: false, userComment: ""})
+        .then(change =>  res.json(change))
+        .catch(err => res.json(err))
+    }
+  } else {
+    res.json({user: false})
+  }
+})
+
 router.get(`/wtf`, (req, res) => {
   // console.log(req.user)
   res.json(true);
 });
 
 //Get all posts by one user in app
-router.get("/user", (req, res) => {
-  Post.find({ userID: req.user._id })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
-});
+// router.get("/user", (req, res) => {
+//   Post.find({ userID: req.user._id })
+//     .then(result => res.json(result))
+//     .catch(err => res.json(err));
+// });
 
 // Get all posts by one user in postman
 

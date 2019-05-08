@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require("./User");
 
 const PostSchema = new Schema({
   // All Posts will share this information in this top section
@@ -164,5 +165,15 @@ PostSchema.pre("save", function(next) {
 
   next();
 });
+
+PostSchema.pre("remove", { query: true }, function(next) {
+  console.log("running delete in postSchema pre remove")
+  User.findByIdAndUpdate(this.userID, { $pull: { postIDs: this._id } })
+    .then(result => {
+      console.log(result)
+      next(result)
+    })
+    .catch(next(err));
+})
 
 module.exports = Post = mongoose.model("Post", PostSchema);

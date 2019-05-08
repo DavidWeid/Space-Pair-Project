@@ -7,8 +7,6 @@ import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import RoverPicSelect from "../../components/RoverPicSelect";
 
-// const urlPic = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-
 const urlPic = "https://fsmedia.imgix.net/b0/51/61/91/ac74/4bcc/82c6/7753a571b8fc/a-simple-model-of-mars-using-mental-ray-shaders-and-slight-displacement-view-is-looking-towards-the.jpeg?crop=edges&fit=crop&auto=format%2Ccompress&dpr=2&h=900&w=1200"
 
 class Data extends Component {
@@ -30,7 +28,8 @@ class Data extends Component {
     modalImg: "",
     modalCamera: "",
     share: false,
-    userImgArray: [],
+    userSavedArray: [],
+    userSharedArray: []
   };
 
   componentDidMount() {
@@ -143,8 +142,9 @@ class Data extends Component {
       .then(result => {
         console.log(result);
         if (result.data.user) {
-          console.log(result.data.roverImgArray)
-          this.setState({ userImgArray: result.data.roverImgArray })
+          console.log(result.data.roverImgArraySaved)
+          console.log(result.data.roverImgArrayShared)
+          this.setState({ userSavedArray: result.data.roverImgArraySaved, userSharedArray: result.data.roverImgArrayShared })
         } else {
           console.log("not a user?")
         }
@@ -157,8 +157,8 @@ class Data extends Component {
       .then(result => {
         if (result.data.user === false) {
           return console.log("You are not logged in an no post was saved");
-        } else if (result.data.sent === true) {
-          API.addPostIDAndImgtoUser(result.data.result._id, result.data.result.roverImg)
+        } else if (result.data.result.shared === false) {
+          API.addPostIDAndImgtoUserSaved(result.data.result._id, result.data.result.roverImg)
             .then(resultAgain => {
               console.log(resultAgain);
               this.setState({ shared: false, more: false });
@@ -166,6 +166,14 @@ class Data extends Component {
             })
             .catch(err => console.log(err));
           console.log(result)
+        } else {
+          API.addPostIDAndImgtoUserSavedShared(result.data.result._id, result.data.result.roverImg)
+            .then(resultAgain => {
+              console.log(resultAgain);
+              this.setState({ shared: false, more: false });
+              this.getUserPhotoArray();
+            })
+            .catch(err => console.log(err));
         }
       })
       .catch(err => console.log(err));
@@ -192,17 +200,44 @@ class Data extends Component {
   handleShareSave = e => {
     e.preventDefault()
     const dat = e.target.dataset;
-    const newSave = {
-      type: "roverPic",
-      shared: true,
-      userComment: this.state.userComment,
-      roverName: dat.name,
-      roverImg: dat.img,
-      roverCamera: dat.camera,
-      roverSol: dat.sol,
-      roverEarthDate: dat.earth_date
+    const filteredArray = this.state.userSavedArray.filter(each => each === dat.img);
+    console.log(filteredArray)
+    if (filteredArray.length < 1) {
+      const newSave = {
+        type: "roverPic",
+        shared: true,
+        userComment: this.state.userComment,
+        roverName: dat.name,
+        roverImg: dat.img,
+        roverCamera: dat.camera,
+        roverSol: dat.sol,
+        roverEarthDate: dat.earth_date
+      }
+      this.savePostAPI(newSave)
+    } else {
+      this.updateShared(dat.img, this.state.userComment, true)
     }
-    this.savePostAPI(newSave);
+
+  }
+
+
+
+  updateShared(roverImg, userComment, add) {
+    // Make API call to find and update post that has user id and roverimg to shared === true
+    // Add img to userSharedArray
+    console.log("updateShared called");
+    API.updatePostShared(roverImg, userComment, add)
+      .then(result => {
+        console.log(result.data.roverImg + " result.data.roverImg");
+        API.addImgtoUserShared(result.data.roverImg)
+          .then(result => {
+            console.log(result);
+            this.getUserPhotoArray();
+            this.setState({ shared: false, more: false })
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   }
 
   handleShareButton = (e) => {
@@ -210,6 +245,37 @@ class Data extends Component {
     console.log("share clicked")
     // Want to open more info modal, then save post w/ comment and share = true
     this.setState({ share: true, more: true, modalImg: e.target.dataset.img, modalCamera: e.target.dataset.camera })
+  }
+
+  unshareButton = e => {
+    e.preventDefault();
+    const roverImg = e.target.dataset.img;
+    console.log(roverImg);
+    API.updatePostShared(roverImg, "useless string", false)
+      .then(result => {
+        console.log(result);
+        API.removeImgfromUserShared(result.data.roverImg)
+          .then(change => {
+            console.log(change);
+            this.getUserPhotoArray();
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  }
+
+  unsaveButton = e => {
+    e.preventDefault();
+    const roverImg = e.target.dataset.img;
+    console.log(roverImg)
+    API.deletePostbyImg(roverImg)
+      .then(result => {
+        console.log(result);
+        API.removeImgfromUserSaved(result.data.roverImg, result.data._id)
+          .then(change => console.log(change))
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   }
 
   handleCommentChange = e => {
@@ -250,7 +316,10 @@ class Data extends Component {
                   handleShareButton={this.handleShareButton}
                   handleSaveButton={this.handleSaveButton}
                   showModal={this.showModal}
-                  userImgArray={this.state.userImgArray}
+                  userSavedArray={this.state.userSavedArray}
+                  userSharedArray={this.state.userSharedArray}
+                  unshareButton={this.unshareButton}
+                  unsaveButton={this.unsaveButton}
                 />
               )}
             </div>

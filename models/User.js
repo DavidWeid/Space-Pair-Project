@@ -26,7 +26,17 @@ const UserSchema = new Schema({
     default: []
   },
 
-  roverImgArray: {
+  sharedIDs: {
+    type: Array,
+    default: [],
+  },
+
+  roverImgArraySaved: {
+    type: Array,
+    default: []
+  },
+
+  roverImgArrayShared: {
     type: Array,
     default: []
   },
