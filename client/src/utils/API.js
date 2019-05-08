@@ -2,7 +2,6 @@ import Axios from "axios";
 
 // Getting the api key from process.env
 const key = process.env.REACT_APP_NASA_KEY;
-console.log(key);
 
 export default {
   exampleAPI() {

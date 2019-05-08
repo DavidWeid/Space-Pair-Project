@@ -173,6 +173,7 @@ class Forum extends Component {
     if (this.state.user) {
       const postId = e.target.id;
       this.addPostIDtoUser(postId);
+      this.addUserIDtoPost(postId); // Create this function and route
       await this.grabUserInfo();
     } else {
       console.log("please log in");
@@ -184,6 +185,7 @@ class Forum extends Component {
     if (this.state.user) {
       const postId = e.target.id;
       this.removePostIDfromUser(postId);
+      this.removeUserIDfromPost(postId); // Create this function and route
       await this.grabUserInfo();
     } else {
       console.log("please log in");
