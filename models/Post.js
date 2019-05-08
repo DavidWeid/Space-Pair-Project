@@ -166,14 +166,15 @@ PostSchema.pre("save", function(next) {
   next();
 });
 
-PostSchema.pre("remove", { query: true }, function(next) {
-  console.log("running delete in postSchema pre remove")
-  User.findByIdAndUpdate(this.userID, { $pull: { postIDs: this._id } })
-    .then(result => {
-      console.log(result)
-      next(result)
-    })
-    .catch(next(err));
-})
+// PostSchema.pre("remove", function(next) {
+//   console.log("running check in postSchema pre remove")
+//   console.log(this.userID);
+//   User.findByIdAndUpdate(this.userID, { $pull: { postIDs: this._id } }, { new: true })
+//     .then(result => {
+//       console.log(result)
+//       next(result)
+//     })
+//     .catch(next(err));
+// })
 
 module.exports = Post = mongoose.model("Post", PostSchema);
