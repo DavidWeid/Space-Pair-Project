@@ -11,7 +11,7 @@ const RoverPicSelect = props => {
           <div className="roverSelectData">
             <h5>Sol: {props.sol}</h5>
             <h5>Camera: {props.camera}</h5>
-            <a href={props.img} target="_blank">Full Pic</a>
+            <a href={props.img} target="_blank" rel="noopener noreferrer">Full Pic</a>
           </div>
         </div>
         {props.share ? (<div className="shareBox">

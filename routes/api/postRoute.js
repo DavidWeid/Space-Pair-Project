@@ -82,12 +82,15 @@ router.put("/put/:id", (req, res) => {
 
 router.put("/liked/:id", (req, res) => {
   console.log("User that's liking", req.user._id);
+  console.log("Post to be liked", req.params.id);
   Post.findByIdAndUpdate(req.params.id, { $push: { likes: req.user._id } })
     .then(result => res.json(result))
     .catch(err => res.json(err));
 });
 
 router.put("/unliked/:id", (req, res) => {
+  console.log("User wants to unlike", req.user._id);
+  console.log("Post to unlike", req.params.id);
   Post.findByIdAndUpdate(req.params.id, { $pull: { likes: req.user._id } })
     .then(result => res.json(result))
     .catch(err => res.json(err));
