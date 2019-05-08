@@ -40,11 +40,37 @@ router.put("/update/posts/saved", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
-router.put("/update/posts/shared", (req, res) => {
+router.put("/update/posts/savedshared", (req, res) => {
   console.log("User that's updating " + req.user._id);
-  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID, roverImgArrayShared: req.body.roverImgSrc } })
+  User.findByIdAndUpdate(req.user._id, {
+    $push: {
+      postIDs: req.body.postID,
+      roverImgArrayShared: req.body.roverImgSrc,
+      roverImgArraySaved: req.body.roverImgSrc
+    }
+  })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
+});
+
+router.put("/update/posts/shared", (req, res) => {
+  console.log("User that's updating " + req.user._id);
+  if (req.user) {
+    User.findByIdAndUpdate(req.user._id, {
+      $push: {
+        postIDs: req.body.postID,
+        roverImgArrayShared: req.body.roverImg
+      }
+    })
+      .then(result => {
+        console.log(result);
+        res.json({ result, updated: true });
+        })
+      .catch(err => res.status(404).json({ error: err }));
+  } else {
+    res.json({user: false});
+  }
+
 });
 
 router.put("/update/postID", (req, res) => {

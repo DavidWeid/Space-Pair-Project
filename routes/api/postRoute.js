@@ -43,6 +43,16 @@ router.get("/postID/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// Get route for one post by roverImg
+
+// router.get("/postSavedRoverImg/:roverImg", (req,res) => {
+//   if (req.user) {
+//     Post.find({roverImg: req.params.roverImg, userID: req.user._id, shared})
+//       .then(result => res.json(result))
+//       .catch(err => res.json(err));
+//   }
+// })
+
 // Delete Route
 
 // Will have to use Passport to prevent people from deleting anyone's post
@@ -80,6 +90,26 @@ router.put("/saved/:id", (req, res) => {
     .then(result => res.json(result))
     .catch(err => res.json(err));
 });
+
+router.put("/shared", (req,res) => {
+  if (req.user) {
+    console.log(req.body.add, req.body.roverImg)
+    if (req.body.add) {
+      Post.findOneAndUpdate({roverImg: req.body.roverImg, userID: req.user._id }, { shared: true, userComment: req.body.userComment})
+        .then(result =>  {
+          console.log(result)
+          res.json(result)
+        })
+        .catch(err => res.json(err))
+    } else if (!req.body.add) {
+      Post.findOneAndUpdate({roverImg: req.body.roverImg, userID: req.user._id }, { shared: false})
+        .then(change =>  res.json(change))
+        .catch(err => res.json(err))
+    }
+  } else {
+    res.json({user: false})
+  }
+})
 
 router.get(`/wtf`, (req, res) => {
   // console.log(req.user)

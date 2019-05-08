@@ -12,7 +12,9 @@ class RoverPic extends Component {
     const filterSharedImg = this.props.userSharedArray.filter(each => each === this.props.photo.img_src);
     const showSaved = filterSavedImg.length < 1 ? true : false;
     const showShared = filterSharedImg.length < 1 ? true : false;
-    console.log(showSaved, showShared)
+    const both = showSaved === true && showShared === true ? true : false;
+
+    console.log(showSaved, showShared, both)
 
     return (
       <div className="picBody">
@@ -52,7 +54,8 @@ class RoverPic extends Component {
                 onClick={(e) => this.props.handleShareButton(e)}
               >Share
                 </button>
-              : <div></div>
+              :
+              <div></div>
             }
             <button
               className="roverPicBtn"

@@ -64,12 +64,21 @@ export default {
     return Axios.put(`/api/users/update/posts/saved`, updateObj);
   },
 
-  addPostIDAndImgtoUserShared(postID, roverImgSrc) {
+  addPostIDAndImgtoUserSavedShared(postID, roverImgSrc) {
     const updateObj = {
       postID: postID,
       roverImgSrc: roverImgSrc
     }
-    return Axios.put(`/api/users/update/posts/shared`, updateObj);
+    return Axios.put(`/api/users/update/posts/savedshared`, updateObj);
+  },
+
+  addImgtoUserShared(roverImg) {
+    console.log(roverImg + " roverImg inside of addImgtoUserShared API")
+    return Axios.put("/api/users/update/posts/shared", {roverImg})
+  },
+
+  updatePostShared(roverImg, userComment, add) {
+    return Axios.put("/api/posts/shared", {roverImg, userComment, add: add})
   },
 
   addPostIDtoUser(postID) {
@@ -98,6 +107,14 @@ export default {
 
   removePostFromUser(postId) {
     return Axios.put(`/api/users/unsaved/${postId}`);
+  },
+
+  removeSavedImgFromUser(roverImg) {
+
+  },
+
+  removeSharedImgFromUser(roverImg) {
+
   },
 
   getRoverManifest(rover) {
