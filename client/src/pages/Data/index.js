@@ -230,12 +230,12 @@ class Data extends Component {
       .then(result => {
         console.log(result.data.roverImg + " result.data.roverImg");
         API.addImgtoUserShared(result.data.roverImg)
-        .then(result => {
-          console.log(result);
-          this.getUserPhotoArray();
-          this.setState({shared: false, more: false})
-        })
-        .catch(err => console.log(err));
+          .then(result => {
+            console.log(result);
+            this.getUserPhotoArray();
+            this.setState({ shared: false, more: false })
+          })
+          .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
   }
@@ -252,13 +252,27 @@ class Data extends Component {
     const roverImg = e.target.dataset.img;
     console.log(roverImg);
     API.updatePostShared(roverImg, "useless string", false)
-      .then(result =>  {
+      .then(result => {
         console.log(result);
         API.removeImgfromUserShared(result.data.roverImg)
           .then(change => {
             console.log(change);
             this.getUserPhotoArray();
           })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  }
+
+  unsaveButton = e => {
+    e.preventDefault();
+    const roverImg = e.target.dataset.img;
+    console.log(roverImg)
+    API.deletePostbyImg(roverImg)
+      .then(result => {
+        console.log(result);
+        API.removeImgfromUserSaved(result.data.roverImg, result.data._id)
+          .then(change => console.log(change))
           .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
@@ -305,6 +319,7 @@ class Data extends Component {
                   userSavedArray={this.state.userSavedArray}
                   userSharedArray={this.state.userSharedArray}
                   unshareButton={this.unshareButton}
+                  unsaveButton={this.unsaveButton}
                 />
               )}
             </div>

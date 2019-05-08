@@ -27,7 +27,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to MongoDB
-const eraseDatabaseOnSync = false;
+const eraseDatabaseOnSync = true;
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/science-forum-db", {
     useNewUrlParser: true

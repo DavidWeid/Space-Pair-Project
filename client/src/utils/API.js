@@ -81,8 +81,13 @@ export default {
     return Axios.put("/api/users/update/posts/unshared", {roverImg});
   },
 
-  removeImgfromUserSaved(roverImg) {
-    return Axios.put("api/users/update/posts/unsaved", {roverImg})
+  removeImgfromUserSaved(roverImg, postID) {
+    console.log(roverImg, postID)
+    return Axios.put("/api/users/update/posts/unsaved", {roverImg, postID})
+  },
+
+  deletePostbyImg(roverImg) {
+    return Axios.put(`/api/posts/deleteImg`, {roverImg})
   },
 
   updatePostShared(roverImg, userComment, add) {

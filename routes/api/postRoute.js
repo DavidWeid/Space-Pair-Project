@@ -63,6 +63,12 @@ router.delete("/delete/:id", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
+router.put("/deleteImg/", (req, res) => {
+  Post.remove({roverImg: req.body.roverImg, userID: req.user._id})
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+})
+
 // Update Route
 
 // Not sure where we would use this, but we have it
@@ -117,11 +123,11 @@ router.get(`/wtf`, (req, res) => {
 });
 
 //Get all posts by one user in app
-router.get("/user", (req, res) => {
-  Post.find({ userID: req.user._id })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
-});
+// router.get("/user", (req, res) => {
+//   Post.find({ userID: req.user._id })
+//     .then(result => res.json(result))
+//     .catch(err => res.json(err));
+// });
 
 // Get all posts by one user in postman
 

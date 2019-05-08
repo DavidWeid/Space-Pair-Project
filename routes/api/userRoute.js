@@ -65,16 +65,16 @@ router.put("/update/posts/shared", (req, res) => {
       .then(result => {
         console.log(result);
         res.json({ result, updated: true });
-        })
+      })
       .catch(err => res.status(404).json({ error: err }));
   } else {
-    res.json({user: false});
+    res.json({ user: false });
   }
 });
 
-router.put("/update/posts/unshared", (req,res) => {
+router.put("/update/posts/unshared", (req, res) => {
   if (req.user) {
-    User.findByIdAndUpdate(req.user._id, { $pull : {roverImgArrayShared: req.body.roverImg}})
+    User.findByIdAndUpdate(req.user._id, { $pull: { roverImgArrayShared: req.body.roverImg } })
       .then(result => {
         res.json(result)
       })
@@ -82,9 +82,9 @@ router.put("/update/posts/unshared", (req,res) => {
   }
 })
 
-router.put("/update/posts/unsaved", (req,res) => {
+router.put("/update/posts/unsaved", (req, res) => {
   if (req.user) {
-    User.findByIdAndUpdate(req.user._id, { $pull : {roverImgArraySaved: req.body.roverImg}})
+    User.findByIdAndUpdate(req.user._id, { $pull: { roverImgArraySaved: req.body.roverImg } })
       .then(result => {
         res.json(result)
       })

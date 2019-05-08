@@ -46,6 +46,8 @@ class RoverPic extends Component {
             {!showSaved && showShared ?
               <button
                 className="roverPicBtn"
+                data-img={this.props.photo.img_src}
+                onClick={(e) => this.props.unsaveButton(e)}
               >Unsave</button>
               :
               <div></div>}
