@@ -8,7 +8,7 @@ import PostsContainer from "../../components/PostsContainer";
 
 class Forum extends Component {
   state = {
-    user: this.props.user,
+    user: false,
     userInfo: {},
     numUsers: 0,
     numComments: 0,
@@ -133,7 +133,7 @@ class Forum extends Component {
 
   // Post btns are "like", "comment", and "save"
   // User must be logged in to "like" or "save"
-  handlePostBtns = e => {
+  handlePostBtns = async e => {
     this.verifyUser();
     const userAction = e.target.getAttribute("value");
     const userLikedStatus = e.target.getAttribute("user-liked");
@@ -148,37 +148,41 @@ class Forum extends Component {
       userLikedStatus === "notLiked"
     ) {
       console.log("User wants to like: ", postId);
-      this.updatePostLikesWithUserID(postId);
-      this.updateUserLikesWithPostID(postId);
+      await this.updatePostLikesWithUserID(postId);
+      await this.updateUserLikesWithPostID(postId);
+
     } else if (
       this.state.user &&
       userAction === "like" &&
       userLikedStatus !== "notLiked"
     ) {
       console.log("User wants to unlike: ", postId);
-      this.removeUserIDfromPostLikes(postId);
-      this.removePostIDfromUserLikes(postId);
+      await this.removeUserIDfromPostLikes(postId);
+      await this.removePostIDfromUserLikes(postId);
+
     } else if (
       this.state.user &&
       userAction === "save" &&
       userSavedStatus === "notSaved"
     ) {
       console.log("User wants to save: ", postId);
-      this.addPostIDtoUser(postId);
+      await this.addPostIDtoUser(postId);
+
     } else if (
       this.state.user &&
       userAction === "save" &&
       userSavedStatus !== "notSaved"
     ) {
       console.log("user wants to unsave: ", postId);
-      this.removePostIDfromUser(postId);
+      await this.removePostIDfromUser(postId);
+
     } else if (!this.state.user) {
       console.log("Please log in to 'Like', 'Comment', or 'Save'!");
     }
 
     // Reload our Posts and grab the updated User
-    this.loadAllPosts();
-    this.grabUserInfo();
+    // this.loadAllPosts();
+    await this.grabUserInfo();
   };
 
   render() {

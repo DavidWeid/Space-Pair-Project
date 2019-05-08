@@ -40,6 +40,7 @@ router.put("/update/posts/saved", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
+
 router.put("/update/posts/savedshared", (req, res) => {
   console.log("User that's updating " + req.user._id);
   User.findByIdAndUpdate(req.user._id, {
@@ -92,9 +93,12 @@ router.put("/update/posts/unsaved", (req, res) => {
   }
 })
 
-router.put("/update/postID", (req, res) => {
+
+
+router.put("/update/postID/:id", (req, res) => {
+
   console.log("User that's updating " + req.user._id);
-  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID } })
+  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
 });
@@ -106,7 +110,9 @@ router.put("/update/comments/:id", (req, res) => {
     .then(result => res.json(result))
     .catch(err => res.status(404).json({ error: err }));
 });
-
+// Had a conflict with master here, kept in how you wanted to use the router.put
+// If something is not working this is the reason why!!!!!!
+// Well maybe the reason why
 router.put("/liked/:postID", (req, res) => {
   console.log(req.user._id);
   User.findByIdAndUpdate(req.user._id, { $push: { likes: req.params.postID } })
@@ -132,7 +138,7 @@ router.put("/unsaved/:postID", (req, res) => {
 
 router.get("/test", (req, res) => {
   if (req.user) {
-    return res.json({ user: req.user });
+    return res.json({ user: true });
   }
   return res.json({ user: false });
 });
