@@ -30,7 +30,8 @@ class Data extends Component {
     modalImg: "",
     modalCamera: "",
     share: false,
-    userImgArray: [],
+    userSavedArray: [],
+    userSharedArray: []
   };
 
   componentDidMount() {
@@ -143,8 +144,9 @@ class Data extends Component {
       .then(result => {
         console.log(result);
         if (result.data.user) {
-          console.log(result.data.roverImgArray)
-          this.setState({ userImgArray: result.data.roverImgArray })
+          console.log(result.data.roverImgArraySaved)
+          console.log(result.data.roverImgArrayShared)
+          this.setState({ userSavedArray: result.data.roverImgArraySaved, userSharedArray: result.data.roverImgArrayShared })
         } else {
           console.log("not a user?")
         }
@@ -158,7 +160,26 @@ class Data extends Component {
         if (result.data.user === false) {
           return console.log("You are not logged in an no post was saved");
         } else if (result.data.sent === true) {
-          API.addPostIDAndImgtoUser(result.data.result._id, result.data.result.roverImg)
+          API.addPostIDAndImgtoUserSaved(result.data.result._id, result.data.result.roverImg)
+            .then(resultAgain => {
+              console.log(resultAgain);
+              this.setState({ shared: false, more: false });
+              this.getUserPhotoArray();
+            })
+            .catch(err => console.log(err));
+          console.log(result)
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+  sharePostAPI = (newSave) => {
+    API.savePost(newSave)
+      .then(result => {
+        if (result.data.user === false) {
+          return console.log("You are not logged in an no post was saved");
+        } else if (result.data.sent === true) {
+          API.addPostIDAndImgtoUserShared(result.data.result._id, result.data.result.roverImg)
             .then(resultAgain => {
               console.log(resultAgain);
               this.setState({ shared: false, more: false });
@@ -202,7 +223,7 @@ class Data extends Component {
       roverSol: dat.sol,
       roverEarthDate: dat.earth_date
     }
-    this.savePostAPI(newSave);
+    this.sharePostAPI(newSave);
   }
 
   handleShareButton = (e) => {
@@ -250,7 +271,8 @@ class Data extends Component {
                   handleShareButton={this.handleShareButton}
                   handleSaveButton={this.handleSaveButton}
                   showModal={this.showModal}
-                  userImgArray={this.state.userImgArray}
+                  userSavedArray={this.state.userSavedArray}
+                  userSharedArray={this.state.userSharedArray}
                 />
               )}
             </div>

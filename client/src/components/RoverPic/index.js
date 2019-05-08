@@ -8,9 +8,11 @@ class RoverPic extends Component {
 
   render() {
 
-    const filterImg = this.props.userImgArray.filter(each => each === this.props.photo.img_src);
-    const show = filterImg.length < 1 ? true : false
-    console.log(show)
+    const filterSavedImg = this.props.userSavedArray.filter(each => each === this.props.photo.img_src);
+    const filterSharedImg = this.props.userSharedArray.filter(each => each === this.props.photo.img_src);
+    const showSaved = filterSavedImg.length < 1 ? true : false;
+    const showShared = filterSharedImg.length < 1 ? true : false;
+    console.log(showSaved, showShared)
 
     return (
       <div className="picBody">
@@ -23,57 +25,46 @@ class RoverPic extends Component {
 
           <div className="roverPicButtons">
             {/* {console.log(this.props.userImgArray.filter(each => each === this.props.photo.img_src).length)} */}
-            {show ?
-              <div>
-                <button
-                  className="roverPicBtn"
-                  data-type="roverPic"
-                  data-name={this.props.photo.rover.name}
-                  data-img={this.props.photo.img_src}
-                  data-camera={this.props.photo.camera.name}
-                  data-sol={this.props.photo.sol}
-                  data-earth_date={this.props.photo.earth_date}
-                  onClick={(e) => this.props.handleSaveButton(e)}
-                >Save
+            {showSaved ?
+              <button
+                className="roverPicBtn"
+                data-type="roverPic"
+                data-name={this.props.photo.rover.name}
+                data-img={this.props.photo.img_src}
+                data-camera={this.props.photo.camera.name}
+                data-sol={this.props.photo.sol}
+                data-earth_date={this.props.photo.earth_date}
+                onClick={(e) => this.props.handleSaveButton(e)}
+              >Save
                 </button>
-                <button
-                  className="roverPicBtn"
-                  data-type="roverPic"
-                  data-name={this.props.photo.rover.name}
-                  data-img={this.props.photo.img_src}
-                  data-camera={this.props.photo.camera.name}
-                  data-sol={this.props.photo.sol}
-                  data-earth_date={this.props.photo.earth_date}
-                  onClick={(e) => this.props.handleShareButton(e)}
-                >Share
-                </button>
-                <button
-                  className="roverPicBtn"
-                  data-type="roverPic"
-                  data-name={this.props.photo.rover.name}
-                  data-img={this.props.photo.img_src}
-                  data-camera={this.props.photo.camera.name}
-                  data-sol={this.props.photo.sol}
-                  data-earth_date={this.props.photo.earth_date}
-                  onClick={(e) => this.props.showModal(e)}
-                >More Info
-                </button>
-              </div>
               :
-              <div>
-                <button
-                  className="roverPicBtn"
-                  data-type="roverPic"
-                  data-name={this.props.photo.rover.name}
-                  data-img={this.props.photo.img_src}
-                  data-camera={this.props.photo.camera.name}
-                  data-sol={this.props.photo.sol}
-                  data-earth_date={this.props.photo.earth_date}
-                  onClick={(e) => this.props.showModal(e)}
-                >More Info
-                </button>
-              </div>
+              <div></div>
             }
+            {showShared ?
+              <button
+                className="roverPicBtn"
+                data-type="roverPic"
+                data-name={this.props.photo.rover.name}
+                data-img={this.props.photo.img_src}
+                data-camera={this.props.photo.camera.name}
+                data-sol={this.props.photo.sol}
+                data-earth_date={this.props.photo.earth_date}
+                onClick={(e) => this.props.handleShareButton(e)}
+              >Share
+                </button>
+              : <div></div>
+            }
+            <button
+              className="roverPicBtn"
+              data-type="roverPic"
+              data-name={this.props.photo.rover.name}
+              data-img={this.props.photo.img_src}
+              data-camera={this.props.photo.camera.name}
+              data-sol={this.props.photo.sol}
+              data-earth_date={this.props.photo.earth_date}
+              onClick={(e) => this.props.showModal(e)}
+            >More Info
+                </button>
           </div>
         </div>
       </div >

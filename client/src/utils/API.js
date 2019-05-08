@@ -56,12 +56,20 @@ export default {
   },
 
   //This sends the postID not the userID, userID is carried in req.user when logged in
-  addPostIDAndImgtoUser(postID, roverImgSrc) {
+  addPostIDAndImgtoUserSaved(postID, roverImgSrc) {
     const updateObj = {
       postID: postID,
       roverImgSrc: roverImgSrc
     }
-    return Axios.put(`/api/users/update/posts`, updateObj);
+    return Axios.put(`/api/users/update/posts/saved`, updateObj);
+  },
+
+  addPostIDAndImgtoUserShared(postID, roverImgSrc) {
+    const updateObj = {
+      postID: postID,
+      roverImgSrc: roverImgSrc
+    }
+    return Axios.put(`/api/users/update/posts/shared`, updateObj);
   },
 
   addPostIDtoUser(postID) {
