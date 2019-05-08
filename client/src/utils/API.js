@@ -65,7 +65,7 @@ export default {
   },
 
   addPostIDtoUser(postID) {
-    return Axios.put(`/api/users/update/postID`, postID)
+    return Axios.put(`/api/users/update/postID/${postID}`)
   },
 
   addUserIDtoPost(postID) {

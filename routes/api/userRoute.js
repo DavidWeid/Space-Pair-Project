@@ -40,9 +40,9 @@ router.put("/update/posts", (req, res) => {
     .catch(err => res.status(404).json({ error: err }));
 });
 
-router.put("/update/postID", (req, res) => {
+router.put("/update/postID/:id", (req, res) => {
   console.log("User that's updating " + req.user._id);
-  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID } })
+  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
 });
@@ -80,7 +80,7 @@ router.put("/unsaved/:postID", (req, res) => {
 
 router.get("/test", (req, res) => {
   if (req.user) {
-    return res.json({ user: req.user });
+    return res.json({ user: true });
   }
   return res.json({ user: false });
 });
