@@ -7,7 +7,8 @@ import Login from "../Login";
 class BruceText extends Component {
   state = {
     yScroll: 0,
-    switchClass: false
+    switchClass: false,
+    user: false
   };
 
   componentDidMount() {
@@ -16,6 +17,14 @@ class BruceText extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleLogin = (user) => {
+    if (user === true) {
+      this.setState({ user: true })
+    } else {
+      this.setState({ user: false })
+    }
   }
 
   handleScroll = () => {
