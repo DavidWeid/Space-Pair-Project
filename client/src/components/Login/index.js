@@ -22,8 +22,10 @@ class Login extends Component {
         console.log(result);
         if (result.data.user) {
           this.setState({ user : true})
+          this.props.changeUserState({user: true})
         } else {
           this.setState({user: false})
+          this.props.changeUserState({user:false})
         }
         
       })
@@ -38,7 +40,7 @@ class Login extends Component {
 
   showLogin = e => {
     e.preventDefault();
-    if (!this.props.user) {
+    if (!this.state.user) {
       this.setState({ show: !this.state.show });
     }
   };
@@ -58,9 +60,8 @@ class Login extends Component {
       .then(res => {
         console.log(res)
         console.log(res.data.user);
-        this.setState({ user: true })
+        this.setState({ user: true , show: false})
         this.props.changeUserState(res.data.user);
-        this.setState({ show: false });
       })
       .catch(err => {
         console.log("this is from login component");

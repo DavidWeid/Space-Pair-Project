@@ -151,6 +151,8 @@ router.get("/forum/info", (req, res) => {
     User.findById(req.user._id, { email: 0, password: 0 })
       .then(result => res.json(result))
       .catch(err => res.status(404).json({ error: err }));
+  } else {
+    res.json({user:false});
   }
 });
 

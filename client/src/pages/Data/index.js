@@ -276,9 +276,6 @@ class Data extends Component {
           API.removePostFromUser(result.data._id)
         ]
         
-        // API.removeImgfromUserSaved(result.data.roverImg, result.data._id)
-        //   .then(change => console.log(change))
-        //   .catch(err => console.log(err));
         Promise.all(promiseArray)
           .then(prores => {
             console.log(prores)

@@ -1,5 +1,7 @@
-.roverPage{
-  height: 100%;
+.fullArea{
+  background-color: white;
+  min-height: 100%;
+  padding-bottom: 200px;
 }
 
 .outputArea{
@@ -10,5 +12,10 @@
 
 .outputArea p {
   text-indent: 30px;
+  margin-bottom: .25em;
+}
+
+.pageTitle{
+  text-shadow: 1px 1px red;
   margin-bottom: .25em;
 }
