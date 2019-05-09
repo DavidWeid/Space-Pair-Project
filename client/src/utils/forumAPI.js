@@ -41,9 +41,18 @@ export default {
   },
 
   // When a User "saves" a Post
-  // Update User's "postIDs" array array with Post's "_id"
+  // Update User's "postIDs" array with Post's "_id"
   addPostIDtoUser(postID) {
     return Axios.put(`/api/users/update/postID/${postID}`);
+  },
+
+  // When a User "saves" a Post
+  // Update Post's "savedUsers" array with User's "_id"
+//   addUserIDtoPost(postID) {
+//     return Axios.put(`/api/posts/update/userID/${postID}`);
+//   },
+  addUserIDtoPost(postID) {
+    return Axios.put(`/api/posts/saved/${postID}`);
   },
 
   // When a User "unlikes" a Post
@@ -62,5 +71,11 @@ export default {
   // Remove Post's "_id" from User's "postIDs" array
   removePostFromUser(postId) {
     return Axios.put(`/api/users/unsaved/${postId}`);
+  },
+
+  // When a User "unsaves" a Post
+  // Remove User's "_id" from Post's "savedUsers" array
+  removeUserFromPost(postId) {
+    return Axios.put(`/api/posts/unsaved/${postId}`);
   }
 };
