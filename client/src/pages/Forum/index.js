@@ -64,7 +64,7 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
-  // When a User likes a post, update the post with the User's ID
+  // When a User "likes" a Post, update Post's "likes" array with the User's "_id"
   updatePostLikesWithUserID = postId => {
     API.updatePostLikesWithUserID(postId)
       .then(res =>
@@ -73,7 +73,7 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
-  // When a User likes a post, update the User with the post's ID
+  // When a User "likes" a Post, update User's "likes" array with Post's "_id"
   updateUserLikesWithPostID = postId => {
     API.updateUserLikesWithPostID(postId)
       .then(res =>
@@ -82,7 +82,7 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
-  // When a User saves a post, update the User with the post's ID
+  // When a User "saves" a Post, update User's "postIDs" array with Post's "_id"
   addPostIDtoUser = postId => {
     API.addPostIDtoUser(postId)
       .then(res =>
@@ -91,6 +91,16 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
+  // When a User "saves" a Post, update Post's "savedUsers" array with User's "_id"
+  addUserIDtoPost = postId => {
+    API.addUserIDtoPost(postId)
+      .then(res =>
+        console.log("Post's 'savedUsers' updated with User's '_id': ", res)
+      )
+      .catch(err => console.log(err));
+  };
+
+  // When a User "unlikes" a Post, remove Post's "_id" from User's "likes" array
   removePostIDfromUserLikes = postId => {
     API.removePostFromUserLikes(postId)
       .then(res =>
@@ -99,6 +109,7 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
+  // When a User "unlikes" a Post, remove User's "_id" from Post's "likes" array
   removeUserIDfromPostLikes = postId => {
     API.removeUserFromPostLikes(postId)
       .then(res =>
@@ -107,10 +118,20 @@ class Forum extends Component {
       .catch(err => console.log(err));
   };
 
+  // When a User "unsaves" a Post, remove Post's "_id" from User's "postIDs" array
   removePostIDfromUser = postId => {
     API.removePostFromUser(postId)
       .then(res =>
         console.log("Remove Post's '_id' from User's' 'postIDs': ", res)
+      )
+      .catch(err => console.log(err));
+  };
+
+  // When a User "unsaves" a Post, remove User's "_id" from Post's "savedUsers" array
+  removeUserIDfromPost = postId => {
+    API.removeUserFromPost(postId)
+      .then(res =>
+        console.log("Remove User's '_id' from Post's 'savedUsers': ", res)
       )
       .catch(err => console.log(err));
   };
@@ -173,7 +194,7 @@ class Forum extends Component {
     if (this.state.user) {
       const postId = e.target.id;
       this.addPostIDtoUser(postId);
-      this.addUserIDtoPost(postId); // Create this function and route
+      this.addUserIDtoPost(postId);
       await this.grabUserInfo();
     } else {
       console.log("please log in");
@@ -185,7 +206,7 @@ class Forum extends Component {
     if (this.state.user) {
       const postId = e.target.id;
       this.removePostIDfromUser(postId);
-      this.removeUserIDfromPost(postId); // Create this function and route
+      this.removeUserIDfromPost(postId);
       await this.grabUserInfo();
     } else {
       console.log("please log in");
