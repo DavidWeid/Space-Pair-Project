@@ -159,6 +159,13 @@ router.get("/profile/user-saved", (req, res) => {
     .catch(err => res.json(err));
 });
 
+router.get("/profile/user-liked", (req, res) => {
+  console.log("get all posts liked by the user");
+  Post.find({ likes: { $in: [req.user._id] } })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
+
 // Get all posts by one user in postman
 
 router.get("/postman/:id", (req, res) => {

@@ -1,12 +1,21 @@
 import Axios from "axios";
 
 export default {
-  getAllPostsUserCreated() {
+  // Get User info (commentIDs / likes / postIDs arrays, username / _id strings)
+  getUserInfo() {
+    return Axios.get("/api/users/forum/info");
+  },
+
+  getPostsUserCreated() {
     return Axios.get("/api/posts/profile/user");
   },
 
-  getAllSavedPosts() {
+  getPostsUserSaved() {
       return Axios.get("/api/posts/profile/user-saved");
+  },
+
+  getPostsUserLiked() {
+    return Axios.get("/api/posts/profile/user-liked");
   },
 
 
@@ -28,11 +37,6 @@ export default {
   // Verify User (true or false is returned)
   userCheck() {
     return Axios.get("/api/users/test");
-  },
-
-  // Get User info (commentIDs / likes / postIDs arrays, username / _id strings)
-  grabUserInfo() {
-    return Axios.get("/api/users/forum/info");
   },
 
   // Get total number of Users

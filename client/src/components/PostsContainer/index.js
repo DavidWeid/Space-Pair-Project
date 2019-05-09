@@ -11,7 +11,7 @@ moment().format();
 const PostsContainer = props => {
   // posts is an array of post objects [{}, {}, {}]
   const posts = props.posts;
-  console.log(posts);
+  // console.log(posts);
 
   // listPosts will be the new array to be display, an array of PostCards [<Card/>, <Card/>, <Card/>]
   const listPosts = posts.map(post => {
@@ -31,24 +31,24 @@ const PostsContainer = props => {
     let userLikedStatus = "notLiked";
     let userSavedStatus = "notSaved";
 
-    console.log("props.userInfo on PostsContainer\n", props.userInfo);
-    console.log("post on PostsContainer\n", post);
+    // console.log("props.userInfo on PostsContainer\n", props.userInfo);
+    // console.log("post on PostsContainer\n", post);
 
     if (props.userInfo._id) {
       if (props.userInfo.likes.indexOf(post._id) === -1) {
-        console.log("Post NOT liked by User.\nPost ID: ", post._id);
+        // console.log("Post NOT liked by User.\nPost ID: ", post._id);
         userLikedStatus = "notLiked";
       } else {
-        console.log("Post LIKED by User.\nPost ID: ", post._id);
+        // console.log("Post LIKED by User.\nPost ID: ", post._id);
 
         userLikedStatus = "liked";
       }
 
       if (props.userInfo.postIDs.indexOf(post._id) === -1) {
-        console.log("Post NOT saved by User.\nPost ID: ", post._id);
+        // console.log("Post NOT saved by User.\nPost ID: ", post._id);
         userSavedStatus = "notSaved";
       } else {
-        console.log("Post SAVED by User.\nPost ID: ", post._id);
+        // console.log("Post SAVED by User.\nPost ID: ", post._id);
         userSavedStatus = "saved";
       }
     }
