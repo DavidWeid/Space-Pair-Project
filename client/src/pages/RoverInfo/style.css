@@ -1,0 +1,14 @@
+.roverPage{
+  height: 100%;
+}
+
+.outputArea{
+  width: 90%;
+  margin: auto;
+  line-height: 1.5;
+}
+
+.outputArea p {
+  text-indent: 30px;
+  margin-bottom: .25em;
+}

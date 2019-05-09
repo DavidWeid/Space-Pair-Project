@@ -9,6 +9,7 @@ import Forum from "./pages/Forum";
 import Data from "./pages/Data";
 import Profile from "./pages/Profile";
 import Post from "./pages/Post";
+import RoverInfo from "./pages/RoverInfo"
 
 // Components
 import Wrapper from "./components/Wrapper";
@@ -101,6 +102,12 @@ class App extends Component {
                 />
               )}
             />
+            <Route
+              exact
+              path="/RoverInfo"
+              render={props => (
+                <RoverInfo {...props} user={this.state.user}/>
+              )} />
           </Switch>
         </Wrapper>
       </Router>
