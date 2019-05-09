@@ -8,8 +8,27 @@ class Login extends Component {
     show: false,
     username: "",
     email: "",
-    password: ""
+    password: "",
+    user: true
   };
+
+  componentDidMount() {
+    this.checkUser()
+  }
+
+  checkUser = () => {
+    API.userCheck()
+      .then(result => {
+        console.log(result);
+        if (result.data.user) {
+          this.setState({ user : true})
+        } else {
+          this.setState({user: false})
+        }
+        
+      })
+      .catch(err => console.log(err));
+  }
 
   handleInputUpdate = e => {
     const keyData = e.target.name;
@@ -39,6 +58,7 @@ class Login extends Component {
       .then(res => {
         console.log(res)
         console.log(res.data.user);
+        this.setState({ user: true })
         this.props.changeUserState(res.data.user);
         this.setState({ show: false });
       })
@@ -60,19 +80,19 @@ class Login extends Component {
   render() {
     return (
       <div className="heightUser">
-        {this.props.user ? (
+        {this.state.user ? (
           <div className="banLink" onClick={e => this.showLogin(e)}>
             <span>
               <i className="fas fa-user-astronaut fa-lg" />
             </span>
           </div>
         ) : (
-          <div className="banLink" onClick={e => this.showLogin(e)}>
-            Login
+            <div className="banLink" onClick={e => this.showLogin(e)}>
+              Login
           </div>
-        )}
+          )}
 
-        {!this.props.user ? (
+        {!this.state.user ? (
           <div
             id="box"
             className="loginArea"
@@ -117,57 +137,57 @@ class Login extends Component {
                 </form>
               </div>
             ) : (
-              <div id="signupForm" className="signup form-padding">
-                <form>
-                  <div className="loginFormGroup">
-                    <label>Email:</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={this.state.email}
-                      onChange={e => this.handleInputUpdate(e)}
-                    />
-                  </div>
-                  <div className="loginFormGroup">
-                    <label>Username:</label>
-                    <input
-                      type="text"
-                      name="username"
-                      value={this.state.username}
-                      onChange={e => this.handleInputUpdate(e)}
-                    />
-                  </div>
-                  <div className="loginFormGroup">
-                    <label>Password:</label>
-                    <input
-                      type="password"
-                      name="password"
-                      value={this.state.password}
-                      onChange={e => this.handleInputUpdate(e)}
-                    />
-                  </div>
-                  <div className="formButtons">
-                    <button
-                      type="submit"
-                      className="formSubBtn"
-                      onClick={e => this.signup(e)}
-                    >
-                      Submit
+                <div id="signupForm" className="signup form-padding">
+                  <form>
+                    <div className="loginFormGroup">
+                      <label>Email:</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={e => this.handleInputUpdate(e)}
+                      />
+                    </div>
+                    <div className="loginFormGroup">
+                      <label>Username:</label>
+                      <input
+                        type="text"
+                        name="username"
+                        value={this.state.username}
+                        onChange={e => this.handleInputUpdate(e)}
+                      />
+                    </div>
+                    <div className="loginFormGroup">
+                      <label>Password:</label>
+                      <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={e => this.handleInputUpdate(e)}
+                      />
+                    </div>
+                    <div className="formButtons">
+                      <button
+                        type="submit"
+                        className="formSubBtn"
+                        onClick={e => this.signup(e)}
+                      >
+                        Submit
                     </button>
-                    <button
-                      onClick={e => this.switchForm(e)}
-                      className="formSubBtn"
-                    >
-                      Login
+                      <button
+                        onClick={e => this.switchForm(e)}
+                        className="formSubBtn"
+                      >
+                        Login
                     </button>
-                  </div>
-                </form>
-              </div>
-            )}
+                    </div>
+                  </form>
+                </div>
+              )}
           </div>
         ) : (
-          <div />
-        )}
+            <div />
+          )}
       </div>
     );
   }
