@@ -76,7 +76,6 @@ const PicPostCard = props => {
                   UnSave
                 </button>
               )}
-
             </Col>
           </Row>
         </Container>

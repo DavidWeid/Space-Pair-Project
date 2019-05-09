@@ -127,12 +127,21 @@ router.get(`/wtf`, (req, res) => {
   res.json(true);
 });
 
-//Get all posts by one user in app
-// router.get("/user", (req, res) => {
-//   Post.find({ userID: req.user._id })
-//     .then(result => res.json(result))
-//     .catch(err => res.json(err));
-// });
+//Get all posts by one user in app (posts user shared or user saved from data page - NOT FORUM PAGE)
+// Basically, all posts CREATED by the user from the data page
+router.get("/profile/user", (req, res) => {
+  console.log("get all posts created by the user");
+  Post.find({ userID: req.user._id })
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
+
+router.get("/profile/user-saved", (req, res) => {
+  console.log("get all posts saved by the user")
+  Post.find(
+    { savedUsers: { $in: [req.user._id] } }
+  ).then(result => res.json(result)).catch(err => res.json(err));
+});
 
 // Get all posts by one user in postman
 
