@@ -1,72 +1,105 @@
 .roverSelectBox{
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto;
-  border-radius: 3%;
+  height: 90%;
+  width: 70%;
+  position: fixed;
+  top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  left: 15%;
+  z-index: 25;
+  background-color: #99857A;
 }
 
 .roverSelectBox img{
   display: block;
-  margin: 0 auto;
-  align-self: center;
-  border-radius: 3%;
+  height: 50%;
+  width: auto;
+  margin: auto;
+  border-radius: 1px;
 }
 
 .roverSelectInfo{
-  align-self: center;
-  height: 100%;
-  padding: 10px;
-  background-color: #663926;
-  color: whitesmoke;
-  border-bottom-left-radius: 3%;
-  border-bottom-right-radius: 3%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 35% 50% 15%;
+  grid-row-gap: 0%;
+}
+
+.roverSelectInfoShared{
+  height: 50%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 35% 50% 15%;
+  grid-row-gap: 0%;
 }
 
 .capital{
   text-transform: capitalize;
 }
 
-.roverModalButtons{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
 .topBox{
+  width: 80%;
+  height: 95%;
+  margin: 2.5px auto;
+  padding: 10px;
+  background-color: whitesmoke;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  border: .5px darkred solid;
 }
 
 .shareText{
   display: block;
+  height: 90%;
   width: 80%;
-  margin: 1em auto;
+  margin: auto;
   border-radius: 5px;
 }
 
-.roverSelectData a{
-  color: white;
+.spaceTaker2000{
+  /* background-color: red; */
+  height: 100%;
+  width: 100%;
+}
+
+.topBox a{
+  color: black;
+  text-decoration: underline;
+}
+
+.roverSelectBtn{
+  border-radius: 5px;
+  width: 80%;
+  height: 90%;
+  margin: auto;
+  border: darkred 1px solid;
 }
 
 @media (max-width: 1000px) {
   .roverSelectBox{
     width: 100%;
+    left: 0;
   }
-
-  .roverSelectBox img{
-    width: 96%;
-    margin-right: 2%;
-    height: auto;
-  }
-
 }
-  
-@media (max-width: 450px) {
-  .roverSelectBox img{
-    width: 96%;
-    margin-right: 2%;
+
+@media (max-width: 600px) {
+  .topBox, .roverSelectBtn, .shareText {
+    width: 95%;
+  }
+
+  .topBox h5, .topBox a{
+    font-size: 16px;
+  }
+
+  .roverSelectBox img {
+    width: 250px;
+    height: auto;
+    max-height: 250px;
+    overflow: hidden;
   }
 }
