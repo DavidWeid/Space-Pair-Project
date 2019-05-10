@@ -24,6 +24,7 @@ router.post("/", (req, res) => {
     const newPost = new Post(req.body);
     newPost.userID = req.user._id;
     newPost.username = req.user.username;
+    newPost.savedUsers = [req.user._id];
     newPost
       .save()
       .then(result => {
