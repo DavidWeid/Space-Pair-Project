@@ -15,6 +15,7 @@
   width: 50%;
   background-color: #f5f6fa;
   background-color: #192a56;
+  background-color: #006328;
   color: #273c75;
   color: #192a56;
   color: #f5f6fa;
@@ -28,8 +29,10 @@
   align-items: center;
   height: 100%;
   width: 50%;
-  background-color: #192a56;
-  background-color: #663926;
+  /* background-color: #192a56;
+  background-color: #663926; */
+  background-color: #020202;
+  background: url("https://www.jpl.nasa.gov/images/mars/20160421/PIA00407-16.jpg") no-repeat center;
   color: #f5f6fa;
 }
 
@@ -60,6 +63,7 @@
   font-size: 110%;
   color: #192a56;
   color: #e84118;
+  color: rgb(255, 115, 0);
   letter-spacing: 1px;
 }
 
@@ -76,8 +80,8 @@
 
 .btn-start {
   position: relative;
-  width: 20%;
-  height: 15%;
+  /* width: 20%;
+  height: 15%; */
 }
 
 .fa-door-open {
@@ -106,9 +110,19 @@
   opacity: 0;
 }
 
+.enter-text {
+  position: relative;
+  top: 8%;
+  font-weight: bold;
+}
+
 @media all and (max-width: 900px) {
   .action-div {
     width: 100%;
+  }
+
+  .enter-text {
+    top: 12%;
   }
 }
 

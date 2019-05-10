@@ -73,7 +73,7 @@ const PicPostCard = props => {
                   className="post-btn save-btn"
                   id={props.id}
                 >
-                  UnSave
+                  Unsave
                 </button>
               )}
             </Col>
