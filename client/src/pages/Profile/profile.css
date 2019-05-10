@@ -7,38 +7,78 @@
   min-width: 100%;
   margin: 0 auto;
   padding: 0;
-  background-color: rgb(37, 33, 33);
+  background-color: #020202;
 }
 
 .profile-row {
-  padding: 5% 0;
   width: 90%;
   margin: 0 auto;
+  padding: 5% 0;
 }
 
 .nav-column {
+  border-radius: 15px 0 0 15px;
   height: auto;
-  background-color: rgb(233, 157, 157);
+  background-color: #c07234;
+  border: 2px double #4c0e00;
+  border-right: none;
 }
 
 .content-column {
-  background-color: rgb(173, 145, 206);
+  border-radius: 0 15px 15px 0;
+  background-color: #574133;
+  border: 2px double #4c0e00;
+  border-left: none;
 }
 
 .nav-box {
-  padding: 10% 2%;
+  padding: 12% 2% 10% 2%;
   margin: 0 auto;
-  /* box-shadow: 1px 1px 6px black; */
-}
-
-.nav-box-header {
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 1px;
+  margin-top: 15%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 6px black;
+  background-color: #dfe0df;
 }
 
 .nav-box-item {
   font-size: 95%;
+  margin-bottom: 12px;
+}
+
+.nav-box-header {
+  font-size: 105%;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+  padding-bottom: 5%;
+}
+
+.prof-num {
+  font-weight: bold;
+}
+
+.nav-btn-div {
+  padding: 25% 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-btn {
+  width: fit-content;
+  font-size: 80%;
+  background-color: #663926;
+  color: white;
+  border: 1px #4c0e00 solid;
+  padding: 1% 5%;
+  margin: 0 1%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 6px black;
+  transition: all 0.5s;
+}
+
+.nav-btn:hover {
+  background-color: #020202;
+  box-shadow: 1px 0px 3px #020202;
 }
 
 .profile-postscontainer {

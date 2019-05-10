@@ -74,16 +74,16 @@ class Profile extends Component {
   };
 
   showCreated = () => {
-    this.setState({ postsDisplayed: this.state.postsCreated })
-  }
+    this.setState({ postsDisplayed: this.state.postsCreated });
+  };
 
   showSaved = () => {
-    this.setState({ postsDisplayed: this.state.postsSaved })
-  }
+    this.setState({ postsDisplayed: this.state.postsSaved });
+  };
 
   showLiked = () => {
-    this.setState({ postsDisplayed: this.state.postsLiked })
-  }
+    this.setState({ postsDisplayed: this.state.postsLiked });
+  };
 
   render() {
     return (
@@ -100,20 +100,40 @@ class Profile extends Component {
               <Row className="nav-box">
                 <Col>
                   <p className="nav-box-header nav-box-item">
-                    {this.state.userInfo.username}'s Profile
+                    <span className="prof-num">
+                      {this.state.userInfo.username}
+                    </span>
+                    's Profile
                   </p>
                   <p className="nav-box-item">
-                    {this.state.postsCreated.length} Posts Made
+                    <span className="prof-num">
+                      {this.state.postsCreated.length}
+                    </span>{" "}
+                    Posts Made
                   </p>
                   <p className="nav-box-item">
-                    {this.state.postsSaved.length} Posts Saved
+                    <span className="prof-num">
+                      {this.state.postsSaved.length}
+                    </span>{" "}
+                    Posts Saved
                   </p>
                   <p className="nav-box-item">
-                    {this.state.postsLiked.length} Posts Liked
+                    <span className="prof-num">
+                      {this.state.postsLiked.length}
+                    </span>{" "}
+                    Posts Liked
                   </p>
-                  <button onClick={this.showCreated}>Yours</button>
-                  <button onClick={this.showSaved}>Saved</button>
-                  <button onClick={this.showLiked}>Liked</button>
+                  <div className="nav-btn-div">
+                    <button className="nav-btn" onClick={this.showCreated}>
+                      Yours
+                    </button>
+                    <button className="nav-btn" onClick={this.showSaved}>
+                      Saved
+                    </button>
+                    <button className="nav-btn" onClick={this.showLiked}>
+                      Liked
+                    </button>
+                  </div>
                 </Col>
               </Row>
             </Col>
