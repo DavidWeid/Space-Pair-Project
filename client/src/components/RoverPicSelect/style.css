@@ -1,13 +1,13 @@
 .roverSelectBox{
   height: 90%;
-  width: 70%;
+  width: 600px;
   position: fixed;
   top: 10px;
   padding: 10px;
   border-radius: 5px;
-  left: 15%;
+  left: calc(50vw - 300px);
   z-index: 25;
-  background-color: #99857A;
+  background-color: #666;
 }
 
 .roverSelectBox img{
@@ -62,7 +62,6 @@
 }
 
 .spaceTaker2000{
-  /* background-color: red; */
   height: 100%;
   width: 100%;
 }
@@ -70,6 +69,10 @@
 .topBox a{
   color: black;
   text-decoration: underline;
+}
+
+.topBox h5, .topBox a{
+  font-size: 18px;
 }
 
 .roverSelectBtn{
@@ -80,10 +83,20 @@
   border: darkred 1px solid;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
+
   .roverSelectBox{
-    width: 100%;
-    left: 0;
+    width: 80%;
+    left: 10%;
+  }
+
+  .topBox h5, .topBox a{
+    font-size: 16px;
+  }
+
+  .topBox{
+    display: grid;
+    grid-template-columns: auto auto;
   }
 }
 
@@ -93,7 +106,7 @@
   }
 
   .topBox h5, .topBox a{
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .roverSelectBox img {
@@ -102,4 +115,6 @@
     max-height: 250px;
     overflow: hidden;
   }
+
+  
 }
