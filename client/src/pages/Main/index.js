@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./landing.css";
+import { Link } from "react-router-dom";
 
 class Main extends Component {
   state = {
@@ -32,10 +33,11 @@ class Main extends Component {
         </div>
         <div className="bg-right">
           <div className="enter-div">
-            <button className="btn btn-secondary btn-start">
+            <Link to={`/Data`} className="btn-secondary btn-start">
               <i className="fas fa-door-closed fa-4x"></i>
               <i className="fas fa-door-open fa-4x"></i>
-            </button>
+            </Link>
+            <div className="enter-text">Let's Go</div>
           </div>
         </div>
       </div>
