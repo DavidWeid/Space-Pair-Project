@@ -99,41 +99,49 @@ class Profile extends Component {
             <Col md="3" xs="12" className="nav-column">
               <Row className="nav-box">
                 <Col>
-                  <p className="nav-box-header nav-box-item">
-                    <span className="prof-num">
-                      {this.state.userInfo.username}
-                    </span>
-                    's Profile
-                  </p>
-                  <p className="nav-box-item">
-                    <span className="prof-num">
-                      {this.state.postsCreated.length}
-                    </span>{" "}
-                    Posts Made
-                  </p>
-                  <p className="nav-box-item">
-                    <span className="prof-num">
-                      {this.state.postsSaved.length}
-                    </span>{" "}
-                    Posts Saved
-                  </p>
-                  <p className="nav-box-item">
-                    <span className="prof-num">
-                      {this.state.postsLiked.length}
-                    </span>{" "}
-                    Posts Liked
-                  </p>
-                  <div className="nav-btn-div">
-                    <button className="nav-btn" onClick={this.showCreated}>
-                      Yours
-                    </button>
-                    <button className="nav-btn" onClick={this.showSaved}>
-                      Saved
-                    </button>
-                    <button className="nav-btn" onClick={this.showLiked}>
-                      Liked
-                    </button>
-                  </div>
+                  {this.state.userInfo._id ? (
+                    <div>
+                      <p className="nav-box-header nav-box-item">
+                        <span className="prof-num">
+                          {this.state.userInfo.username}
+                        </span>
+                        's Profile
+                      </p>
+                      <p className="nav-box-item">
+                        <span className="prof-num">
+                          {this.state.postsCreated.length}
+                        </span>{" "}
+                        Posts Made
+                      </p>
+                      <p className="nav-box-item">
+                        <span className="prof-num">
+                          {this.state.postsSaved.length}
+                        </span>{" "}
+                        Posts Saved
+                      </p>
+                      <p className="nav-box-item">
+                        <span className="prof-num">
+                          {this.state.postsLiked.length}
+                        </span>{" "}
+                        Posts Liked
+                      </p>
+                      <div className="nav-btn-div">
+                        <button className="nav-btn" onClick={this.showCreated}>
+                          Yours
+                        </button>
+                        <button className="nav-btn" onClick={this.showSaved}>
+                          Saved
+                        </button>
+                        <button className="nav-btn" onClick={this.showLiked}>
+                          Liked
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="not-logged-in">
+                      <p>Please Log In</p>
+                    </div>
+                  )}
                 </Col>
               </Row>
             </Col>

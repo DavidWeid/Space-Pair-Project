@@ -19,13 +19,13 @@ class BruceText extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleLogin = (user) => {
+  handleLogin = user => {
     if (user === true) {
-      this.setState({ user: true })
+      this.setState({ user: true });
     } else {
-      this.setState({ user: false })
+      this.setState({ user: false });
     }
-  }
+  };
 
   handleScroll = () => {
     if (window.pageYOffset >= 75 && this.state.switchClass === false) {
@@ -102,11 +102,11 @@ class BruceText extends Component {
             <div className="navbar-nav">
               <Link
                 className={
-                  window.location.pathname === "/"
+                  window.location.pathname === "/roverinfo"
                     ? "banLink activeBanLink"
                     : "banLink"
                 }
-                to="/"
+                to="/roverinfo"
               >
                 Home
               </Link>

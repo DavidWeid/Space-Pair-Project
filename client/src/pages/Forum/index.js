@@ -220,10 +220,12 @@ class Forum extends Component {
     let personalWelcome;
 
     if (!this.state.user) {
-      personalWelcome = <div />;
+      personalWelcome = <span />;
     } else {
       personalWelcome = (
-        <p className="info-box-item">Hey {this.state.userInfo.username}</p>
+        <span className="info-box-item">
+          Hey {this.state.userInfo.username}, Welcome to the{" "}
+        </span>
       );
     }
 
@@ -243,8 +245,10 @@ class Forum extends Component {
             <Col md="3" xs="12" className="info-column">
               <Row className="info-box">
                 <Col>
-                  <p className="info-box-item info-box-header">Community</p>
-                  {personalWelcome}
+                  <p className="info-box-item info-box-header">
+                    {" "}
+                    {personalWelcome}Community
+                  </p>
                   <p className="info-box-item">
                     Posts: {this.state.posts.length}
                   </p>
