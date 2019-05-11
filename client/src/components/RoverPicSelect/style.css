@@ -13,6 +13,7 @@
 .roverSelectBox img{
   display: block;
   height: 50%;
+  max-width: 580px;
   width: auto;
   margin: auto;
   border-radius: 1px;
@@ -75,10 +76,13 @@
   font-size: 18px;
 }
 
-.roverSelectBtn{
-  border-radius: 5px;
+.roverSelectModalButtons{
   width: 80%;
-  height: 90%;
+  margin: auto;
+  height: 90%
+}
+
+.roverSelectBtn{
   margin: auto;
   border: darkred 1px solid;
 }

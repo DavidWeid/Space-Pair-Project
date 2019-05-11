@@ -38,6 +38,21 @@
   font-size: 16px;
 }
 
+.formButtons button{
+  border: darkred 1px solid;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  user-select: none;
+  outline: none;
+}
+
+.formButtons button:hover{
+  border: darkred 1px solid;
+  background-color: #222;
+  color: whitesmoke;
+  border-radius: 5px;
+}
+
 .slide-up {
   animation-name: slide-up;
   animation-duration: 3s;
