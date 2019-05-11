@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./landing.css";
+import "./landing2.css";
 import { Link } from "react-router-dom";
 
 class Main extends Component {

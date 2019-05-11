@@ -1,0 +1,136 @@
+.bg {
+  height: 100%;
+  display: flex;
+  background-color: black;
+  color: white;
+}
+
+.bg-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  background-color: #444;
+  color: #f5f6fa;
+  font-size: 150%;
+}
+
+.bg-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  background-color: #020202;
+  background: url("https://www.jpl.nasa.gov/images/mars/20160421/PIA00407-16.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #f5f6fa;
+}
+
+.action-div {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  padding: 3% 5%;
+  border-radius: 2%;
+}
+
+.action-item {
+  margin: 3% 0;
+}
+
+.landing-icon {
+  margin-right: 0;
+}
+
+.action-wrd {
+  font-weight: 600;
+  font-size: 110%;
+  color: #192a56;
+  color: #e84118;
+  color: rgb(255, 115, 0);
+  letter-spacing: 1px;
+}
+
+.enter-div {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  padding: 3% 5%;
+  border-radius: 2%;
+}
+
+.btn-start {
+  position: relative;
+}
+
+.fa-door-open {
+  opacity: 0;
+  transition: all, 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-start:hover .fa-door-open {
+  opacity: 1;
+}
+
+.fa-door-closed {
+  opacity: 1;
+  transition: all, 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-start:hover .fa-door-closed {
+  opacity: 0;
+}
+
+.enter-text {
+  position: relative;
+  top: 8%;
+  font-weight: bold;
+}
+
+@media all and (max-width: 900px) {
+  .action-div {
+    width: 100%;
+  }
+
+  .enter-text {
+    top: 12%;
+  }
+}
+
+@media (max-width: 700px) {
+  .bg-right {
+    width: 100%;
+  }
+
+  .bg-left {
+    font-size: 125%;
+    width: 100%;
+  }
+
+  .bg{
+    flex-direction: column-reverse;
+  }
+
+  .action-div {
+    padding: 0;
+    box-shadow: none;
+  }
+}

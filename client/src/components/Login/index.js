@@ -126,7 +126,7 @@ class Login extends Component {
                       className="formSubBtn"
                       onClick={e => this.login(e)}
                     >
-                      Submit
+                      Login
                     </button>
                     <button
                       onClick={e => this.switchForm(e)}
@@ -173,13 +173,13 @@ class Login extends Component {
                         className="formSubBtn"
                         onClick={e => this.signup(e)}
                       >
-                        Submit
+                        Sign Up
                     </button>
                       <button
                         onClick={e => this.switchForm(e)}
                         className="formSubBtn"
                       >
-                        Login
+                        Back
                     </button>
                     </div>
                   </form>
