@@ -156,6 +156,10 @@ export default {
     return Axios.post("/api/users/signup", user);
   },
 
+  userLogout(){
+    return Axios.get("/api/users/logout");
+  },
+
   userCheck() {
     return Axios.get("/api/users/test");
   },
