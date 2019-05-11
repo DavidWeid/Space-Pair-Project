@@ -20,12 +20,27 @@ const RoverPicSelect = props => {
             <div className="spaceTaker2000" style={props.share ? { order: "4" } : { order: "1" }}>
 
             </div>)}
-        <button
-          className="roverSelectBtn"
-          style={props.share ? { order: "3" } : { order: "3" }}
-          onClick={(e) => props.showModal(e)}
-        >Back
-        </button>
+        <div className="roverSelectModalButtons" style={props.share ? { order: "3" } : { order: "3" }}>
+          <button
+            className="roverSelectBtn"
+            style={props.share ? { display: "inline-block", width: "50%", borderRight: "none" } : { display: "none" }}
+            data-type="roverPic"
+            data-name={props.rover}
+            data-img={props.img}
+            data-camera={props.camera}
+            data-sol={props.sol}
+            data-earth_date={props.earth_date}
+            onClick={(e) => props.handleShareSave(e)}
+          >Share
+          </button>
+          <button
+            className="roverSelectBtn"
+            style={props.share ? { width: "50%" } : { width: "100%" }}
+            onClick={(e) => props.showModal(e)}
+          >Back
+          </button>
+        </div>
+
       </div>
 
     </div>
