@@ -1,29 +1,28 @@
-# Space-Forum Pair-Project
+# Rover Reddit
 
-## About This Boilerplate
+Rover Reddit is live [here](https://radiant-mountain-42955.herokuapp.com/)!
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Overview
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+- - -
+## User Interaction
 
-## Starting the app locally
+- - -
+## Backend
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+### Routing
 
-```
-npm install
-```
+### Models
 
-This should install node modules within the server and the client folder.
+- - -
+## Frontend
 
-After both installations complete, run the following command in your terminal:
+### Pages
 
-```
-npm start
-```
+### Compartmentalization
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+- - -
+## Future Enhancements
 
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+---
+### Contact Us
