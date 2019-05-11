@@ -15,7 +15,7 @@ const PicCommentCard = props => {
 
   const displayComments = props.comments.map(comment => {
     return (
-      <p key={comment._id}>
+      <p key={comment._id} className="comment-row">
         {comment.username}: {comment.message}
       </p>
     );
@@ -27,7 +27,7 @@ const PicCommentCard = props => {
         <img src={props.img} className="card-img-top" alt={props.type} />
         <Container fluid className="card-body">
           <Row className="info-row">
-            <Col xs="12" sm="4">
+            <Col xs="12" sm="8">
               <p className="date-stamp">Posted: {props.time}</p>
             </Col>
           </Row>

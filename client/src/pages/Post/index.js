@@ -51,8 +51,8 @@ class Post extends Component {
     let postID = this.state.post[0]._id;
     if (this.state.comment) {
       this.saveComment(postID, comment);
-      this.getComments();
       this.setState({ comment: "" });
+      this.getComments();
     }
   };
 
