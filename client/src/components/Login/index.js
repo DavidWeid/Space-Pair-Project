@@ -9,7 +9,8 @@ class Login extends Component {
     username: "",
     email: "",
     password: "",
-    user: true
+    user: true,
+    signed: false,
   };
 
   componentDidMount() {
@@ -21,13 +22,13 @@ class Login extends Component {
       .then(result => {
         console.log(result);
         if (result.data.user) {
-          this.setState({ user : true})
-          this.props.changeUserState({user: true})
+          this.setState({ user: true })
+          this.props.changeUserState({ user: true })
         } else {
-          this.setState({user: false})
-          this.props.changeUserState({user:false})
+          this.setState({ user: false })
+          this.props.changeUserState({ user: false })
         }
-        
+
       })
       .catch(err => console.log(err));
   }
@@ -54,13 +55,15 @@ class Login extends Component {
   // it already works though so
 
   login = e => {
-    e.preventDefault();
+    if (!this.state.signed) {
+      e.preventDefault();
+    }
     console.log("login button pressed");
     API.userLogin(this.state.email, this.state.password)
       .then(res => {
         console.log(res)
         console.log(res.data.user);
-        this.setState({ user: true , show: false})
+        this.setState({ user: true, show: false })
         this.props.changeUserState(res.data.user);
       })
       .catch(err => {
@@ -73,10 +76,23 @@ class Login extends Component {
 
   signup = e => {
     e.preventDefault();
+    this.setState({ signed: true });
     API.userSignup(this.state.username, this.state.password, this.state.email)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        this.login(e);
+      })
       .catch(err => console.log(err));
   };
+
+  logout = (e) => {
+    API.userLogout()
+      .then(res => {
+        console.log(res);
+        this.checkUser()
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -84,7 +100,7 @@ class Login extends Component {
         {this.state.user ? (
           <div className="banLink" onClick={e => this.showLogin(e)}>
             <span>
-              <i className="fas fa-user-astronaut fa-lg" />
+              <i className="fas fa-user-astronaut fa-lg" onClick={(e) => this.logout(e)} />
             </span>
           </div>
         ) : (

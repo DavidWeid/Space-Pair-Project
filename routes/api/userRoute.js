@@ -13,12 +13,19 @@ router.post("/signup", (req, res) => {
 
   newUser
     .save()
-    .then(result => res.json(result))
+    .then(result => {
+      res.json(result);
+    })
     .catch(err => res.json(err));
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
   res.json({ user: true });
+});
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.json({loggedOut: true})
 });
 
 router.delete("/delete/:id", (req, res) => {
