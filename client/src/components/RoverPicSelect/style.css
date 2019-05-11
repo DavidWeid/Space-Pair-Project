@@ -13,6 +13,7 @@
 .roverSelectBox img{
   display: block;
   height: 50%;
+  max-width: 580px;
   width: auto;
   margin: auto;
   border-radius: 1px;
