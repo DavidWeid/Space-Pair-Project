@@ -3,13 +3,13 @@ import "./style.css";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 
-const RoverInfo = () => {
+const RoverInfo = (props) => {
   const url = "https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
 
   return (
     <div style={{ height: "100%" }}>
       <BruceBanner backgroundImage={url} />
-      <BruceText bannerMessage="Rover Information" />
+      <BruceText bannerMessage="Rover Information" changeUserState={props.changeUserState}/>
       <div className="fullArea">
         <div className="outputArea">
           <div className="redLine"></div>
