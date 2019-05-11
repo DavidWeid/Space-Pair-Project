@@ -106,7 +106,7 @@ class App extends Component {
               exact
               path="/RoverInfo"
               render={props => (
-                <RoverInfo {...props} user={this.state.user}/>
+                <RoverInfo {...props} user={this.state.user} changeUserState={this.changeUserState}/>
               )} />
           </Switch>
         </Wrapper>
