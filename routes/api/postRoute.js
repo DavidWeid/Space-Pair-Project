@@ -65,11 +65,16 @@ router.delete("/delete/:id", (req, res) => {
 });
 
 router.put("/deleteImg/", (req, res) => {
-  Post.findOneAndRemove({ roverImg: req.body.roverImg, userID: req.user._id })
+  if (req.user) {
+    Post.findOneAndRemove({ roverImg: req.body.roverImg, userID: req.user._id })
     .then(result => {
       res.json(result);
     })
     .catch(err => res.json(err));
+  } else {
+    res.json({user:false})
+  }
+  
 });
 
 // Update Route
@@ -82,35 +87,55 @@ router.put("/put/:id", (req, res) => {
 });
 
 router.put("/liked/:id", (req, res) => {
-  console.log("User that's liking", req.user._id);
-  console.log("Post to be liked", req.params.id);
-  Post.findByIdAndUpdate(req.params.id, { $push: { likes: req.user._id } })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("User that's liking", req.user._id);
+    console.log("Post to be liked", req.params.id);
+    Post.findByIdAndUpdate(req.params.id, { $push: { likes: req.user._id } })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user: false})
+  }
+  
 });
 
 router.put("/unliked/:id", (req, res) => {
-  console.log("User wants to unlike", req.user._id);
-  console.log("Post to unlike", req.params.id);
-  Post.findByIdAndUpdate(req.params.id, { $pull: { likes: req.user._id } })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("User wants to unlike", req.user._id);
+    console.log("Post to unlike", req.params.id);
+    Post.findByIdAndUpdate(req.params.id, { $pull: { likes: req.user._id } })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user:false})
+  }
+  
 });
 
 router.put("/saved/:id", (req, res) => {
-  console.log("User that's saving", req.user._id);
-  console.log("Post to be saved", req.params.id);
-  Post.findByIdAndUpdate(req.params.id, { $push: { savedUsers: req.user._id } })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("User that's saving", req.user._id);
+    console.log("Post to be saved", req.params.id);
+    Post.findByIdAndUpdate(req.params.id, { $push: { savedUsers: req.user._id } })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user: false})
+  }
+  
 });
 
 router.put("/unsaved/:id", (req, res) => {
-  console.log("User wants to unsave", req.user._id);
-  console.log("Post to unsave", req.params.id);
-  Post.findByIdAndUpdate(req.params.id, { $pull: { savedUsers: req.user._id } })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("User wants to unsave", req.user._id);
+    console.log("Post to unsave", req.params.id);
+    Post.findByIdAndUpdate(req.params.id, { $pull: { savedUsers: req.user._id } })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user:false})
+  }
+  
 });
 
 router.put("/shared", (req, res) => {
@@ -147,24 +172,39 @@ router.get(`/wtf`, (req, res) => {
 //Get all posts by one user in app (posts user shared or user saved from data page - NOT FORUM PAGE)
 // Basically, all posts CREATED by the user from the data page
 router.get("/profile/user", (req, res) => {
-  console.log("get all posts created by the user");
-  Post.find({ userID: req.user._id })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("get all posts created by the user");
+    Post.find({ userID: req.user._id })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user: false})
+  }
+  
 });
 
 router.get("/profile/user-saved", (req, res) => {
-  console.log("get all posts saved by the user");
-  Post.find({ savedUsers: { $in: [req.user._id] } })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("get all posts saved by the user");
+    Post.find({ savedUsers: { $in: [req.user._id] } })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user:false})
+  }
+
 });
 
 router.get("/profile/user-liked", (req, res) => {
-  console.log("get all posts liked by the user");
-  Post.find({ likes: { $in: [req.user._id] } })
-    .then(result => res.json(result))
-    .catch(err => res.json(err));
+  if (req.user) {
+    console.log("get all posts liked by the user");
+    Post.find({ likes: { $in: [req.user._id] } })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({user:false});
+  }
+  
 });
 
 // Get all posts by one user in postman

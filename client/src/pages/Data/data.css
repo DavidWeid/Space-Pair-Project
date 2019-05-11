@@ -5,7 +5,6 @@
   top: 0;
   padding-top: 2vh;
   background-color: #99857A;
-
 }
 
 .roverPicHolder{
@@ -30,26 +29,6 @@
   width: 100%;
 }
 
-.picModal{
-  height: 90vh;
-  width: 450px;
-  position: fixed;
-  top: 0;
-  margin-top: 5vh;
-  margin-bottom: auto;
-  left: calc(50vw - 225px);
-  background-color: white;
-  z-index: 25;
-  border-radius: 3%;
-}
-
-.picModal img{
-  width: 400px;
-  height: auto;
-  display: block;
-  margin: auto;
-}
-
 @media (max-width:1290px) {
   .roverPicHolder{
     grid-template-columns: 300px 300px;
@@ -67,10 +46,7 @@
     padding-top: 1vh;
   }
 
-  .picModal{
-    width: 450px;
-    left: calc(50% - 225px)
-  }
+  
 }
 
 @media (max-width:650px) {
@@ -79,10 +55,3 @@
   }
 }
 
-@media (max-width:450px) {
-  .picModal{
-    width: 100%;
-    left: 0;
-  }
-
-}

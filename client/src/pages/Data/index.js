@@ -275,7 +275,7 @@ class Data extends Component {
           API.removeImgfromUserSaved(result.data.roverImg, result.data._id),
           API.removePostFromUser(result.data._id)
         ]
-        
+
         Promise.all(promiseArray)
           .then(prores => {
             console.log(prores)
@@ -340,6 +340,7 @@ class Data extends Component {
       <FormRover
         rover={this.state.rover}
         sol={this.state.sol}
+        max_sol={this.state.max_sol}
         earthDay={this.state.earthDay}
         camera={this.state.camera}
         cameras_manifest={this.state.cameras_manifest}
@@ -354,21 +355,19 @@ class Data extends Component {
       {this.state.more ? (
         <div>
           <div className="backdrop"></div>
-          <div className="picModal">
-            <RoverPicSelect
-              share={this.state.share}
-              rover={this.state.rover}
-              sol={this.state.sol}
-              earth_date={this.state.earthDay}
-              img={this.state.modalImg}
-              camera={this.state.modalCamera}
-              handleSaveButton={this.handleSaveButton}
-              handleShareButton={this.handleShareButton}
-              showModal={this.showModal}
-              handleCommentChange={this.handleCommentChange}
-              handleShareSave={this.handleShareSave}
-            />
-          </div>
+          <RoverPicSelect
+            share={this.state.share}
+            rover={this.state.rover}
+            sol={this.state.sol}
+            earth_date={this.state.earthDay}
+            img={this.state.modalImg}
+            camera={this.state.modalCamera}
+            handleSaveButton={this.handleSaveButton}
+            handleShareButton={this.handleShareButton}
+            showModal={this.showModal}
+            handleCommentChange={this.handleCommentChange}
+            handleShareSave={this.handleShareSave}
+          />
         </div>
       ) : (
           <div></div>

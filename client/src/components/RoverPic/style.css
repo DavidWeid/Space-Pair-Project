@@ -14,7 +14,7 @@
 
 .picBody:hover{
   box-shadow: none;
-  background-color: #8E6A5A;
+  background-color: #333;
   /* background-color: #663926; */
   transition: all, .25s;
 }
