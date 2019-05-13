@@ -67,14 +67,13 @@ router.delete("/delete/:id", (req, res) => {
 router.put("/deleteImg/", (req, res) => {
   if (req.user) {
     Post.findOneAndRemove({ roverImg: req.body.roverImg, userID: req.user._id })
-    .then(result => {
-      res.json(result);
-    })
-    .catch(err => res.json(err));
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => res.json(err));
   } else {
-    res.json({user:false})
+    res.json({ user: false });
   }
-  
 });
 
 // Update Route
@@ -94,9 +93,8 @@ router.put("/liked/:id", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user: false})
+    res.json({ user: false });
   }
-  
 });
 
 router.put("/unliked/:id", (req, res) => {
@@ -107,35 +105,36 @@ router.put("/unliked/:id", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user:false})
+    res.json({ user: false });
   }
-  
 });
 
 router.put("/saved/:id", (req, res) => {
   if (req.user) {
     console.log("User that's saving", req.user._id);
     console.log("Post to be saved", req.params.id);
-    Post.findByIdAndUpdate(req.params.id, { $push: { savedUsers: req.user._id } })
+    Post.findByIdAndUpdate(req.params.id, {
+      $push: { savedUsers: req.user._id }
+    })
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user: false})
+    res.json({ user: false });
   }
-  
 });
 
 router.put("/unsaved/:id", (req, res) => {
   if (req.user) {
     console.log("User wants to unsave", req.user._id);
     console.log("Post to unsave", req.params.id);
-    Post.findByIdAndUpdate(req.params.id, { $pull: { savedUsers: req.user._id } })
+    Post.findByIdAndUpdate(req.params.id, {
+      $pull: { savedUsers: req.user._id }
+    })
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user:false})
+    res.json({ user: false });
   }
-  
 });
 
 router.put("/shared", (req, res) => {
@@ -164,6 +163,20 @@ router.put("/shared", (req, res) => {
   }
 });
 
+router.put("/newcomment/:postID/:commentID", (req, res) => {
+  if (req.user) {
+    console.log("Adding new comment ID to Post");
+    console.log(req.params.postID, req.params.commentID);
+    Post.findByIdAndUpdate(req.params.postID, {
+      $push: { commentIDs: req.params.commentID }
+    })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({ user: false });
+  }
+});
+
 router.get(`/wtf`, (req, res) => {
   // console.log(req.user)
   res.json(true);
@@ -178,9 +191,8 @@ router.get("/profile/user", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user: false})
+    res.json({ user: false });
   }
-  
 });
 
 router.get("/profile/user-saved", (req, res) => {
@@ -190,9 +202,8 @@ router.get("/profile/user-saved", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user:false})
+    res.json({ user: false });
   }
-
 });
 
 router.get("/profile/user-liked", (req, res) => {
@@ -202,9 +213,8 @@ router.get("/profile/user-liked", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {
-    res.json({user:false});
+    res.json({ user: false });
   }
-  
 });
 
 // Get all posts by one user in postman

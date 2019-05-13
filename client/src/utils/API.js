@@ -39,17 +39,24 @@ export default {
     return Axios.get(`/api/posts/sort/${order}/${sort}`);
   },
 
+  // To get a single post by post ID, used on comments "Post" page
   getPost(id) {
     return Axios.get(`/api/posts/postID/${id}`);
   },
 
+  // Get comments for a post, used on "Post" page
   getComments(id) {
     return Axios.get(`/api/comments/postcomments/${id}`);
   },
 
-  // To create a new comment
+  // To create a new comment, save to comments route
   saveComment(postID, comment) {
     return Axios.post(`/api/comments/new/${postID}`, comment);
+  },
+
+  // Update Post at Post's ID to have new Comment's ID in commentIDs array
+  addCommentIDtoPost(postID, commentID) {
+    return Axios.put(`/api/posts/newcomment/${postID}/${commentID}`);
   },
 
   savePost(postData) {
@@ -61,7 +68,7 @@ export default {
     const updateObj = {
       postID: postID,
       roverImgSrc: roverImgSrc
-    }
+    };
     return Axios.put(`/api/users/update/posts/saved`, updateObj);
   },
 
@@ -69,34 +76,34 @@ export default {
     const updateObj = {
       postID: postID,
       roverImgSrc: roverImgSrc
-    }
+    };
     return Axios.put(`/api/users/update/posts/savedshared`, updateObj);
   },
 
   addImgtoUserShared(roverImg) {
-    console.log(roverImg + " roverImg inside of addImgtoUserShared API")
-    return Axios.put("/api/users/update/posts/shared", {roverImg})
+    console.log(roverImg + " roverImg inside of addImgtoUserShared API");
+    return Axios.put("/api/users/update/posts/shared", { roverImg });
   },
 
   removeImgfromUserShared(roverImg) {
-    return Axios.put("/api/users/update/posts/unshared", {roverImg});
+    return Axios.put("/api/users/update/posts/unshared", { roverImg });
   },
 
   removeImgfromUserSaved(roverImg, postID) {
-    console.log(roverImg, postID)
-    return Axios.put("/api/users/update/posts/unsaved", {roverImg, postID})
+    console.log(roverImg, postID);
+    return Axios.put("/api/users/update/posts/unsaved", { roverImg, postID });
   },
 
   deletePostbyImg(roverImg) {
-    return Axios.put(`/api/posts/deleteImg`, {roverImg})
+    return Axios.put(`/api/posts/deleteImg`, { roverImg });
   },
 
   updatePostShared(roverImg, userComment, add) {
-    return Axios.put("/api/posts/shared", {roverImg, userComment, add: add})
+    return Axios.put("/api/posts/shared", { roverImg, userComment, add: add });
   },
 
   addPostIDtoUser(postID) {
-    return Axios.put(`/api/users/update/postID/${postID}`)
+    return Axios.put(`/api/users/update/postID/${postID}`);
   },
 
   addUserIDtoPost(postID) {
@@ -123,13 +130,9 @@ export default {
     return Axios.put(`/api/users/unsaved/${postId}`);
   },
 
-  removeSavedImgFromUser(roverImg) {
+  removeSavedImgFromUser(roverImg) {},
 
-  },
-
-  removeSharedImgFromUser(roverImg) {
-
-  },
+  removeSharedImgFromUser(roverImg) {},
 
   getRoverManifest(rover) {
     return Axios.get(
@@ -157,7 +160,7 @@ export default {
     return Axios.post("/api/users/signup", user);
   },
 
-  userLogout(){
+  userLogout() {
     return Axios.get("/api/users/logout");
   },
 
@@ -178,6 +181,6 @@ export default {
   },
 
   grabRoverImgArray() {
-    return Axios.get("/api/users/imgArray")
+    return Axios.get("/api/users/imgArray");
   }
 };
