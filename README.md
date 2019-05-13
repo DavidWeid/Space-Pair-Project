@@ -1,6 +1,6 @@
 # Rover Reddit
 
-Rover Reddit is live [here](https://radiant-mountain-42955.herokuapp.com/)!
+Rover Reddit is live [here](https://rover-reddit.herokuapp.com/)!
 
 ## Overview
 
