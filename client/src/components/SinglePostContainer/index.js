@@ -11,7 +11,7 @@ moment().format();
 const SinglePostContainer = props => {
   const post = props.post;
   const comments = props.comments;
-  console.log(post);
+  // console.log(post);
 
   const displayPost = post.map(post => {
     const postTime = moment(`${post.createdAt}`).format("MMM D, h:mm");
@@ -31,6 +31,8 @@ const SinglePostContainer = props => {
             handleFormSubmit={props.handleFormSubmit}
             value={props.value}
             comments={comments}
+            userID={props.userID}
+            handleCommentBtns={props.handleCommentBtns}
           />
         );
       case "article":

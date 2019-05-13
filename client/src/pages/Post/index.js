@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./post.css";
 import { Container, Row, Col } from "reactstrap";
 import API from "../../utils/API";
-// import Banner from "../../components/Banner";
-// import SortBar from "../../components/SortBar";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import SinglePostContainer from "../../components/SinglePostContainer";
@@ -11,6 +9,7 @@ import SinglePostContainer from "../../components/SinglePostContainer";
 class Post extends Component {
   state = {
     user: this.props.user,
+    userInfo: "",
     post: [],
     comment: "",
     comments: []
@@ -19,6 +18,7 @@ class Post extends Component {
   componentDidMount() {
     this.getPost();
     this.getComments();
+    this.getUserInfo();
   }
 
   getPost = () => {
@@ -33,8 +33,24 @@ class Post extends Component {
       .catch(err => console.log(err));
   };
 
+  getUserInfo = () => {
+    API.grabUserInfo()
+      .then(res => this.setState({ userInfo: res.data._id }))
+      .catch(err => console.log(err));
+  };
+
   saveComment = (postID, comment) => {
     API.saveComment(postID, comment)
+      .then(res => {
+        this.updatePostCommentIDsArray(res.data._id).then(res =>
+          console.log("addCommentIDtoPost res: ", res)
+        );
+      })
+      .catch(err => console.log(err));
+  };
+
+  updatePostCommentIDsArray = commentID => {
+    API.addCommentIDtoPost(this.props.match.params.id, commentID)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
@@ -56,6 +72,20 @@ class Post extends Component {
     }
   };
 
+  handleCommentBtns = e => {
+    const action = e.target.value;
+    const commentID = e.target.id;
+    if (this.state.user) {
+      if (action === "edit") {
+        console.log("User Wants to Edit a Comment. Good Luck!");
+      } else if (action === "delete") {
+        console.log("User wants to delete a comment");
+        // this.deleteComment(commentID, this.state.userInfo);
+        // this.getComments();
+      }
+    }
+  };
+
   render() {
     return (
       <div style={{ height: "100%" }}>
@@ -73,6 +103,8 @@ class Post extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 post={this.state.post}
                 comments={this.state.comments}
+                userID={this.state.userInfo}
+                handleCommentBtns={this.handleCommentBtns}
               />
             </Col>
           </Row>

@@ -14,10 +14,31 @@ const PicCommentCard = props => {
   }
 
   const displayComments = props.comments.map(comment => {
+
+    let commentBtns;
+
+    if (props.userID !== comment.userID) {
+      commentBtns = "";
+    } else {
+      commentBtns = (
+        <div className="comment-btns-div">
+          <button id={comment._id} value="edit" onClick={props.handleCommentBtns}>
+            Edit
+          </button>
+          <button id={comment._id} value="delete" onClick={props.handleCommentBtns}>
+            Delete
+          </button>
+        </div>
+      );
+    }
+
     return (
-      <p key={comment._id} className="comment-row">
-        {comment.username}: {comment.message}
-      </p>
+      <div key={comment._id} className="comment-row">
+        <p>
+          {comment.username}: {comment.message}
+        </p>
+        {commentBtns}
+      </div>
     );
   });
 
@@ -46,7 +67,7 @@ const PicCommentCard = props => {
                   name="comment"
                   placeholder="Your Thoughts"
                 />
-                <FormBtn onClick={props.handleFormSubmit}>Submit</FormBtn>
+                <FormBtn onClick={props.handleFormSubmit}>Comment</FormBtn>
               </form>
             </Col>
           </Row>

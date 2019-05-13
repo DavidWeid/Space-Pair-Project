@@ -23,9 +23,9 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   res.json({ user: true });
 });
 
-router.get('/logout', function(req, res){
+router.get("/logout", function(req, res) {
   req.logout();
-  res.json({loggedOut: true})
+  res.json({ loggedOut: true });
 });
 
 router.delete("/delete/:id", (req, res) => {
@@ -42,11 +42,15 @@ router.put("/update/info/:id", (req, res) => {
 
 router.put("/update/posts/saved", (req, res) => {
   console.log("User that's updating " + req.user._id);
-  User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.body.postID, roverImgArraySaved: req.body.roverImgSrc } })
+  User.findByIdAndUpdate(req.user._id, {
+    $push: {
+      postIDs: req.body.postID,
+      roverImgArraySaved: req.body.roverImgSrc
+    }
+  })
     .then(result => res.json({ result, updated: true }))
     .catch(err => res.status(404).json({ error: err }));
 });
-
 
 router.put("/update/posts/savedshared", (req, res) => {
   console.log("User that's updating " + req.user._id);
@@ -82,28 +86,29 @@ router.put("/update/posts/shared", (req, res) => {
 
 router.put("/update/posts/unshared", (req, res) => {
   if (req.user) {
-    User.findByIdAndUpdate(req.user._id, { $pull: { roverImgArrayShared: req.body.roverImg } })
+    User.findByIdAndUpdate(req.user._id, {
+      $pull: { roverImgArrayShared: req.body.roverImg }
+    })
       .then(result => {
-        res.json(result)
+        res.json(result);
       })
       .catch(err => res.json(err));
   }
-})
+});
 
 router.put("/update/posts/unsaved", (req, res) => {
   if (req.user) {
-    User.findByIdAndUpdate(req.user._id, { $pull: { roverImgArraySaved: req.body.roverImg } })
+    User.findByIdAndUpdate(req.user._id, {
+      $pull: { roverImgArraySaved: req.body.roverImg }
+    })
       .then(result => {
-        res.json(result)
+        res.json(result);
       })
       .catch(err => res.json(err));
   }
-})
-
-
+});
 
 router.put("/update/postID/:id", (req, res) => {
-
   console.log("User that's updating " + req.user._id);
   User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })
     .then(result => res.json({ result, updated: true }))
@@ -122,7 +127,7 @@ router.put("/update/comments/:id", (req, res) => {
 // Well maybe the reason why
 router.put("/liked/:postID", (req, res) => {
   console.log("User that's liking", req.user._id);
-  console.log("Post to be liked", req.params.postID)
+  console.log("Post to be liked", req.params.postID);
   User.findByIdAndUpdate(req.user._id, { $push: { likes: req.params.postID } })
     .then(result => res.json(result))
     .catch(err => res.status(404).json({ error: err }));
@@ -130,7 +135,7 @@ router.put("/liked/:postID", (req, res) => {
 
 router.put("/unliked/:postID", (req, res) => {
   console.log("User wants to unlike", req.user._id);
-  console.log("Post to be unliked", req.params.postID)
+  console.log("Post to be unliked", req.params.postID);
   User.findByIdAndUpdate(req.user._id, { $pull: { likes: req.params.postID } })
     .then(result => res.json(result))
     .catch(err => res.status(404).json({ error: err }));
@@ -138,7 +143,7 @@ router.put("/unliked/:postID", (req, res) => {
 
 router.put("/unsaved/:postID", (req, res) => {
   console.log("User wants to unsave", req.user._id);
-  console.log("Post to be unsaved", req.params.postID)
+  console.log("Post to be unsaved", req.params.postID);
   User.findByIdAndUpdate(req.user._id, {
     $pull: { postIDs: req.params.postID }
   })
@@ -159,7 +164,7 @@ router.get("/forum/info", (req, res) => {
       .then(result => res.json(result))
       .catch(err => res.status(404).json({ error: err }));
   } else {
-    res.json({user:false});
+    res.json({ user: false });
   }
 });
 
@@ -172,16 +177,17 @@ router.get("/count", (req, res) => {
 router.get("/imgArray", (req, res) => {
   if (req.user) {
     User.findById(req.user._id)
-      .then(result => res.json({
-        user: true,
-        roverImgArraySaved: result.roverImgArraySaved,
-        roverImgArrayShared: result.roverImgArrayShared
-      }))
+      .then(result =>
+        res.json({
+          user: true,
+          roverImgArraySaved: result.roverImgArraySaved,
+          roverImgArrayShared: result.roverImgArrayShared
+        })
+      )
       .catch(err => res.json(err));
   } else {
-    res.json({ user: false })
+    res.json({ user: false });
   }
-
-})
+});
 
 module.exports = router;
