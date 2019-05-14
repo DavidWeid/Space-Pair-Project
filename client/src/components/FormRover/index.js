@@ -58,7 +58,7 @@ class FormRover extends Component {
 
           {this.props.show_sol ? (
             <div className="solGroup">
-              <label>Max-Sol: {this.props.max_sol}</label>
+              <label className="maxSol">Max-Sol: {this.props.max_sol}</label>
               <label>Sol</label>
               <input type="number" className="solInput" onChange={(e) => this.props.selectSolDay(e)} value={this.props.sol} />
             </div>
