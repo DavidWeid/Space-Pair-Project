@@ -182,5 +182,9 @@ export default {
 
   grabRoverImgArray() {
     return Axios.get("/api/users/imgArray");
+  },
+
+  getTestPicture() {
+    return Axios.get("https://picsum.photos/v2/list/400");
   }
 };

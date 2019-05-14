@@ -9,7 +9,8 @@ import Forum from "./pages/Forum";
 import Data from "./pages/Data";
 import Profile from "./pages/Profile";
 import Post from "./pages/Post";
-import RoverInfo from "./pages/RoverInfo"
+import RoverInfo from "./pages/RoverInfo";
+import RoverFlipBook from "./pages/RoverFlipBook";
 
 // Components
 import Wrapper from "./components/Wrapper";
@@ -74,6 +75,17 @@ class App extends Component {
               path="/Data"
               render={props => (
                 <Data
+                  {...props}
+                  user={this.state.user}
+                  changeUserState={this.changeUserState}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/RoverFlipBook"
+              render={props => (
+                <RoverFlipBook
                   {...props}
                   user={this.state.user}
                   changeUserState={this.changeUserState}

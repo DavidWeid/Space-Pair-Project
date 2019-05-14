@@ -1,0 +1,20 @@
+.newPic{
+  position: absolute;
+  width: 400px;
+  height: auto;
+}
+
+.blocker{
+  position: absolute;
+  height: 400px; 
+  width: 400px;
+  background-color: black;
+  z-index: 5; 
+}
+
+.centering{
+  width: 400px;
+  margin: auto;
+  position: relative;
+}
+

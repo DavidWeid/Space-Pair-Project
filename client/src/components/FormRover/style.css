@@ -13,7 +13,6 @@ nav{
   height: 100%; 
   background-color: whitesmoke;
   z-index: 2;
-  border-right: .5px red solid;
 }
 
 .roverSelectButtons{
@@ -86,7 +85,7 @@ nav{
     position: absolute;
     top: 0;
     padding: 2px;
-    padding-top: 25vh;
+    padding-top: 25.1vh;
     align-items: center;
     justify-content: center;
     border-right: none;
@@ -178,5 +177,14 @@ nav{
     border-top: none;
   }
 
+  .maxSol{
+    font-size: 10px;
+  }
   
+}
+
+@media (max-width: 500px) {
+  .formRoverScroll{
+    top: 46.8px;
+  }
 }
