@@ -34,4 +34,10 @@ router.get("/count", (req, res) => {
     .catch(err => res.status(404).json({ err: err }));
 });
 
+router.delete("/delete/:commentID", (req, res) => {
+  Comment.findByIdAndDelete(req.params.commentID)
+    .then(result => res.json(result))
+    .catch(err => res.status(404).json(err));
+});
+
 module.exports = router;

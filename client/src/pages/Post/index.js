@@ -42,15 +42,25 @@ class Post extends Component {
   saveComment = (postID, comment) => {
     API.saveComment(postID, comment)
       .then(res => {
-        this.updatePostCommentIDsArray(res.data._id).then(res =>
-          console.log("addCommentIDtoPost res: ", res)
-        );
+        this.updatePostCommentIDsArray(res.data._id);
       })
       .catch(err => console.log(err));
   };
 
   updatePostCommentIDsArray = commentID => {
     API.addCommentIDtoPost(this.props.match.params.id, commentID)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  deleteComment = (commentID, userID) => {
+    API.deleteComment(commentID, userID)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  removeCommentFromPost = commentID => {
+    API.removeCommentFromPost(commentID, this.props.match.params.id)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
@@ -80,8 +90,9 @@ class Post extends Component {
         console.log("User Wants to Edit a Comment. Good Luck!");
       } else if (action === "delete") {
         console.log("User wants to delete a comment");
-        // this.deleteComment(commentID, this.state.userInfo);
-        // this.getComments();
+        this.removeCommentFromPost(commentID);
+        this.deleteComment(commentID, this.state.userInfo);
+        this.getComments();
       }
     }
   };

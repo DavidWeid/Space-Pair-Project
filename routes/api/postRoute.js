@@ -177,6 +177,21 @@ router.put("/newcomment/:postID/:commentID", (req, res) => {
   }
 });
 
+router.put("/comments/removeComment/:postID/:commentID", (req, res) => {
+  if (req.user) {
+    console.log("Remove Comment ID from post");
+    console.log("Comment: ", req.params.commentID);
+    console.log("Post: ", req.params.postID);
+    Post.findByIdAndUpdate(req.params.postID, {
+      $pull: { commentIDs: req.params.commentID }
+    })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({ user: false });
+  }
+});
+
 router.get(`/wtf`, (req, res) => {
   // console.log(req.user)
   res.json(true);
