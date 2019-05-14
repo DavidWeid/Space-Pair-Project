@@ -59,6 +59,14 @@ export default {
     return Axios.put(`/api/posts/newcomment/${postID}/${commentID}`);
   },
 
+  deleteComment(commentID, userID) {
+    return Axios.delete(`/api/comments/delete/${commentID}`);
+  },
+
+  removeCommentFromPost(commentID, postID) {
+    return Axios.put(`/api/posts/comments/removeComment/${postID}/${commentID}`);
+  },
+
   savePost(postData) {
     return Axios.post("/api/posts", postData);
   },
