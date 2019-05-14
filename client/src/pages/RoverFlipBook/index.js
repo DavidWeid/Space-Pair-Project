@@ -15,7 +15,7 @@ class RoverFlipBook extends Component {
   }
 
   testPictures = () => {
-    API.roverSolCameraPictures("opportunity", "133", "navcam")
+    API.roverSolCameraPictures("curiosity", "504", "navcam")
     .then(result => {
       const term = result.data.photos;
       console.log(term);
@@ -36,6 +36,10 @@ class RoverFlipBook extends Component {
 
   rollImages = () => {
     const pics = [].slice.call(document.querySelectorAll(".newPic"));
+    const sortedPics = pics.sort(function(a, b){
+      return a.id-b.id;
+    })
+    console.log(sortedPics);
     console.log(pics);
     let pos = -1;
     const timer = setInterval(function() {
@@ -44,9 +48,9 @@ class RoverFlipBook extends Component {
         console.log("done");
       } else {
         pos++;
-        pics.forEach(one => one.style.zIndex = "1");
-        console.log(pics[pos]);
-        pics[pos].style.zIndex = "25";
+        sortedPics.forEach(one => one.style.zIndex = "1");
+        console.log(sortedPics[pos]);
+        sortedPics[pos].style.zIndex = "25";
       }
     }, 175)
   }
@@ -65,7 +69,8 @@ class RoverFlipBook extends Component {
           {this.state.photos.forEach((photo, i) => {
             const img = new Image();
             img.alt = "new picture"
-            img.className = "newPic"
+            img.className = "newPic";
+            img.id = photo.id;
             img.onload = () => {
               loaded++;
               if (loaded === this.state.photos.length) {
