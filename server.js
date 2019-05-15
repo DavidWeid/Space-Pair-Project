@@ -6,8 +6,10 @@ const app = express();
 const session = require("express-session");
 const passport = require("./config/passport");
 const models = require("./models");
+const logger = require("morgan");
 
 // Define middleware
+app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

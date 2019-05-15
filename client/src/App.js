@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import Post from "./pages/Post";
 import RoverInfo from "./pages/RoverInfo";
 import RoverFlipBook from "./pages/RoverFlipBook";
+import Articles from "./pages/Articles";
 
 // Components
 import Wrapper from "./components/Wrapper";
@@ -61,9 +62,31 @@ class App extends Component {
             />
             <Route
               exact
+              path="/RoverInfo"
+              render={props => (
+                <RoverInfo
+                  {...props}
+                  user={this.state.user}
+                  changeUserState={this.changeUserState}
+                />
+              )}
+            />
+            <Route
+              exact
               path="/Forum"
               render={props => (
                 <Forum
+                  {...props}
+                  user={this.state.user}
+                  changeUserState={this.changeUserState}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/Posts/:id"
+              render={props => (
+                <Post
                   {...props}
                   user={this.state.user}
                   changeUserState={this.changeUserState}
@@ -94,6 +117,17 @@ class App extends Component {
             />
             <Route
               exact
+              path="/Articles"
+              render={props => (
+                <Articles
+                  {...props}
+                  user={this.state.user}
+                  changeUserState={this.changeUserState}
+                />
+              )}
+            />
+            <Route
+              exact
               path="/Profile"
               render={props => (
                 <Profile
@@ -103,23 +137,6 @@ class App extends Component {
                 />
               )}
             />
-            <Route
-              exact
-              path="/Posts/:id"
-              render={props => (
-                <Post
-                  {...props}
-                  user={this.state.user}
-                  changeUserState={this.changeUserState}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/RoverInfo"
-              render={props => (
-                <RoverInfo {...props} user={this.state.user} changeUserState={this.changeUserState}/>
-              )} />
           </Switch>
         </Wrapper>
       </Router>
