@@ -14,6 +14,12 @@
   grid-column-gap: 20px;
 } 
 
+.flipButtons{
+  position: absolute;
+  top: 600px;
+  z-index: 30;
+}
+
 .dataPage{
   height: 100%;
 }

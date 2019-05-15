@@ -30,11 +30,16 @@ class Data extends Component {
     share: false,
     userSavedArray: [],
     userSharedArray: [],
-    flip: false
+    flip: false,
+    loaded: false
   };
 
   componentDidMount() {
     this.getUserPhotoArray();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   // Get pictures from all cameras given rover and sol
@@ -94,7 +99,7 @@ class Data extends Component {
   selectSolDay = e => {
     e.preventDefault();
     const newInput = e.target.value;
-    this.setState({ sol: newInput, camera: "" })
+    this.setState({ sol: newInput, camera: "", flip: false, photos: [] })
     this.getCameraManifest(newInput)
   }
 
@@ -315,10 +320,10 @@ class Data extends Component {
     console.log(sortedPics);
     console.log(pics);
     let pos = -1;
-    const timer = setInterval(function() {
-      if (pos >= pics.length - 1) {
-        clearInterval(timer);
-        console.log("done");
+    this.interval = setInterval(() => {
+      if (pos >= sortedPics.length - 1) {
+        console.log("done and cleared interval " + pos)
+        clearInterval(this.interval)
       } else {
         pos++;
         sortedPics.forEach(one => one.style.zIndex = "1");
@@ -326,6 +331,17 @@ class Data extends Component {
         sortedPics[pos].style.zIndex = "25";
       }
     }, 175)
+  }
+
+  interval = 0;
+
+  stopInterval = (e) => {
+    e.preventDefault();
+    clearInterval(this.interval)
+  }
+
+  setLoaded = (e) => {
+    this.setState({ loaded: true })
   }
 
   render() {
@@ -362,7 +378,9 @@ class Data extends Component {
                   />
                 )}
               </div> : <div>
-                <button onClick={this.rollImages}>Roll</button>
+                {/* <button onClick={this.rollImages}>Roll</button>
+                <button onClick={this.stopInterval}>Stop</button> */}
+
 
                 <div id="outputArea">
 
@@ -374,10 +392,11 @@ class Data extends Component {
                     img.id = photo.id;
                     img.onload = () => {
                       loaded++;
-                      if (loaded === this.state.photos.length) {
+                      console.log(loaded, img.id);
+                      if (loaded >= this.state.photos.length) {
+                        pictures.push(img);
                         console.log("all loaded");
                         console.log(pictures);
-                        // pictures.forEach(one => outputArea.append(one));
                         const outputArea = document.getElementById("outputArea");
                         console.log(outputArea);
                         outputArea.innerHTML = "";
@@ -385,16 +404,22 @@ class Data extends Component {
                         const newDiv = document.createElement("div");
                         newDiv.className = "blocker";
                         outputArea.append(newDiv)
-
+                        const rollBtn = document.createElement("button");
+                        rollBtn.innerText = "Roll";
+                        rollBtn.addEventListener("click", this.rollImages);
+                        const stopBtn = document.createElement("button");
+                        stopBtn.innerText = "Stop";
+                        stopBtn.addEventListener("click", this.stopInterval);
+                        const buttonDiv = document.createElement("div");
+                        buttonDiv.className = "flipButtons";
+                        buttonDiv.append(rollBtn, stopBtn);
+                        outputArea.append(buttonDiv);
                       } else {
                         console.log("loaded " + i);
                         pictures.push(img);
-
                       }
                     }
-                    // img.src = this.state.photos[i];
                     img.src = photo.img_src;
-                    // return img;
                   }
                   )}
                 </div>
