@@ -29,7 +29,8 @@ class Data extends Component {
     modalCamera: "",
     share: false,
     userSavedArray: [],
-    userSharedArray: []
+    userSharedArray: [],
+    flip: false
   };
 
   componentDidMount() {
@@ -301,7 +302,36 @@ class Data extends Component {
     this.setState({ yOffset: window.pageYOffset })
   }
 
+  handleFlipChange = e => {
+    e.preventDefault();
+    this.setState({ flip: !this.state.flip });
+  }
+
+  rollImages = () => {
+    const pics = [].slice.call(document.querySelectorAll(".newPic"));
+    const sortedPics = pics.sort(function(a, b) {
+      return a.id - b.id;
+    })
+    console.log(sortedPics);
+    console.log(pics);
+    let pos = -1;
+    const timer = setInterval(function() {
+      if (pos >= pics.length - 1) {
+        clearInterval(timer);
+        console.log("done");
+      } else {
+        pos++;
+        sortedPics.forEach(one => one.style.zIndex = "1");
+        console.log(sortedPics[pos]);
+        sortedPics[pos].style.zIndex = "25";
+      }
+    }, 175)
+  }
+
   render() {
+
+    let loaded = 0;
+    let pictures = [];
 
     return <div className="dataPage">
       <BruceBanner backgroundImage={urlPic} />
@@ -309,31 +339,71 @@ class Data extends Component {
         user={this.props.user}
         changeUserState={this.props.changeUserState}
         bannerMessage="Rovers"
-
       />
 
       <div>
         {this.state.photos.length > 0 ? (
+
           <div className="roverPicGrid">
             <div className="spaceTaker"></div>
-            <div className="roverPicHolder">
-              {this.state.photos.map(photo =>
-                <RoverPic
-                  key={photo.id}
-                  photo={photo}
-                  handleShareButton={this.handleShareButton}
-                  handleSaveButton={this.handleSaveButton}
-                  showModal={this.showModal}
-                  userSavedArray={this.state.userSavedArray}
-                  userSharedArray={this.state.userSharedArray}
-                  unshareButton={this.unshareButton}
-                  unsaveButton={this.unsaveButton}
-                />
-              )}
-            </div>
+            {!this.state.flip ?
+              <div className="roverPicHolder">
+                {this.state.photos.map(photo =>
+                  <RoverPic
+                    key={photo.id}
+                    photo={photo}
+                    handleShareButton={this.handleShareButton}
+                    handleSaveButton={this.handleSaveButton}
+                    showModal={this.showModal}
+                    userSavedArray={this.state.userSavedArray}
+                    userSharedArray={this.state.userSharedArray}
+                    unshareButton={this.unshareButton}
+                    unsaveButton={this.unsaveButton}
+                  />
+                )}
+              </div> : <div>
+                <button onClick={this.rollImages}>Roll</button>
+
+                <div id="outputArea">
+
+                  <h1>Loading</h1>
+                  {this.state.photos.forEach((photo, i) => {
+                    const img = new Image();
+                    img.alt = "new picture"
+                    img.className = "newPic";
+                    img.id = photo.id;
+                    img.onload = () => {
+                      loaded++;
+                      if (loaded === this.state.photos.length) {
+                        console.log("all loaded");
+                        console.log(pictures);
+                        // pictures.forEach(one => outputArea.append(one));
+                        const outputArea = document.getElementById("outputArea");
+                        console.log(outputArea);
+                        outputArea.innerHTML = "";
+                        pictures.forEach(one => outputArea.append(one))
+                        const newDiv = document.createElement("div");
+                        newDiv.className = "blocker";
+                        outputArea.append(newDiv)
+
+                      } else {
+                        console.log("loaded " + i);
+                        pictures.push(img);
+
+                      }
+                    }
+                    // img.src = this.state.photos[i];
+                    img.src = photo.img_src;
+                    // return img;
+                  }
+                  )}
+                </div>
+              </div>
+            }
+
           </div>
         ) : (
-            <div></div>
+            null
           )}
 
       </div>
@@ -350,6 +420,7 @@ class Data extends Component {
         getPhotos={this.getPhotos}
         total_day_photos={this.state.total_day_photos}
         show_sol={this.state.show_sol}
+        handleFlipChange={this.handleFlipChange}
 
       />
       {this.state.more ? (
