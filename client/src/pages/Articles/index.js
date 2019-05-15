@@ -20,7 +20,7 @@ class Articles extends Component {
   };
 
   render() {
-    const urlPic = "";
+    const urlPic = "https://images.pexels.com/photos/1327218/pexels-photo-1327218.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
 
     return (
       <div className="article-page">
