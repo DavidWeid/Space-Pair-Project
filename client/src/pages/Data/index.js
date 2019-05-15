@@ -324,6 +324,7 @@ class Data extends Component {
       if (pos >= sortedPics.length - 1) {
         console.log("done and cleared interval " + pos)
         clearInterval(this.interval)
+        this.stopInterval();
       } else {
         pos++;
         sortedPics.forEach(one => one.style.zIndex = "1");
@@ -336,7 +337,9 @@ class Data extends Component {
   interval = 0;
 
   stopInterval = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     clearInterval(this.interval)
   }
 
@@ -377,13 +380,8 @@ class Data extends Component {
                     unsaveButton={this.unsaveButton}
                   />
                 )}
-              </div> : <div>
-                {/* <button onClick={this.rollImages}>Roll</button>
-                <button onClick={this.stopInterval}>Stop</button> */}
-
-
+              </div> : <div className="flipHolder">
                 <div id="outputArea">
-
                   <h1>Loading</h1>
                   {this.state.photos.forEach((photo, i) => {
                     const img = new Image();
@@ -400,10 +398,13 @@ class Data extends Component {
                         const outputArea = document.getElementById("outputArea");
                         console.log(outputArea);
                         outputArea.innerHTML = "";
-                        pictures.forEach(one => outputArea.append(one))
+                        const flipPicsPlace = document.createElement("div");
+                        flipPicsPlace.className = "flipPicsPlace";
+                        pictures.forEach(one => flipPicsPlace.append(one));
                         const newDiv = document.createElement("div");
                         newDiv.className = "blocker";
-                        outputArea.append(newDiv)
+                        flipPicsPlace.append(newDiv)
+                        outputArea.append(flipPicsPlace);
                         const rollBtn = document.createElement("button");
                         rollBtn.innerText = "Roll";
                         rollBtn.addEventListener("click", this.rollImages);
