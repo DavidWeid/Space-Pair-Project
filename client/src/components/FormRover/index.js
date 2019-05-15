@@ -20,7 +20,7 @@ class FormRover extends Component {
   handleScroll = () => {
     if (window.pageYOffset >= 130 && this.state.switchClass === false && window.innerWidth < 1000) {
       this.setState({ switchClass: true });
-    } else  if  (window.pageYOffset < 130){
+    } else if (window.pageYOffset < 130) {
       this.setState({ switchClass: false })
     }
   };
@@ -76,7 +76,12 @@ class FormRover extends Component {
             show_sol={this.props.show_sol}
           />
 
-          {this.props.camera ? (
+          {this.props.camera ? (<div>
+            <button
+              // className="searchBtn"
+              onClick={e => this.props.handleFlipChange(e)}
+            >Flip</button>
+
             <button
               className="searchBtn"
               onClick={(e) => this.props.getPhotos(e)}
@@ -84,6 +89,8 @@ class FormRover extends Component {
               data-sol={this.props.sol}
               data-camera={this.props.camera}
             >Search</button>
+          </div>
+
           ) : (<div></div>)}
         </Form>
       </div>
