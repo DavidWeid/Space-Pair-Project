@@ -3,7 +3,7 @@
   grid-template-columns: 325px auto;
   top: 0;
   padding-top: 2vh;
-  background-color: #99857A;
+  /* background-color: #99857A; */
 }
 
 .roverPicHolder{
@@ -14,11 +14,6 @@
   grid-column-gap: 20px;
 } 
 
-.flipButtons{
-  position: absolute;
-  top: 600px;
-  z-index: 30;
-}
 
 .dataPage{
   height: 100%;
@@ -33,6 +28,47 @@
   height: 100%;
   width: 100%;
 }
+
+.flipHolder{
+  height: 100%;
+  width: 100%;
+  /* background-color: #99857A; */
+}
+
+.outputArea{
+  position: relative;
+}
+
+.newPic{
+  position: absolute;
+  width: 400px;
+  height: auto;
+  left: calc(50% - 200px);
+}
+
+.blocker{
+  position: absolute;
+  height: 400px; 
+  width: 400px;
+  background-color: black;
+  z-index: 5; 
+}
+
+.flipPicsPlace{
+  position: relative;
+  height: 400px; 
+  width: 400px;
+  left: calc(50% - 200px);
+  z-index: 5;
+  overflow: hidden;
+}
+
+.flipButtons{
+  z-index: 30;
+  width: fit-content;
+  margin: 1em auto;
+}
+
 
 @media (max-width:1290px) {
   .roverPicHolder{
