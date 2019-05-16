@@ -78,7 +78,7 @@ class FormRover extends Component {
 
           {this.props.camera ? (<div>
             <button
-              // className="searchBtn"
+              className={this.props.flip ? "flipped flipBtn": "flipBtn"}
               onClick={e => this.props.handleFlipChange(e)}
             >Flip</button>
 

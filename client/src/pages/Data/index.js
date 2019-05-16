@@ -83,6 +83,7 @@ class Data extends Component {
   // Input from buttons in FormRover to select a rover
   selectRover = e => {
     e.preventDefault();
+    clearInterval(this.interval);
     const newRover = e.target.dataset.rover;
     this.setState({
       rover: newRover,
@@ -90,7 +91,9 @@ class Data extends Component {
       sol: "",
       cameras_manifest: [],
       total_day_photos: 0,
-      show_sol: false
+      show_sol: false,
+      photos: [],
+      flip: false
     })
     this.hitRoverManifest(newRover);
   }
@@ -98,6 +101,7 @@ class Data extends Component {
   // Input from FormRover
   selectSolDay = e => {
     e.preventDefault();
+    clearInterval(this.interval);
     const newInput = e.target.value;
     this.setState({ sol: newInput, camera: "", flip: false, photos: [] })
     this.getCameraManifest(newInput)
@@ -123,15 +127,17 @@ class Data extends Component {
   // Input form FormRover/Cameras Component
   // Saves camera choice to state
   selectCamera = e => {
+    clearInterval(this.interval);
     e.preventDefault();
     const newCamera = e.target.dataset.camera;
     console.log(newCamera)
-    this.setState({ camera: newCamera })
+    this.setState({ camera: newCamera , photos: [], flip: false})
   }
 
   // Makes the API call to get photos based on rover, sol, and camera selected
   getPhotos = e => {
     e.preventDefault();
+    clearInterval(this.interval);
     window.scrollTo(0, 0)
     const rover = this.state.rover;
     const sol = this.state.sol;
@@ -313,6 +319,8 @@ class Data extends Component {
   }
 
   rollImages = () => {
+    clearInterval(this.interval);
+    this.interval = 0;
     const pics = [].slice.call(document.querySelectorAll(".newPic"));
     const sortedPics = pics.sort(function(a, b) {
       return a.id - b.id;
@@ -382,7 +390,11 @@ class Data extends Component {
                 )}
               </div> : <div className="flipHolder">
                 <div id="outputArea">
-                  <h1>Loading</h1>
+                  <div className="flipPicsPlace">
+                    {/* <div class="base"></div> */}
+                    <div className="spinner"></div>
+                  </div>
+
                   {this.state.photos.forEach((photo, i) => {
                     const img = new Image();
                     img.alt = "new picture"
@@ -406,7 +418,7 @@ class Data extends Component {
                         flipPicsPlace.append(newDiv)
                         outputArea.append(flipPicsPlace);
                         const rollBtn = document.createElement("button");
-                        rollBtn.innerText = "Roll";
+                        rollBtn.innerText = "Play";
                         rollBtn.addEventListener("click", this.rollImages);
                         const stopBtn = document.createElement("button");
                         stopBtn.innerText = "Stop";
@@ -447,7 +459,7 @@ class Data extends Component {
         total_day_photos={this.state.total_day_photos}
         show_sol={this.state.show_sol}
         handleFlipChange={this.handleFlipChange}
-
+        flip={this.state.flip}
       />
       {this.state.more ? (
         <div>
