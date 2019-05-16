@@ -2,6 +2,10 @@ nav{
   z-index: 4;
 }
 
+button:focus{
+  outline: 0;
+}
+
 .formRover{
   position: fixed;
   top: 0px;
@@ -78,6 +82,21 @@ nav{
   padding: 5px 10px;
 }
 
+.flipBtn{
+  display: block;
+  margin: 0 auto 1px auto;
+  border: 1px black solid;
+  border-radius: 3%;
+  background-color: #663926;
+  color: white;
+  padding: 5px 10px;
+  outline: none;
+}
+
+.flipped{
+  background-color: black
+}
+
 @media (max-width: 1000px) {
   .formRover{
     width: 100%;
@@ -134,6 +153,11 @@ nav{
     height: 100%;
     width: 100%;
     min-width: 50px;
+  }
+
+  .flipBtn{
+    font-size: 14px;
+    width: 100%;
   }
 
   .solInput{

@@ -61,12 +61,48 @@
   left: calc(50% - 200px);
   z-index: 5;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .flipButtons{
   z-index: 30;
   width: fit-content;
   margin: 1em auto;
+}
+
+.base{
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border: 4px darkblue solid;
+  border-radius: 50%;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px)
+}
+
+.spinner{
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border-left: red 4px solid;  
+  border-right: black 4px solid;
+  border-top: black 4px solid;
+  border-bottom: black 4px solid;
+  border-radius: 50%;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  animation: spin;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  0% {transform: rotateZ(0deg)}
+  25% {transform: rotateZ(90deg)}  
+  50% {transform: rotateZ(180deg)}  
+  75% {transform: rotateZ(270deg)}
+  100% {transform: rotateZ(360deg)}
 }
 
 
