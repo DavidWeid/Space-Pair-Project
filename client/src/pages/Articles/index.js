@@ -3,35 +3,117 @@ import "./articles.css";
 import API from "../../utils/articleAPI";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
+import ArticlePost from "../../components/ArticlePost";
+import { Link } from "react-router-dom";
 
 class Articles extends Component {
   state = {
-    loggedUser: false
+    loggedUser: false,
+    articles: [],
+    userSharedArray: [],
+    userSavedArray: []
   };
 
   componentDidMount() {
     this.scrapeArticles();
   }
 
+  // Result is an array of article objects
   scrapeArticles = () => {
     API.scrapeArticles()
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res.data);
+        this.setState({ articles: res.data });
+      })
       .catch(err => console.log(err));
   };
 
+  handleShareButton = e => {
+    e.preventDefault();
+    console.log("Share clicked.");
+    const dat = e.target.dataset;
+    const newSave = {
+      type: dat.type,
+      shared: true,
+      articleTitle: dat.title,
+      articleImg: dat.img,
+      articleAuthor: dat.author,
+      articleURL: dat.url,
+      articleDescription: dat.description,
+      articleAltText: dat.alt
+    };
+
+    console.log(newSave);
+  };
+
+  handleSaveButton = e => {
+    e.preventDefault();
+    console.log("Save clicked.");
+    const dat = e.target.dataset;
+    const newSave = {
+      type: dat.type,
+      shared: false,
+      articleTitle: dat.title,
+      articleImg: dat.img,
+      articleAuthor: dat.author,
+      articleURL: dat.url,
+      articleDescription: dat.description,
+      articleAltText: dat.alt
+    };
+
+    console.log(newSave);
+  };
+
+  handleUnshareButton = e => {
+    e.preventDefault();
+    console.log("Unshare clicked.");
+    const articleTitle = e.target.dataset.title;
+    console.log(articleTitle);
+  };
+
+  handleUnsaveButton = e => {
+    e.preventDefault();
+    console.log("Unsave clicked.");
+    const articleTitle = e.target.dataset.title;
+    console.log(articleTitle);
+  };
+
   render() {
-    const urlPic = "https://images.pexels.com/photos/1327218/pexels-photo-1327218.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+    const urlPic =
+      "https://images.unsplash.com/photo-1481697943534-ea55b5ce970b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2688&q=80";
 
     return (
-      <div className="article-page">
+      <div style={{ height: "100%" }} className="article-page">
         <BruceBanner backgroundImage={urlPic} />
         <BruceText
           user={this.props.user}
           changeUserState={this.props.changeUserState}
           bannerMessage="Articles"
         />
-
-        Hello!
+        {this.state.articles.length > 0 ? (
+          <div className="roverPicGrid">
+            <div className="spaceTaker" />
+            <div className="articleHolder">
+              {this.state.articles.map(article => (
+                <ArticlePost
+                  key={article.id}
+                  article={article}
+                  handleShareButton={this.handleShareButton}
+                  handleSaveButton={this.handleSaveButton}
+                  userSavedArray={this.state.userSavedArray}
+                  userSharedArray={this.state.userSharedArray}
+                  handleUnshareButton={this.handleUnshareButton}
+                  handleUnsaveButton={this.handleUnsaveButton}
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        <nav className="formRover">
+          <button className="searchBtn">
+            <Link className="banLink" to="/data">Rover Pictures</Link>
+          </button>
+        </nav>
       </div>
     );
   }

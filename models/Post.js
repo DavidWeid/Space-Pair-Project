@@ -126,6 +126,11 @@ const PostSchema = new Schema({
     default: ""
   },
 
+  articleAltText: {
+    type: String,
+    default: ""
+  },
+
   // User Post Section---------------------------------------------------------------------------
 
   discussionTitle: {
