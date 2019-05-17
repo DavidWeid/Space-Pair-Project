@@ -28,7 +28,7 @@ const UserSchema = new Schema({
 
   sharedIDs: {
     type: Array,
-    default: [],
+    default: []
   },
 
   roverImgArraySaved: {
@@ -37,6 +37,16 @@ const UserSchema = new Schema({
   },
 
   roverImgArrayShared: {
+    type: Array,
+    default: []
+  },
+
+  articleTitleSaved: {
+    type: Array,
+    default: []
+  },
+
+  articleTitleShared: {
     type: Array,
     default: []
   },

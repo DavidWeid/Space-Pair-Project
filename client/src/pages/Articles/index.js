@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 class Articles extends Component {
   state = {
     loggedUser: false,
+    userInfo: {},
     articles: [],
     userSharedArray: [],
     userSavedArray: []
@@ -16,6 +17,7 @@ class Articles extends Component {
 
   componentDidMount() {
     this.scrapeArticles();
+    this.getUserInfo();
   }
 
   // Result is an array of article objects
@@ -28,29 +30,26 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
-  handleShareButton = e => {
-    e.preventDefault();
-    console.log("Share clicked.");
-    const dat = e.target.dataset;
-    const newSave = {
-      type: dat.type,
-      shared: true,
-      articleTitle: dat.title,
-      articleImg: dat.img,
-      articleAuthor: dat.author,
-      articleURL: dat.url,
-      articleDescription: dat.description,
-      articleAltText: dat.alt
-    };
+  getUserInfo = () => {
+    API.getUserInfo()
+      .then(res => {
+        console.log(res.data);
+        this.setState({ userInfo: res.data });
+      })
+      .catch(err => console.log(err));
+  };
 
-    console.log(newSave);
+  createNewPost = article => {
+    API.createNewPost(article)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   handleSaveButton = e => {
     e.preventDefault();
     console.log("Save clicked.");
     const dat = e.target.dataset;
-    const newSave = {
+    const newSavedArticle = {
       type: dat.type,
       shared: false,
       articleTitle: dat.title,
@@ -61,6 +60,28 @@ class Articles extends Component {
       articleAltText: dat.alt
     };
 
+    console.log(newSavedArticle);
+
+    this.createNewPost(newSavedArticle);
+
+    // this.updateUserWithSavedPost(updateObj)
+  };
+
+  handleShareButton = e => {
+    e.preventDefault();
+    console.log("Share clicked.");
+    const dat = e.target.dataset;
+
+    const newSave = {
+      type: dat.type,
+      shared: true,
+      articleTitle: dat.title,
+      articleImg: dat.img,
+      articleAuthor: dat.author,
+      articleURL: dat.url,
+      articleDescription: dat.description,
+      articleAltText: dat.alt
+    };
     console.log(newSave);
   };
 
@@ -111,7 +132,9 @@ class Articles extends Component {
         ) : null}
         <nav className="formRover">
           <button className="searchBtn">
-            <Link className="banLink" to="/data">Rover Pictures</Link>
+            <Link className="banLink" to="/data">
+              Rover Pictures
+            </Link>
           </button>
         </nav>
       </div>

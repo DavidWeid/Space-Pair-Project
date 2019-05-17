@@ -23,7 +23,14 @@ router.get("/scrape", (req, res) => {
       let summary = $(el)
         .children()
         .find("p.synopsis")
-        .text();
+        .text()
+        .trim();
+      let author = $(el)
+        .children()
+        .find("span.by-author")
+        .children("span")
+        .text()
+        .trim();
       let link = $(el)
         .parent()
         .attr("href");
@@ -39,15 +46,19 @@ router.get("/scrape", (req, res) => {
 
       let altText = $(el).children().find("img").attr("alt");
 
+    //   console.log(author);
+
       let article = {
         id: id,
         title: title,
         link: link,
         summary: summary,
+        author: author,
         imgURL: imgURL,
         altText: altText
       };
 
+    //   console.log(article);
       result.push(article);
     });
 
