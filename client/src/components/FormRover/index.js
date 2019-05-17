@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form } from "reactstrap";
 import "./style.css";
 import Camera from "../Camera";
+import { Link } from "react-router-dom";
 
 class FormRover extends Component {
   state = {
@@ -29,6 +30,7 @@ class FormRover extends Component {
     return (
       <div className={this.state.switchClass ? "formRoverScroll" : "formRover"} >
         <Form>
+
           <div className="roverSelectButtons">
             <button
               onClick={(e) => {
@@ -76,14 +78,18 @@ class FormRover extends Component {
             show_sol={this.props.show_sol}
           />
 
-          {this.props.camera ? (<div>
-            <button
-              className={this.props.flip ? "flipped flipBtn": "flipBtn"}
-              onClick={e => this.props.handleFlipChange(e)}
-            >Flip</button>
+          <div className="bottomButtons">
+            <button className="bottomBtn" onClick={(e) => { e.preventDefault() }}>
+              <Link className="" to="/articles">Articles<span className="hideMobile"> Page</span></Link>
+            </button>
 
             <button
-              className="searchBtn"
+              className={this.props.flip ? "bottomBtn flipped " : "bottomBtn"}
+              onClick={e => this.props.handleFlipChange(e)}
+            >Flip Book</button>
+
+            <button
+              className="bottomBtn"
               onClick={(e) => this.props.getPhotos(e)}
               data-rover={this.props.rover}
               data-sol={this.props.sol}
@@ -91,7 +97,7 @@ class FormRover extends Component {
             >Search</button>
           </div>
 
-          ) : (<div></div>)}
+          
         </Form>
       </div>
     )
