@@ -82,19 +82,35 @@ button:focus{
   padding: 5px 10px;
 }
 
-.flipBtn{
-  display: block;
-  margin: 0 auto 1px auto;
-  border: 1px black solid;
-  border-radius: 3%;
+.bottomButtons{
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 50px;
+  left: calc(50% - 125px)
+}
+
+.bottomBtn{
+  width: 100%;
   background-color: #663926;
   color: white;
-  padding: 5px 10px;
-  outline: none;
+  border: 1px black solid;
+}
+
+.bottomBtn:nth-child(2) {
+  border-top: none;
+  border-bottom: none;
+}
+
+.bottomBtn a{
+  color: white;
+  text-decoration: underline;
 }
 
 .flipped{
-  background-color: black
+  background-color: black;
+  color: white;
 }
 
 @media (max-width: 1000px) {
@@ -204,11 +220,29 @@ button:focus{
   .maxSol{
     font-size: 10px;
   }
-  
+
+  .bottomButtons{
+    height: 100%;
+    position: static;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .bottomBtn{
+    height: 33%;
+  }
+
+  .hideMobile{
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {
   .formRoverScroll{
     top: 46.8px;
+  }
+
+  .bottomBtn{
+    font-size: 10px;
   }
 }
