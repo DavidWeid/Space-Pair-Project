@@ -17,12 +17,13 @@ const ArticlePost = props => {
       <img src={article.imgURL} alt={article.altText} />
       <div className="infoBox">
         <div className="centerBox">
-          <h4>{article.title}</h4>
-          <h6>
+          <h4 className="articleTitle">{article.title}</h4>
+          <h6 className="articleLink">
             <a href={article.link} target="_blank" rel="noopener noreferrer">
               {article.summary}
             </a>
           </h6>
+          <p className="articleAuthor">By {article.author}</p>
         </div>
         <div className="roverPicButtons">
           {showSaved && showShared ? (

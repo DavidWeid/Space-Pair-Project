@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 class Articles extends Component {
   state = {
     loggedUser: false,
-    articles: [],
-    userSharedArray: [],
-    userSavedArray: []
+    userInfo: {},
+    articles: []
+    // ,userSharedArray: [],
+    // userSavedArray: []
   };
 
   componentDidMount() {
@@ -28,10 +29,39 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
+  //   savePostAPI = newSave => {
+  //     API.savePost(newSave)
+  //       .then(res => {
+  //         console.log(res.data);
+  //         if (res.data.user === false) {
+  //           return console.log("Log in to save a post.");
+  //         } else if (res.data.result.shared === false) {
+  //           console.log(res);
+  //           API.addPostIDtoUserSaved(res.data.result._id)
+  //             .then(res => {
+  //               console.log(res);
+  //             })
+  //             .catch(err => console.log(err));
+  //         } else {
+  //           API.addPostIDtoUserSavedShared(res.data.result._id)
+  //             .then(res => {
+  //               console.log(res);
+  //             })
+  //             .catch(err => console.log(err));
+  //         }
+  //       })
+  //       .catch(err => console.log(err));
+  //   };
+
   handleShareButton = e => {
     e.preventDefault();
     console.log("Share clicked.");
     const dat = e.target.dataset;
+    // const filteredArray = this.state.userSavedArray.filter(
+    //   each => each === dat.title
+    // );
+    // console.log(filteredArray);
+    // if (filteredArray.length < 1) {
     const newSave = {
       type: dat.type,
       shared: true,
@@ -42,8 +72,12 @@ class Articles extends Component {
       articleDescription: dat.description,
       articleAltText: dat.alt
     };
-
     console.log(newSave);
+
+    //   this.savePostAPI(newSave);
+    // } else {
+    //   this.updateShared(dat.title, true);
+    // }
   };
 
   handleSaveButton = e => {
@@ -62,6 +96,8 @@ class Articles extends Component {
     };
 
     console.log(newSave);
+
+    // this.savePostAPI(newSave);
   };
 
   handleUnshareButton = e => {
@@ -100,8 +136,8 @@ class Articles extends Component {
                   article={article}
                   handleShareButton={this.handleShareButton}
                   handleSaveButton={this.handleSaveButton}
-                  userSavedArray={this.state.userSavedArray}
-                  userSharedArray={this.state.userSharedArray}
+                //   userSavedArray={this.state.userSavedArray}
+                //   userSharedArray={this.state.userSharedArray}
                   handleUnshareButton={this.handleUnshareButton}
                   handleUnsaveButton={this.handleUnsaveButton}
                 />
@@ -111,7 +147,9 @@ class Articles extends Component {
         ) : null}
         <nav className="formRover">
           <button className="searchBtn">
-            <Link className="banLink" to="/data">Rover Pictures</Link>
+            <Link className="banLink" to="/data">
+              Rover Pictures
+            </Link>
           </button>
         </nav>
       </div>
