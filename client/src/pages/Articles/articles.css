@@ -1,0 +1,11 @@
+.articleHolder {
+    display: grid;
+    grid-template-columns: 47% 47%;
+    width: fit-content;
+    margin: 0 auto;
+    grid-column-gap: 6%;
+}
+/* 
+.articleBody {
+    margin: 0 1%;
+} */
