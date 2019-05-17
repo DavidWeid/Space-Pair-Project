@@ -5,7 +5,31 @@
     margin: 0 auto;
     grid-column-gap: 6%;
 }
+
 /* 
 .articleBody {
     margin: 0 1%;
 } */
+
+@media(max-width: 1000px) {
+    .articleHolder {
+        width: 90%;
+        margin: auto;
+        grid-template-columns: auto auto;
+    }
+
+
+}
+
+@media(max-width: 720px) {
+    .articleHolder{
+        width: 420px;
+        grid-template-columns: auto;
+    }
+}
+
+@media(max-width: 450px){
+    .articleHolder{
+        width: 95%;
+    }
+}
