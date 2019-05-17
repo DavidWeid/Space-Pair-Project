@@ -39,39 +39,39 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
-  //   savePostAPI = newSave => {
-  //     API.savePost(newSave)
-  //       .then(res => {
-  //         console.log(res.data);
-  //         if (res.data.user === false) {
-  //           return console.log("Log in to save a post.");
-  //         } else if (res.data.result.shared === false) {
-  //           console.log(res);
-  //           API.addPostIDtoUserSaved(res.data.result._id)
-  //             .then(res => {
-  //               console.log(res);
-  //             })
-  //             .catch(err => console.log(err));
-  //         } else {
-  //           API.addPostIDtoUserSavedShared(res.data.result._id)
-  //             .then(res => {
-  //               console.log(res);
-  //             })
-  //             .catch(err => console.log(err));
-  //         }
-  //       })
-  //       .catch(err => console.log(err));
-  //   };
+  createNewPost = article => {
+    API.createNewPost(article)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  handleSaveButton = e => {
+    e.preventDefault();
+    console.log("Save clicked.");
+    const dat = e.target.dataset;
+    const newSavedArticle = {
+      type: dat.type,
+      shared: false,
+      articleTitle: dat.title,
+      articleImg: dat.img,
+      articleAuthor: dat.author,
+      articleURL: dat.url,
+      articleDescription: dat.description,
+      articleAltText: dat.alt
+    };
+
+    console.log(newSavedArticle);
+
+    this.createNewPost(newSavedArticle);
+
+    // this.updateUserWithSavedPost(updateObj)
+  };
 
   handleShareButton = e => {
     e.preventDefault();
     console.log("Share clicked.");
     const dat = e.target.dataset;
-    // const filteredArray = this.state.userSavedArray.filter(
-    //   each => each === dat.title
-    // );
-    // console.log(filteredArray);
-    // if (filteredArray.length < 1) {
+
     const newSave = {
       type: dat.type,
       shared: true,
@@ -83,31 +83,6 @@ class Articles extends Component {
       articleAltText: dat.alt
     };
     console.log(newSave);
-
-    //   this.savePostAPI(newSave);
-    // } else {
-    //   this.updateShared(dat.title, true);
-    // }
-  };
-
-  handleSaveButton = e => {
-    e.preventDefault();
-    console.log("Save clicked.");
-    const dat = e.target.dataset;
-    const newSave = {
-      type: dat.type,
-      shared: false,
-      articleTitle: dat.title,
-      articleImg: dat.img,
-      articleAuthor: dat.author,
-      articleURL: dat.url,
-      articleDescription: dat.description,
-      articleAltText: dat.alt
-    };
-
-    console.log(newSave);
-
-    // this.savePostAPI(newSave);
   };
 
   handleUnshareButton = e => {
