@@ -10,13 +10,14 @@ class Articles extends Component {
   state = {
     loggedUser: false,
     userInfo: {},
-    articles: []
-    // ,userSharedArray: [],
-    // userSavedArray: []
+    articles: [],
+    userSharedArray: [],
+    userSavedArray: []
   };
 
   componentDidMount() {
     this.scrapeArticles();
+    this.getUserInfo();
   }
 
   // Result is an array of article objects
@@ -25,6 +26,15 @@ class Articles extends Component {
       .then(res => {
         console.log(res.data);
         this.setState({ articles: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getUserInfo = () => {
+    API.getUserInfo()
+      .then(res => {
+        console.log(res.data);
+        this.setState({ userInfo: res.data });
       })
       .catch(err => console.log(err));
   };
@@ -136,8 +146,8 @@ class Articles extends Component {
                   article={article}
                   handleShareButton={this.handleShareButton}
                   handleSaveButton={this.handleSaveButton}
-                //   userSavedArray={this.state.userSavedArray}
-                //   userSharedArray={this.state.userSharedArray}
+                  userSavedArray={this.state.userSavedArray}
+                  userSharedArray={this.state.userSharedArray}
                   handleUnshareButton={this.handleUnshareButton}
                   handleUnsaveButton={this.handleUnsaveButton}
                 />
