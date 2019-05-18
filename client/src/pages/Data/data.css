@@ -32,7 +32,6 @@
 .flipHolder{
   height: 100%;
   width: 100%;
-  /* background-color: #99857A; */
 }
 
 .outputArea{
@@ -62,12 +61,30 @@
   z-index: 5;
   overflow: hidden;
   border-radius: 5px;
+  border: 2px black solid;
 }
 
 .flipButtons{
   z-index: 30;
   width: fit-content;
   margin: 1em auto;
+}
+
+.flipBtn{
+  background-color: red;
+  border: 1px black solid;
+}
+
+.flipBtn:nth-child(1) {
+  background-color: green;
+}
+
+.flipBtn:active{
+  transform: scale(1.15);
+}
+
+.flipBtn:focus{
+  outline: 0;
 }
 
 .base{
@@ -114,7 +131,7 @@
 
 @media (max-width:1000px) {
   .roverPicGrid {
-    padding-top: calc(25vh - 40px);
+    padding-top: 15vh;
     display: flex;
     flex-direction: column;
   }
@@ -122,13 +139,39 @@
   .roverPicHolder{
     padding-top: 1vh;
   }
-
-  
 }
 
 @media (max-width:650px) {
   .roverPicHolder{
     grid-template-columns: 300px;
   }
+}
+
+@media (max-width: 450px) {
+  .flipPicsPlace{
+    width: 325px;
+    height: 325px;
+    left: calc(50% - 162.5px);
+  }
+
+  .newPic{
+    width: 325px;
+    height: auto;
+    left: calc(50% - 162.5px);
+
+  }
+
+  .outputArea{
+    width: 100%;
+  }
+
+  .blocker {
+    width: 325px;
+    height: 325px;
+    left: calc(50% - 162.5px);
+
+  }
+
+  
 }
 

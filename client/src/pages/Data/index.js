@@ -421,10 +421,12 @@ class Data extends Component {
                         flipPicsPlace.append(newDiv)
                         outputArea.append(flipPicsPlace);
                         const rollBtn = document.createElement("button");
-                        rollBtn.innerText = "Play";
+                        rollBtn.innerHTML = "<i class='fas fa-play'></i>";
+                        rollBtn.className = "flipBtn"
                         rollBtn.addEventListener("click", this.rollImages);
                         const stopBtn = document.createElement("button");
-                        stopBtn.innerText = "Stop";
+                        stopBtn.innerHTML = '<i class="fas fa-stop"></i>';
+                        stopBtn.className = "flipBtn"
                         stopBtn.addEventListener("click", this.stopInterval);
                         const buttonDiv = document.createElement("div");
                         buttonDiv.className = "flipButtons";

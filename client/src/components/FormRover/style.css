@@ -132,7 +132,11 @@ form button:focus{
 }
 
 .ready{
-  background-color: rgb(0, 184, 0);
+  background-color: rgb(201, 33, 33);
+}
+
+.bottomBtn:active{
+  transform: scale(1.05);
 }
 
 @media (max-width: 1000px) {
@@ -191,11 +195,6 @@ form button:focus{
     height: 100%;
     width: 100%;
     min-width: 50px;
-  }
-
-  .flipBtn{
-    font-size: 14px;
-    width: 100%;
   }
 
   .solInput{
