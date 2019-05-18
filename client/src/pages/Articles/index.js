@@ -39,8 +39,17 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
-  createNewPost = article => {
+  createNewPost = (article, title) => {
     API.createNewPost(article)
+      .then(res => {
+        console.log(res);
+        this.updateUser(res.data.result._id, title);
+      })
+      .catch(err => console.log(err));
+  };
+
+  updateUser = (postID, title) => {
+    API.updateUser(postID, title)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
@@ -60,9 +69,11 @@ class Articles extends Component {
       articleAltText: dat.alt
     };
 
+    const articleTitle = newSavedArticle.articleTitle;
+
     console.log(newSavedArticle);
 
-    this.createNewPost(newSavedArticle);
+    this.createNewPost(newSavedArticle, articleTitle);
 
     // this.updateUserWithSavedPost(updateObj)
   };
