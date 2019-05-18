@@ -13,7 +13,11 @@ export default {
     return Axios.post(`/api/posts`, article);
   },
 
-  updateUser(postID, title) {
+  updateUserSaved(postID, title) {
     return Axios.put(`/api/users/update/posts/savedArticle/${postID}/${title}`);
+  },
+
+  updateUserShared(postID, title) {
+    return Axios.put(`/api/users/update/posts/sharedArticle/${postID}/${title}`);
   }
 };
