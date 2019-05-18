@@ -3,14 +3,28 @@ import React from "react";
 const ArticlePost = props => {
   const article = props.article;
 
-  const filterSavedArticle = props.userSavedArray.filter(
-    each => each === article.title
-  );
-  const filterSharedArticle = props.userSharedArray.filter(
-    each => each === article.title
-  );
-  const showSaved = filterSavedArticle.length < 1 ? true : false;
-  const showShared = filterSharedArticle.length < 1 ? true : false;
+  let showSaved;
+  let showShared;
+
+  if (props.user.articleTitleSaved || props.user.articleTitleShared) {
+    const filterSavedArticle = props.user.articleTitleSaved.filter(
+      title => title === article.title
+    );
+
+    console.log(filterSavedArticle);
+
+    const filterSharedArticle = props.user.articleTitleShared.filter(
+      title => title === article.title
+    );
+
+    console.log(filterSharedArticle);
+
+    showSaved = filterSavedArticle.length < 1 ? true : false;
+    showShared = filterSharedArticle.length < 1 ? true : false;
+  } else {
+    showSaved = true;
+    showShared = true;
+  }
 
   return (
     <div className="picBody articleBody">
@@ -26,7 +40,7 @@ const ArticlePost = props => {
           <p className="articleAuthor">By {article.author}</p>
         </div>
         <div className="roverPicButtons">
-          {showSaved && showShared ? (
+          {showSaved ? (
             <button
               className="roverPicBtn"
               data-type="article"
@@ -40,9 +54,7 @@ const ArticlePost = props => {
             >
               Save
             </button>
-          ) : null}
-
-          {!showSaved && showShared ? (
+          ) : (
             <button
               className="roverPicBtn"
               data-title={article.title}
@@ -50,7 +62,7 @@ const ArticlePost = props => {
             >
               Unsave
             </button>
-          ) : null}
+          )}
 
           {showShared ? (
             <button
