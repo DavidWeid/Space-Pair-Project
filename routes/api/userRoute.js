@@ -109,11 +109,25 @@ router.put("/update/posts/unsaved", (req, res) => {
 });
 
 router.put("/update/posts/savedArticle/:postID/:title", (req, res) => {
-  console.log("Updating user with post ID and article title.");
+  console.log("Updating user with saved post ID and article title.");
   User.findByIdAndUpdate(req.user._id, {
     $push: {
       postIDs: req.params.postID,
       articleTitleSaved: req.params.title
+    }
+  })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
+
+router.put("/update/posts/sharedArticle/:postID/:title", (req, res) => {
+  console.log("Updating user with shared post ID and article title.");
+  User.findByIdAndUpdate(req.user._id, {
+    $push: {
+      postIDs: req.params.postID,
+      articleTitleShared: req.params.title
     }
   })
     .then(result => {

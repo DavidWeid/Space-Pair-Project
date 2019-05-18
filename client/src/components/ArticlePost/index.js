@@ -11,13 +11,9 @@ const ArticlePost = props => {
       title => title === article.title
     );
 
-    console.log(filterSavedArticle);
-
     const filterSharedArticle = props.user.articleTitleShared.filter(
       title => title === article.title
     );
-
-    console.log(filterSharedArticle);
 
     showSaved = filterSavedArticle.length < 1 ? true : false;
     showShared = filterSharedArticle.length < 1 ? true : false;

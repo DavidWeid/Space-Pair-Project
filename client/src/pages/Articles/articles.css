@@ -6,14 +6,19 @@
   grid-column-gap: 6%;
 }
 
-.articleLink a {
-  color: #dcdde1;
-  text-decoration: none;
+.toRoverBtn {
+  background-color: white;
 }
 
-.articleLink a:hover {
-    color: #f5f6fa;
-    text-decoration: underline;
+.toRoverBtn a {
+  color: black;
+  text-decoration: underline;
+}
+
+.toRoverBtn a:hover {
+  color: #663926;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .centerBox h4 {

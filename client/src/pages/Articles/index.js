@@ -11,8 +11,6 @@ class Articles extends Component {
     loggedUser: false,
     userInfo: {},
     articles: []
-    // ,userSharedArray: [],
-    // userSavedArray: []
   };
 
   componentDidMount() {
@@ -45,16 +43,32 @@ class Articles extends Component {
     API.createNewPost(article)
       .then(res => {
         console.log(res);
-        this.updateUser(res.data.result._id, title);
+        this.updateUser(res.data.result.shared, res.data.result._id, title);
       })
       .catch(err => console.log(err));
   };
 
-  updateUser = (postID, title) => {
-    API.updateUser(postID, title)
-      .then(res => {
+  updateUser = (shared, postID, title) => {
+    if (shared === false) {
+      API.updateUserSaved(postID, title)
+        .then(res => {
+          console.log(res);
+          this.getUserInfo();
+        })
+        .catch(err => console.log(err));
+    } else if (shared === true) {
+      API.updateUserShared(postID, title).then(res => {
         console.log(res);
         this.getUserInfo();
+      });
+    }
+  };
+
+  unsaveArticle = title => {
+    API.destroyArticle(title)
+      .then(res => {
+        console.log(res);
+        // this.removeUserSaved(postID, title);
       })
       .catch(err => console.log(err));
   };
@@ -62,53 +76,68 @@ class Articles extends Component {
   handleSaveButton = e => {
     e.preventDefault();
     console.log("Save clicked.");
-    const dat = e.target.dataset;
-    const newSavedArticle = {
-      type: dat.type,
-      shared: false,
-      articleTitle: dat.title,
-      articleImg: dat.img,
-      articleAuthor: dat.author,
-      articleURL: dat.url,
-      articleDescription: dat.description,
-      articleAltText: dat.alt
-    };
+    if (!this.state.userInfo._id) {
+      return console.log("Please log in to save article.");
+    } else {
+      const dat = e.target.dataset;
+      const newSavedArticle = {
+        type: dat.type,
+        shared: false,
+        articleTitle: dat.title,
+        articleImg: dat.img,
+        articleAuthor: dat.author,
+        articleURL: dat.url,
+        articleDescription: dat.description,
+        articleAltText: dat.alt
+      };
 
-    const articleTitle = newSavedArticle.articleTitle;
+      const articleTitle = newSavedArticle.articleTitle;
 
-    console.log(newSavedArticle);
+      console.log(newSavedArticle);
 
-    this.createNewPost(newSavedArticle, articleTitle);
+      this.createNewPost(newSavedArticle, articleTitle);
+    }
   };
 
   handleShareButton = e => {
     e.preventDefault();
     console.log("Share clicked.");
-    const dat = e.target.dataset;
+    if (!this.state.userInfo._id) {
+      return console.log("Please log in to share article.");
+    } else {
+      const dat = e.target.dataset;
 
-    const newSave = {
-      type: dat.type,
-      shared: true,
-      articleTitle: dat.title,
-      articleImg: dat.img,
-      articleAuthor: dat.author,
-      articleURL: dat.url,
-      articleDescription: dat.description,
-      articleAltText: dat.alt
-    };
-    console.log(newSave);
-  };
+      const newSharedArticle = {
+        type: dat.type,
+        shared: true,
+        articleTitle: dat.title,
+        articleImg: dat.img,
+        articleAuthor: dat.author,
+        articleURL: dat.url,
+        articleDescription: dat.description,
+        articleAltText: dat.alt
+      };
 
-  handleUnshareButton = e => {
-    e.preventDefault();
-    console.log("Unshare clicked.");
-    const articleTitle = e.target.dataset.title;
-    console.log(articleTitle);
+      const articleTitle = newSharedArticle.articleTitle;
+
+      console.log(newSharedArticle);
+
+      this.createNewPost(newSharedArticle, articleTitle);
+    }
   };
 
   handleUnsaveButton = e => {
     e.preventDefault();
     console.log("Unsave clicked.");
+    const articleTitle = e.target.dataset.title;
+    console.log(articleTitle);
+
+    this.unsaveArticle(articleTitle);
+  };
+
+  handleUnshareButton = e => {
+    e.preventDefault();
+    console.log("Unshare clicked.");
     const articleTitle = e.target.dataset.title;
     console.log(articleTitle);
   };
@@ -144,7 +173,7 @@ class Articles extends Component {
           </div>
         ) : null}
         <nav className="formRover">
-          <button className="searchBtn">
+          <button className="searchBtn toRoverBtn">
             <Link className="banLink" to="/data">
               Rover Pictures
             </Link>
