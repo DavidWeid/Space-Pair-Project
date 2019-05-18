@@ -131,7 +131,7 @@
 
 @media (max-width:1000px) {
   .roverPicGrid {
-    padding-top: 15vh;
+    padding-top: 20vh;
     display: flex;
     flex-direction: column;
   }
