@@ -138,14 +138,17 @@ class Data extends Component {
   getPhotos = e => {
     e.preventDefault();
     clearInterval(this.interval);
-    window.scrollTo(0, 0)
-    const rover = this.state.rover;
-    const sol = this.state.sol;
-    const camera = this.state.camera;
-    if (camera === "all") {
-      return this.hitRoverSolPictures(rover, sol);
+    if (this.state.camera) {
+      window.scrollTo(0, 0)
+      const rover = this.state.rover;
+      const sol = this.state.sol;
+      const camera = this.state.camera;
+      if (camera === "all") {
+        return this.hitRoverSolPictures(rover, sol);
+      }
+      return this.hitRoverSolCameraPictures(rover, sol, camera);
     }
-    return this.hitRoverSolCameraPictures(rover, sol, camera);
+    
   }
 
   getUserPhotoArray = () => {

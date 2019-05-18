@@ -89,7 +89,7 @@ class FormRover extends Component {
             >Flip Book</button>
 
             <button
-              className="bottomBtn"
+              className={this.props.camera ? "bottomBtn ready": "bottomBtn inactive"}
               onClick={(e) => this.props.getPhotos(e)}
               data-rover={this.props.rover}
               data-sol={this.props.sol}
