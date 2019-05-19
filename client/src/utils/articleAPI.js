@@ -18,6 +18,26 @@ export default {
   },
 
   updateUserShared(postID, title) {
-    return Axios.put(`/api/users/update/posts/sharedArticle/${postID}/${title}`);
+    return Axios.put(
+      `/api/users/update/posts/sharedArticle/${postID}/${title}`
+    );
+  },
+
+  deleteUnsavedArticle(title) {
+    return Axios.delete(`/api/posts/deleteSavedArticle/${title}`);
+  },
+
+  removeSavedArticle(postID, title) {
+    return Axios.put(
+      `/api/users/update/posts/unsaveArticle/${postID}/${title}`
+    );
+  },
+
+  updateUnsharedArticle(title) {
+    return Axios.put(`/api/posts/unshareArticle/${title}`);
+  },
+
+  removeSharedArticle(title) {
+    return Axios.put(`/api/users/update/posts/unshareArticle/${title}`);
   }
 };
