@@ -14,10 +14,38 @@ const ArtCommentCard = props => {
   }
 
   const displayComments = props.comments.map(comment => {
+    let commentBtns;
+
+    if (props.userID !== comment.userID) {
+      commentBtns = "";
+    } else {
+      commentBtns = (
+        <div className="comment-btns-div">
+          <button
+            id={comment._id}
+            value="edit"
+            onClick={props.handleCommentBtns}
+          >
+            Edit
+          </button>
+          <button
+            id={comment._id}
+            value="delete"
+            onClick={props.handleCommentBtns}
+          >
+            Delete
+          </button>
+        </div>
+      );
+    }
+
     return (
-      <p key={comment._id}>
-        {comment.username}: {comment.message}
-      </p>
+      <div key={comment._id} className="comment-row">
+        <p>
+          {comment.username}: {comment.message}
+        </p>
+        {commentBtns}
+      </div>
     );
   });
 
@@ -47,7 +75,7 @@ const ArtCommentCard = props => {
             </Col>
           </Row>
           <Row className="info-row">
-            <Col xs="12" sm="4">
+            <Col xs="12" sm="8">
               <p className="date-stamp">Posted: {props.time}</p>
             </Col>
           </Row>

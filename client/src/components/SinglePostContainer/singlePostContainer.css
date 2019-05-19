@@ -15,6 +15,18 @@
   color: #242121;
 }
 
+.article-title {
+  color: #353b48;
+}
+
+.article-description {
+  color: #192a56;
+}
+
+.article-description:hover {
+  color: #192a56;
+}
+
 .comment-row {
   padding-bottom: 1%;
   padding-top: 2%;

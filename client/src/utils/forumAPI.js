@@ -48,9 +48,9 @@ export default {
 
   // When a User "saves" a Post
   // Update Post's "savedUsers" array with User's "_id"
-//   addUserIDtoPost(postID) {
-//     return Axios.put(`/api/posts/update/userID/${postID}`);
-//   },
+  //   addUserIDtoPost(postID) {
+  //     return Axios.put(`/api/posts/update/userID/${postID}`);
+  //   },
   addUserIDtoPost(postID) {
     return Axios.put(`/api/posts/saved/${postID}`);
   },

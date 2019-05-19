@@ -14,7 +14,6 @@ const PicCommentCard = props => {
   }
 
   const displayComments = props.comments.map(comment => {
-
     let commentBtns;
 
     if (props.userID !== comment.userID) {
@@ -22,10 +21,18 @@ const PicCommentCard = props => {
     } else {
       commentBtns = (
         <div className="comment-btns-div">
-          <button id={comment._id} value="edit" onClick={props.handleCommentBtns}>
+          <button
+            id={comment._id}
+            value="edit"
+            onClick={props.handleCommentBtns}
+          >
             Edit
           </button>
-          <button id={comment._id} value="delete" onClick={props.handleCommentBtns}>
+          <button
+            id={comment._id}
+            value="delete"
+            onClick={props.handleCommentBtns}
+          >
             Delete
           </button>
         </div>
