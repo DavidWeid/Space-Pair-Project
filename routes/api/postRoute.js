@@ -76,6 +76,21 @@ router.put("/deleteImg/", (req, res) => {
   }
 });
 
+router.delete("/deleteSavedArticle/:title", (req, res) => {
+  if (req.user) {
+    Post.findOneAndDelete({
+      userID: req.user._id,
+      articleTitle: req.params.title
+    })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => res.json(err));
+  } else {
+    res.json({ user: false });
+  }
+});
+
 // Update Route
 
 // Not sure where we would use this, but we have it
@@ -185,6 +200,20 @@ router.put("/comments/removeComment/:postID/:commentID", (req, res) => {
     Post.findByIdAndUpdate(req.params.postID, {
       $pull: { commentIDs: req.params.commentID }
     })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  } else {
+    res.json({ user: false });
+  }
+});
+
+router.put("/unshareArticle/:title", (req, res) => {
+  if (req.user) {
+    console.log("Updating post to be unshared.");
+    Post.findOneAndUpdate(
+      { articleTitle: req.params.title, userID: req.user._id },
+      { shared: false }
+    )
       .then(result => res.json(result))
       .catch(err => res.json(err));
   } else {

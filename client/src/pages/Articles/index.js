@@ -13,6 +13,7 @@ class Articles extends Component {
     articles: []
   };
 
+  // On load, scrape articles and grab User info if logged in
   componentDidMount() {
     this.scrapeArticles();
     this.getUserInfo();
@@ -28,6 +29,7 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
+  // Object of user info (for saving/sharing posts)
   getUserInfo = () => {
     API.getUserInfo()
       .then(res => {
@@ -39,6 +41,8 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
+  // Article object for new Post
+  // Then update user with new post title and postID
   createNewPost = (article, title) => {
     API.createNewPost(article)
       .then(res => {
@@ -48,6 +52,7 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
+  // If the post is shared, update articleTitleShared, else update articleTitleSaved
   updateUser = (shared, postID, title) => {
     if (shared === false) {
       API.updateUserSaved(postID, title)
@@ -64,11 +69,41 @@ class Articles extends Component {
     }
   };
 
-  unsaveArticle = title => {
-    API.destroyArticle(title)
+  // This destroys the Post matching at "userID" and "articleTitle"
+  deleteUnsavedArticle = title => {
+    API.deleteUnsavedArticle(title)
+      .then(res => {
+        console.log("deleteUnsavedArticle: ", res);
+        this.unsaveArticleFromUser(res.data._id, title);
+      })
+      .then(this.getUserInfo())
+      .catch(err => console.log(err));
+  };
+
+  // Remove Post _id from postIDs array and remove title from articleTitleSaved array
+  unsaveArticleFromUser = (postID, title) => {
+    API.removeSavedArticle(postID, title)
       .then(res => {
         console.log(res);
-        // this.removeUserSaved(postID, title);
+        this.getUserInfo();
+      })
+      .catch(err => console.log(err));
+  };
+
+  unshareArticle = articleTitle => {
+    API.updateUnsharedArticle(articleTitle)
+      .then(res => {
+        console.log(res);
+        this.removeSharedArticle(articleTitle);
+      })
+      .catch(err => console.log(err));
+  };
+
+  removeSharedArticle = title => {
+    API.removeSharedArticle(title)
+      .then(res => {
+        console.log(res);
+        this.getUserInfo();
       })
       .catch(err => console.log(err));
   };
@@ -132,7 +167,7 @@ class Articles extends Component {
     const articleTitle = e.target.dataset.title;
     console.log(articleTitle);
 
-    this.unsaveArticle(articleTitle);
+    this.deleteUnsavedArticle(articleTitle);
   };
 
   handleUnshareButton = e => {
@@ -140,6 +175,8 @@ class Articles extends Component {
     console.log("Unshare clicked.");
     const articleTitle = e.target.dataset.title;
     console.log(articleTitle);
+
+    this.unshareArticle(articleTitle);
   };
 
   render() {

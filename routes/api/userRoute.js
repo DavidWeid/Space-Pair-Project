@@ -136,6 +136,35 @@ router.put("/update/posts/sharedArticle/:postID/:title", (req, res) => {
     .catch(err => res.json(err));
 });
 
+router.put("/update/posts/unsaveArticle/:postID/:title", (req, res) => {
+  console.log(
+    "Updating user to remove article from articleTitleSaved and post from postIDs."
+  );
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: {
+      postIDs: req.params.postID,
+      articleTitleSaved: req.params.title
+    }
+  })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
+
+router.put("/update/posts/unshareArticle/:title", (req, res) => {
+  console.log("Updating user to remove article title from articleTitleShared.");
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: {
+      articleTitleShared: req.params.title
+    }
+  })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
+
 router.put("/update/postID/:id", (req, res) => {
   console.log("User that's updating " + req.user._id);
   User.findByIdAndUpdate(req.user._id, { $push: { postIDs: req.params.id } })

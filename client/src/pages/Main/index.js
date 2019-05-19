@@ -34,7 +34,7 @@ class Main extends Component {
               <i className="fas fa-door-closed fa-4x" />
               <i className="fas fa-door-open fa-4x" />
             </Link>
-            <div className="enter-text">Let's Go</div>
+            {/* <div className="enter-text">Let's Go</div> */}
           </div>
         </div>
       </div>
