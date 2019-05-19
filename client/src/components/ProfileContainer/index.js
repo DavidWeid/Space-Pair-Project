@@ -1,5 +1,6 @@
 import React from "react";
 import PicPostCard from "../../components/ProfilePicPostCard";
+import ArtPostCard from "../../components/ProfileArtPostCard";
 const moment = require("moment");
 moment().format();
 
@@ -37,12 +38,34 @@ const ProfileContainer = props => {
             numComments={numComments}
           />
         );
+
+      case "article":
+        return (
+          <ArtPostCard
+            key={post._id}
+            type={post.type}
+            id={post._id}
+            img={post.articleImg}
+            articleTitle={post.articleTitle}
+            articleURL={post.articleURL}
+            articleDescription={post.articleDescription}
+            username={post.username}
+            userComment={initialComment}
+            time={postTime}
+            userInfo={props.userInfo}
+            numComments={numComments}
+          />
+        );
       default:
         return <div className="no-post">No Posts</div>;
     }
   });
 
-  return <div className="posts-container d-flex flex-column profile-postscontainer">{listPosts}</div>;
+  return (
+    <div className="posts-container d-flex flex-column profile-postscontainer">
+      {listPosts}
+    </div>
+  );
 };
 
 export default ProfileContainer;

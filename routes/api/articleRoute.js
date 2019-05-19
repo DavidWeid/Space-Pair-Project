@@ -44,9 +44,12 @@ router.get("/scrape", (req, res) => {
       let imgURLArray = largeImg.toString().split(" ");
       let imgURL = imgURLArray[0].toString();
 
-      let altText = $(el).children().find("img").attr("alt");
+      let altText = $(el)
+        .children()
+        .find("img")
+        .attr("alt");
 
-    //   console.log(author);
+      //   console.log(author);
 
       let article = {
         id: id,
@@ -58,7 +61,7 @@ router.get("/scrape", (req, res) => {
         altText: altText
       };
 
-    //   console.log(article);
+      //   console.log(article);
       result.push(article);
     });
 

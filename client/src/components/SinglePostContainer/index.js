@@ -52,6 +52,8 @@ const SinglePostContainer = props => {
             handleFormSubmit={props.handleFormSubmit}
             value={props.value}
             comments={comments}
+            userID={props.userID}
+            handleCommentBtns={props.handleCommentBtns}
           />
         );
       case "discussion":
@@ -69,6 +71,8 @@ const SinglePostContainer = props => {
             handleFormSubmit={props.handleFormSubmit}
             value={props.value}
             comments={comments}
+            userID={props.userID}
+            handleCommentBtns={props.handleCommentBtns}
           />
         );
       default:

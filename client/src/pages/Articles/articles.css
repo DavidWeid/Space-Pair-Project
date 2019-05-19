@@ -34,6 +34,14 @@
   padding: 1%;
 }
 
+.articleLink a {
+  color: rgb(230, 230, 230);
+}
+
+.articleLink a:hover {
+  color: rgb(175, 175, 175);
+}
+
 @media (max-width: 1000px) {
   .articleHolder {
     width: 90%;

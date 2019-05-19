@@ -2,15 +2,34 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const PicPostCard = props => {
+const ArtPostCard = props => {
   return (
-    <div className="post-block pic-post">
+    <div className="post-block article-post">
       <div className="card">
         <div className="post-owner-div">
           <span className="post-owner">{props.username}</span> shared:
         </div>
-        <img src={props.img} className="card-img-top" alt={props.type} />
+        {props.img !== "" ? (
+          <img src={props.img} className="card-img-top" alt={props.type} />
+        ) : (
+          <div className="no-image" />
+        )}
         <Container fluid className="card-body">
+          <Row>
+            <Col className="article-title">{props.articleTitle}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <a
+                className="article-description"
+                href={props.articleURL}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {props.articleDescription}
+              </a>
+            </Col>
+          </Row>
           <Row>
             <Col>
               <p className="card-text initial-comment">
@@ -45,4 +64,4 @@ const PicPostCard = props => {
   );
 };
 
-export default PicPostCard;
+export default ArtPostCard;

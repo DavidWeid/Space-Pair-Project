@@ -14,18 +14,18 @@ class Main extends Component {
       <div className="bg">
         <div className="bg-left">
           <div className="action-div">
-            <item className="action-item">
+            <div className="action-item">
               <i className="fas fa-rocket fa-sm landing-icon" />{" "}
               <span className="action-wrd">Discover</span> Mars
-            </item>
-            <item className="action-item">
+            </div>
+            <div className="action-item">
               <i className="fab fa-leanpub fa-sm landing-icon" />{" "}
               <span className="action-wrd">Learn</span> the Rovers
-            </item>
-            <item className="action-item">
+            </div>
+            <div className="action-item">
               <i className="fab fa-rocketchat fa-sm landing-icon" />{" "}
               <span className="action-wrd">Join</span> a Community
-            </item>
+            </div>
           </div>
         </div>
         <div className="bg-right">
