@@ -1,0 +1,66 @@
+.fullArea{
+  background-color: white;
+  min-height: 100%;
+  padding-bottom: 200px;
+}
+
+.outputArea{
+  width: 90%;
+  margin: auto;
+  line-height: 1.5;
+  padding-top: .5em;
+}
+
+.outputArea h1{
+  margin-bottom: 0;
+}
+
+.outputArea p {
+  margin-bottom: .25em;
+  padding: 5px;
+  font-size: 24px;
+}
+
+.pageTitle{
+  text-shadow: 1px 1px red;
+  margin-bottom: .25em;
+  text-align: center;
+}
+
+.roverInfoImg{
+  width: 375px;
+  height: auto;
+  padding: 10px;
+}
+
+.roverInfoImgWide {
+  display: block;
+  width: 75%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.floatLeft{
+  float: left;
+}
+
+.floatRight{
+  float: right;
+}
+
+.redLine{
+  width: 100%;
+  height: 2px;
+  background-color: darkred;
+}
+
+@media (max-width: 550px) {
+  .roverInfoImg{
+    width: 100%
+  }
+
+  .floatLeft, .floatRight{
+    float: none;
+  }
+}
