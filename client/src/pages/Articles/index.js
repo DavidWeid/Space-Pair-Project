@@ -268,7 +268,7 @@ class Articles extends Component {
         ) : null}
         <nav className="formRover">
           <button className="searchBtn toRoverBtn">
-            <Link className="banLink" to="/data">
+            <Link className="banLink" to="/Data">
               Rover Pictures
             </Link>
           </button>

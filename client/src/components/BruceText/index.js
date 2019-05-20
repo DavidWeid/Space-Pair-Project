@@ -122,9 +122,7 @@ class BruceText extends Component {
               </Link>
               <Link
                 className={
-                  window.location.pathname === "/Data"
-                    ? "banLink activeBanLink"
-                    : "banLink"
+                  window.location.pathname === "/Data" || window.location.pathname === "/articles" ? "banLink activeBanLink" : "banLink"
                 }
                 to="/Data"
               >
