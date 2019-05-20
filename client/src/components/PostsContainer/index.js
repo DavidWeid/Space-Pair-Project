@@ -84,7 +84,7 @@ const PostsContainer = props => {
             id={post._id}
             img={post.articleImg}
             username={post.username}
-            userComment={post.userComment}
+            initialComment={initialComment}
             handleLikeBtn={props.handleLikeBtn}
             handleUnlikeBtn={props.handleUnlikeBtn}
             handleSaveBtn={props.handleSaveBtn}
