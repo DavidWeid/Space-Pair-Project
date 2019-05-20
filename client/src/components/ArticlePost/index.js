@@ -70,14 +70,20 @@ const ArticlePost = props => {
               data-url={article.link}
               data-description={article.summary}
               data-alt={article.altText}
-              onClick={e => props.handleShareButton(e)}
+              onClick={e => props.handleShareModal(e)}
             >
               Share
             </button>
           ) : (
             <button
               className="roverPicBtn"
+              data-type="article"
               data-title={article.title}
+              data-img={article.imgURL}
+              data-author={article.author}
+              data-url={article.link}
+              data-description={article.summary}
+              data-alt={article.altText}
               onClick={e => props.handleUnshareButton(e)}
             >
               Unshare
