@@ -41,8 +41,9 @@
 }
 
 .activeBanLink {
-  background-color: rgb(107, 1, 1);
-  background-color: #c23616;
+  /* background-color: rgb(107, 1, 1); */
+  /* background-color: #c23616; */
+  background-color: darkred;
   font-weight: 700;
 }
 
