@@ -3,7 +3,7 @@ import "./style.css";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import RoverHistory from "../../components/RoverHistory";
-import RoverJourney from "../../components/RoverJourney"
+import RoverJourney from "../../components/RoverJourney";
 
 class RoverInfo extends Component {
   state = {
@@ -22,7 +22,7 @@ class RoverInfo extends Component {
     return (
       <div style={{ height: "100%" }}>
         <BruceBanner backgroundImage={url} />
-        <BruceText bannerMessage="Rover Information" changeUserState={this.props.changeUserState} />
+        <BruceText bannerMessage="Home" changeUserState={this.props.changeUserState} />
         <div className="backWhite">
           <div className="toggleBar">
             <div

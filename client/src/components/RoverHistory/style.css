@@ -55,6 +55,35 @@
   background-color: darkred;
 }
 
+.highlightSelect{
+  width: 60%;
+  margin: .5em auto 0 auto;
+  display: flex;
+  border: 1px darkred solid;
+}
+
+.highlightSelectBtn{
+  width: 33.33%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.highlightSelectBtn {
+ padding: 10px 0;
+}
+
+
+.activeHLSelectBtn{
+  background-color: darkred;
+  color: white;
+}
+
+@media (max-width: 750px) {
+  .highlightSelect{
+    width: 100%
+  }
+}
+
 @media (max-width: 550px) {
   .roverInfoImg{
     width: 100%
@@ -63,4 +92,9 @@
   .floatLeft, .floatRight{
     float: none;
   }
+
+  .highlightSelectBtn{
+    font-size: 14px;
+  }
+  
 }

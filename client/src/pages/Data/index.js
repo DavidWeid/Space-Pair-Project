@@ -368,7 +368,7 @@ class Data extends Component {
       <BruceText
         user={this.props.user}
         changeUserState={this.props.changeUserState}
-        bannerMessage="Rovers"
+        bannerMessage="Data"
       />
 
       <div>
