@@ -484,7 +484,7 @@ class Data extends Component {
           />
         </div>
       ) : (
-          <div></div>
+          null
         )}
 
     </div>

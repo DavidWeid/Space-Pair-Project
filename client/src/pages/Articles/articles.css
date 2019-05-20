@@ -1,7 +1,7 @@
 .articleHolder {
   display: grid;
   grid-template-columns: 47% 47%;
-  width: fit-content;
+  width: 96%;
   margin: 0 auto;
   grid-column-gap: 6%;
 }

@@ -4,13 +4,24 @@ import API from "../../utils/articleAPI";
 import BruceBanner from "../../components/BruceBanner";
 import BruceText from "../../components/BruceText";
 import ArticlePost from "../../components/ArticlePost";
+import ArticleModal from "../../components/ArticleModal";
 import { Link } from "react-router-dom";
 
 class Articles extends Component {
   state = {
     loggedUser: false,
     userInfo: {},
-    articles: []
+    articles: [],
+    modal: false,
+
+    // Modal State
+    title: "",
+    img: "",
+    author: "",
+    url: "",
+    description: "",
+    alt: "",
+    userComment: "",
   };
 
   // On load, scrape articles and grab User info if logged in
@@ -48,6 +59,16 @@ class Articles extends Component {
       .then(res => {
         console.log(res);
         this.updateUser(res.data.result.shared, res.data.result._id, title);
+        this.setState({
+          modal: !this.state.modal,
+          userComment: "",
+          title: "",
+          img: "",
+          author: "",
+          url: "",
+          description: "",
+          alt: ""
+        })
       })
       .catch(err => console.log(err));
   };
@@ -141,7 +162,6 @@ class Articles extends Component {
       return console.log("Please log in to share article.");
     } else {
       const dat = e.target.dataset;
-
       const newSharedArticle = {
         type: dat.type,
         shared: true,
@@ -150,7 +170,8 @@ class Articles extends Component {
         articleAuthor: dat.author,
         articleURL: dat.url,
         articleDescription: dat.description,
-        articleAltText: dat.alt
+        articleAltText: dat.alt,
+        userComment: dat.user_comment
       };
 
       const articleTitle = newSharedArticle.articleTitle;
@@ -160,6 +181,35 @@ class Articles extends Component {
       this.createNewPost(newSharedArticle, articleTitle);
     }
   };
+
+  handleShareModal = e => {
+    e.preventDefault();
+    console.log("show the modal");
+    const dat = e.target.dataset;
+    if (this.state.modal) {
+      this.setState({
+        modal: !this.state.modal,
+        userComment: "",
+        title: "",
+        img: "",
+        author: "",
+        url: "",
+        description: "",
+        alt: ""
+      })
+    } else {
+      this.setState({
+        modal: !this.state.modal,
+        title: dat.title,
+        img: dat.img,
+        author: dat.author,
+        url: dat.url,
+        description: dat.description,
+        alt: dat.alt
+      });
+    }
+
+  }
 
   handleUnsaveButton = e => {
     e.preventDefault();
@@ -178,6 +228,13 @@ class Articles extends Component {
 
     this.unshareArticle(articleTitle);
   };
+
+  handleInputChange = e => {
+    e.preventDefault();
+    console.log("working");
+    console.log(e.target.value, e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
   render() {
     const urlPic =
@@ -199,7 +256,7 @@ class Articles extends Component {
                 <ArticlePost
                   key={article.id}
                   article={article}
-                  handleShareButton={this.handleShareButton}
+                  handleShareModal={this.handleShareModal}
                   handleSaveButton={this.handleSaveButton}
                   user={this.state.userInfo}
                   handleUnshareButton={this.handleUnshareButton}
@@ -211,11 +268,26 @@ class Articles extends Component {
         ) : null}
         <nav className="formRover">
           <button className="searchBtn toRoverBtn">
-            <Link className="banLink" to="/data">
+            <Link className="banLink" to="/Data">
               Rover Pictures
             </Link>
           </button>
         </nav>
+        {this.state.modal ? <div>
+          <div className="backdrop"></div>
+          <ArticleModal
+            handleShareModal={this.handleShareModal}
+            title={this.state.title}
+            img={this.state.img}
+            author={this.state.author}
+            url={this.state.url}
+            description={this.state.description}
+            alt={this.state.alt}
+            handleInputChange={this.handleInputChange}
+            handleShareButton={this.handleShareButton}
+            userComment={this.state.userComment}
+          />
+        </div> : null}
       </div>
     );
   }
