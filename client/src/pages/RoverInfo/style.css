@@ -25,3 +25,9 @@
   border: none;
   cursor: initial;
 }
+
+@media (max-width: 500px) {
+  .toggle{
+    font-size: 14px;
+  }
+}

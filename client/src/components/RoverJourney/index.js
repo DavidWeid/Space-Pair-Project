@@ -10,6 +10,20 @@ const RoverJourney = props => {
         <h1 className="pageTitle">Machines</h1>
         <div className="redLine"></div>
 
+
+
+        <div className="roverImgGrid">
+          <div className="machineImgDiv">
+            <p className="imgDesc">Spitit and Opportunity</p>
+            <img className="machineImgMain" alt="Spirit and Opportunity Facts" src="https://mars.jpl.nasa.gov/layout/mer/images/MER_ByTheNumbers_infographic_Feb2019.jpg" />
+          </div>
+
+          <div className="machineImgDiv">
+            <p className="imgDesc">Curiosity</p>
+            <img className="machineImgMain" alt="Curiosity" src="https://thumbs-prod.si-cdn.com/rhFlJcADAUGFcsCKdSJqHhzqdZs=/800x600/filters:no_upscale():focal(273x253:274x254)/https://public-media.si-cdn.com/filer/3c/2c/3c2ce311-b721-412b-948d-e481cdb49a0e/selfie.jpg" />
+          </div>
+        </div>
+
         <p className="pageInfo">
           During the course of their missions on Mars, the rovers Spirit, Opportunity, and Curiosity have accomplished many scientific and technological feats. The photos that this website accesses comes from the <a href="https://github.com/chrisccerami/mars-photo-api" target="_blank" rel="noopener noreferrer">Mars-Photos-API</a> that is maintained by <a href="https://github.com/chrisccerami" target="_blank" rel="noopener noreferrer">Chris Cerami</a>. This API has over 500,000 images that can be returned from the rovers, and Curiosity adds to the collection daily. The images tell a story about the journey each rover has taken on the surface or Mars, and what discoveries they have made. A large number of these pictures are of the rovers themselves, and here are a few of the things you can expect to see.
         </p>
@@ -19,8 +33,8 @@ const RoverJourney = props => {
         <div className="redLine"></div>
 
         <div className="machineImgDiv floatRight topSpace">
-          <img className="machineImg" alt="Calibration Target" src="https://mars.nasa.gov/mer/gallery/all/2/p/040/2P129914320ESF0506P2830L5M1-BR.JPG" />
           <p className="imgDesc">Calibration Target</p>
+          <img className="machineImg" alt="Calibration Target" src="https://mars.nasa.gov/mer/gallery/all/2/p/040/2P129914320ESF0506P2830L5M1-BR.JPG" />
         </div>
 
         <p className="pageInfo">
@@ -41,19 +55,18 @@ const RoverJourney = props => {
 
         <div className="machinePicGrid">
           <div className="machineImgDiv">
-            <img className="machineImg" alt="Rock Abrasion Tool" src="https://mars.nasa.gov/mer/gallery/all/1/p/048/1P132445003ESF05AMP2131L7M1-BR.JPG" />
             <p className="imgDesc">Rock Abrasion Tool</p>
+            <img className="machineImg" alt="Rock Abrasion Tool" src="https://mars.nasa.gov/mer/gallery/all/1/p/048/1P132445003ESF05AMP2131L7M1-BR.JPG" />
           </div>
 
           <div className="machineImgDiv">
-            <img className="machineImg" alt="Spirit's Tracks" src="https://mars.nasa.gov/mer/gallery/all/2/r/109/2R136049852EFF3400P1310L0M1-BR.JPG" />
             <p className="imgDesc">Sprit's Tracks</p>
+            <img className="machineImg" alt="Spirit's Tracks" src="https://mars.nasa.gov/mer/gallery/all/2/r/109/2R136049852EFF3400P1310L0M1-BR.JPG" />
           </div>
 
           <div className="machineImgDiv">
-            <img className="machineImg" alt="RAT Marks" src="https://mars.nasa.gov/mer/gallery/all/1/p/150/1P141508013EFF3192P2575L7M1-BR.JPG" />
             <p className="imgDesc">RAT Markings</p>
-
+            <img className="machineImg" alt="RAT Marks" src="https://mars.nasa.gov/mer/gallery/all/1/p/150/1P141508013EFF3192P2575L7M1-BR.JPG" />
           </div>
         </div>
 
@@ -67,18 +80,18 @@ const RoverJourney = props => {
 
         <div className="machinePicGrid">
           <div>
-            <img className="machineImg" alt="Curiosty's Wheels" src="https://mars.jpl.nasa.gov/msl-raw-images/msss/00034/mhli/0034MH0000660010100027E01_DXXX.jpg" />
             <p className="imgDesc">Curiosity's Wheels</p>
+            <img className="machineImg" alt="Curiosty's Wheels" src="https://mars.jpl.nasa.gov/msl-raw-images/msss/00034/mhli/0034MH0000660010100027E01_DXXX.jpg" />
           </div>
 
           <div>
-            <img className="machineImg" alt="RTG" src="https://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/00010/opgs/edr/ncam/NRA_398381736EDR_F0030000NCAM15000M_.JPG" />
             <p className="imgDesc">Radioisotope Thermoelectric Generator</p>
+            <img className="machineImg" alt="RTG" src="https://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/00010/opgs/edr/ncam/NRA_398381736EDR_F0030000NCAM15000M_.JPG" />
           </div>
 
           <div>
-            <img className="machineImg" alt="Percussion Drill" src="https://mars.jpl.nasa.gov/msl-raw-images/msss/01536/mcam/1536ML0078720000604513E01_DXXX.jpg" />
             <p className="imgDesc">Percussion Drill</p>
+            <img className="machineImg" alt="Percussion Drill" src="https://mars.jpl.nasa.gov/msl-raw-images/msss/01536/mcam/1536ML0078720000604513E01_DXXX.jpg" />
           </div>
         </div>
 
