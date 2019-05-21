@@ -7,7 +7,7 @@ import RoverJourney from "../../components/RoverJourney";
 
 class RoverInfo extends Component {
   state = {
-    history: false
+    history: true
   }
 
   changeDisplay = e => {
