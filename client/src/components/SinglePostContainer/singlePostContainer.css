@@ -28,9 +28,32 @@
 }
 
 .comment-row {
-  padding-bottom: 1%;
+  padding-bottom: 2%;
   padding-top: 2%;
   border-bottom: 1px solid black;
+}
+
+div.comments-display .comment-row:nth-child(even) {
+  background-color: #dcdde1;
+}
+
+.comment-row p {
+  padding-left: 5%;
+}
+
+.comment-username {
+  font-weight: 600;
+  font-size: 105%;
+}
+
+.comment-btns-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-btns-div button {
+  font-size: 80%;
+  margin: 1% 5%;
 }
 
 @media all and (max-width: 1200px) {

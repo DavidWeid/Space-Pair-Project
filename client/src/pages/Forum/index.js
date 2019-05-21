@@ -149,7 +149,7 @@ class Forum extends Component {
     if (userSortby === "recent") {
       sortby = "createdAt";
     } else if (userSortby === "popular") {
-      sortby = "likesLength";
+      sortby = "likes";
     }
 
     // Toggle between "asc" and "des" based on history of User's clicks to sort

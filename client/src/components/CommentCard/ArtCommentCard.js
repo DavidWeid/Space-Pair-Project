@@ -21,14 +21,16 @@ const ArtCommentCard = props => {
     } else {
       commentBtns = (
         <div className="comment-btns-div">
-          <button
+          {/* <button
+            className="post-btn"
             id={comment._id}
             value="edit"
             onClick={props.handleCommentBtns}
           >
             Edit
-          </button>
+          </button> */}
           <button
+            className="post-btn"
             id={comment._id}
             value="delete"
             onClick={props.handleCommentBtns}
@@ -42,7 +44,8 @@ const ArtCommentCard = props => {
     return (
       <div key={comment._id} className="comment-row">
         <p>
-          {comment.username}: {comment.message}
+          <span className="comment-username">{comment.username}</span>:{" "}
+          {comment.message}
         </p>
         {commentBtns}
       </div>
@@ -82,7 +85,7 @@ const ArtCommentCard = props => {
           <Row>
             <Col>
               <p className="card-text initial-comment">{initialComment}</p>
-              {displayComments}
+              <div className="comments-display">{displayComments}</div>
             </Col>
           </Row>
           <Row className="form-row">
