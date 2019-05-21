@@ -60,7 +60,7 @@ class Articles extends Component {
         console.log(res);
         this.updateUser(res.data.result.shared, res.data.result._id, title);
         this.setState({
-          modal: !this.state.modal,
+          modal: false,
           userComment: "",
           title: "",
           img: "",
