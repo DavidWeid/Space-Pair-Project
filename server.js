@@ -8,7 +8,8 @@ const passport = require("./config/passport");
 const models = require("./models");
 const logger = require("morgan");
 
-// Define middleware
+// Define middleware //
+// Morgan for response status: red (server err), yellow (client err), cyan (redirect codes)
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to MongoDB
+// Reset DB if desired and then re-seed
 const eraseDatabaseOnSync = false;
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/science-forum-db", {
@@ -51,6 +53,7 @@ app.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
 
+// To reseed the db
 const createUser = async () => {
   const user1 = new models.User({
     username: "Majin Buu",
