@@ -1,12 +1,12 @@
-nav{
+nav {
   z-index: 4;
 }
 
-form button:focus{
+form button:focus {
   outline: 0;
 }
 
-.formRover{
+.formRover {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -14,19 +14,19 @@ form button:focus{
   padding-top: calc(25vh + 10px);
   width: 325px;
   overflow: hidden;
-  height: 100%; 
+  height: 100%;
   background-color: #444;
   z-index: 2;
 }
 
-.roverSelectButtons{
+.roverSelectButtons {
   width: fit-content;
   margin: auto;
   border-radius: 5px;
-  background-color:  #444;
+  background-color: #444;
 }
 
-.roverBtn{
+.roverBtn {
   border: 1px black solid;
   background-color: white;
   color: black;
@@ -35,46 +35,46 @@ form button:focus{
   width: 90px;
 }
 
-.roverBtn:active{
+.roverBtn:active {
   transform: scale(1.05);
   /* border: none; */
 }
 
-.roverBtn:focus{
+.roverBtn:focus {
   outline: 0;
 }
 
-.roverBtn:nth-child(1){
+.roverBtn:nth-child(1) {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: none;
 }
 
-.roverBtn:nth-child(3){
+.roverBtn:nth-child(3) {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-left: none;
 }
 
-.activeRover{
+.activeRover {
   background-color: black;
   color: red;
 }
 
-.solGroup{
+.solGroup {
   width: 150px;
   margin: auto;
   margin-top: 1em;
   color: whitesmoke;
 }
 
-.solInput{
+.solInput {
   width: 80px;
   margin-left: 5px;
   text-align: center;
 }
 
-.searchBtn{
+.searchBtn {
   display: block;
   margin: auto;
   border: 1px black solid;
@@ -84,7 +84,7 @@ form button:focus{
   padding: 5px 10px;
 }
 
-.bottomButtons{
+.bottomButtons {
   width: 250px;
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ form button:focus{
   overflow: hidden;
 }
 
-.bottomBtn{
+.bottomBtn {
   width: 100%;
   background-color: white;
   color: black;
@@ -117,30 +117,30 @@ form button:focus{
   border-bottom-right-radius: 8px;
 }
 
-.bottomBtn a{
+.bottomBtn a {
   color: black;
   text-decoration: underline;
 }
 
-.flipped{
+.flipped {
   background-color: black;
   color: red;
 }
 
-.inactive{
+.inactive {
   background-color: #555;
 }
 
-.ready{
+.ready {
   background-color: rgb(201, 33, 33);
 }
 
-.bottomBtn:active{
+.bottomBtn:active {
   transform: scale(1.05);
 }
 
 @media (max-width: 1000px) {
-  .formRover{
+  .formRover {
     width: 100%;
     height: auto;
     position: absolute;
@@ -150,10 +150,10 @@ form button:focus{
     align-items: center;
     justify-content: center;
     border-right: none;
-    border-bottom: .5px black solid;
+    border-bottom: 0.5px black solid;
   }
 
-  .formRoverScroll{
+  .formRoverScroll {
     width: 100%;
     height: auto;
     position: fixed;
@@ -163,20 +163,22 @@ form button:focus{
     justify-content: center;
     border-right: none;
     background-color: #444;
-    border-bottom: .5px black solid;
+    border-bottom: 0.5px black solid;
   }
 
-  .formRover form, .formRoverScroll form{
+  .formRover form,
+  .formRoverScroll form {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 1fr;
   }
 
-  .formRover form div, .formRoverScroll form div{
+  .formRover form div,
+  .formRoverScroll form div {
     align-self: center;
     justify-self: center;
   }
 
-  .solGroup{
+  .solGroup {
     width: 100%;
     height: 100%;
     font-size: 16px;
@@ -187,7 +189,7 @@ form button:focus{
     flex-direction: column;
   }
 
-  .searchBtn{
+  .searchBtn {
     display: block;
     font-size: 14px;
     padding: 2.5px;
@@ -197,25 +199,25 @@ form button:focus{
     min-width: 50px;
   }
 
-  .solInput{
+  .solInput {
     width: 90%;
     margin-left: 5%;
     text-align: center;
   }
 
-  .roverSelectButtons{
+  .roverSelectButtons {
     display: flex;
     flex-direction: column;
     font-size: 13px;
   }
 
-  .roverSelectButtons{
+  .roverSelectButtons {
     width: 100%;
     height: 100%;
     background-color: transparent;
   }
 
-  .roverBtn{
+  .roverBtn {
     border: 1px black solid;
     padding: 5px 2.5px;
     font-size: 10px;
@@ -224,46 +226,46 @@ form button:focus{
     min-width: 60px;
   }
 
-  .roverBtn:nth-child(1){
+  .roverBtn:nth-child(1) {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-right: 1px black solid;
     border-bottom: none;
   }
-  
-  .roverBtn:nth-child(3){
+
+  .roverBtn:nth-child(3) {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     border-left: 1px black solid;
     border-top: none;
   }
 
-  .maxSol{
+  .maxSol {
     font-size: 10px;
   }
 
-  .bottomButtons{
+  .bottomButtons {
     height: 100%;
     position: static;
     font-size: 14px;
     width: 100%;
   }
 
-  .bottomBtn{
+  .bottomBtn {
     height: 33%;
   }
 
-  .hideMobile{
+  .hideMobile {
     display: none;
   }
 }
 
 @media (max-width: 500px) {
-  .formRoverScroll{
+  .formRoverScroll {
     top: 46.8px;
   }
 
-  .bottomBtn{
+  .bottomBtn {
     font-size: 10px;
   }
 }

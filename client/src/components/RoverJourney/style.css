@@ -1,41 +1,41 @@
-.machineImg{
+.machineImg {
   width: 300px;
   height: auto;
   border-radius: 5px;
 }
 
-.machineImgMain{
+.machineImgMain {
   width: 400px;
-  height: auto; 
+  height: auto;
   border-radius: 5px;
 }
 
-.roverImgGrid{
+.roverImgGrid {
   display: grid;
   width: 900px;
-  margin: .5em auto;
+  margin: 0.5em auto;
   grid-template-columns: 400px 400px;
   grid-gap: 100px;
 }
 
-.imgDesc{
+.imgDesc {
   font-size: 14px;
   text-align: center;
 }
 
-.machinePicGrid{
+.machinePicGrid {
   width: 100%;
   display: grid;
   grid-template-columns: 300px 300px 300px;
   justify-content: space-between;
-  margin-bottom: .5em; 
+  margin-bottom: 0.5em;
 }
 
-.topSpace{
-  margin-top: .2em;
+.topSpace {
+  margin-top: 0.2em;
 }
 
-.bottomImg{
+.bottomImg {
   display: block;
   width: 80%;
   height: auto;
@@ -44,58 +44,58 @@
 }
 
 @media (max-width: 1035px) {
-  .machinePicGrid{
+  .machinePicGrid {
     grid-template-columns: 300px 300px;
     align-items: center;
   }
 
-  .machinePicGrid div:nth-child(3){
+  .machinePicGrid div:nth-child(3) {
     grid-column: 1 / span 2;
     margin: auto;
   }
 }
 
 @media (max-width: 1000px) {
-  .machineImgMain{
+  .machineImgMain {
     width: 300px;
-    height: auto; 
+    height: auto;
     border-radius: 5px;
   }
-  
-  .roverImgGrid{
+
+  .roverImgGrid {
     display: grid;
     width: 700px;
-    margin: .5em auto;
+    margin: 0.5em auto;
     grid-template-columns: 300px 300px;
     grid-gap: 100px;
   }
 }
 
 @media (max-width: 800px) {
-  .roverImgGrid{
+  .roverImgGrid {
     width: 300px;
     grid-template-columns: 300px;
-    grid-gap: .5em;
+    grid-gap: 0.5em;
   }
 }
 
-@media (max-width: 715px){
-  .machinePicGrid{
+@media (max-width: 715px) {
+  .machinePicGrid {
     width: 300px;
     grid-template-columns: 300px;
     margin: auto;
   }
 
-  .machinePicGrid div:nth-child(3){
+  .machinePicGrid div:nth-child(3) {
     grid-column: 1;
   }
 
-  .machineImg{
+  .machineImg {
     display: block;
     margin: auto;
   }
 
-  .bottomImg{
+  .bottomImg {
     width: 100%;
   }
 }

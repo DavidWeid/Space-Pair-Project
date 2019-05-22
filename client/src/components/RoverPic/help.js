@@ -1,4 +1,5 @@
-{/* <button
+{
+  /* <button
   className="roverPicBtn"
   data-type="roverPic"
   data-name={this.props.photo.rover.name}
@@ -30,4 +31,5 @@
     data-earth_date={this.props.photo.earth_date}
     onClick={(e) => this.props.showModal(e)}
   >More Info
-                </button> */}
+                </button> */
+}

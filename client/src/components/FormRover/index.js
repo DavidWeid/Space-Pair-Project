@@ -19,41 +19,59 @@ class FormRover extends Component {
   }
 
   handleScroll = () => {
-    if (window.pageYOffset >= 130 && this.state.switchClass === false && window.innerWidth < 1000) {
+    if (
+      window.pageYOffset >= 130 &&
+      this.state.switchClass === false &&
+      window.innerWidth < 1000
+    ) {
       this.setState({ switchClass: true });
     } else if (window.pageYOffset < 130) {
-      this.setState({ switchClass: false })
+      this.setState({ switchClass: false });
     }
   };
 
   render() {
     return (
-      <div className={this.state.switchClass ? "formRoverScroll" : "formRover"} >
+      <div className={this.state.switchClass ? "formRoverScroll" : "formRover"}>
         <Form>
-
           <div className="roverSelectButtons">
             <button
-              onClick={(e) => {
-                this.props.selectRover(e)
+              onClick={e => {
+                this.props.selectRover(e);
               }}
               data-rover="spirit"
-              className={this.props.rover === "spirit" ? "activeRover roverBtn" : "roverBtn"}>
+              className={
+                this.props.rover === "spirit"
+                  ? "activeRover roverBtn"
+                  : "roverBtn"
+              }
+            >
               Spirit
             </button>
             <button
-              onClick={(e) => {
-                this.props.selectRover(e)
+              onClick={e => {
+                this.props.selectRover(e);
               }}
               data-rover="opportunity"
-              className={this.props.rover === "opportunity" ? "activeRover roverBtn" : "roverBtn"}>
+              className={
+                this.props.rover === "opportunity"
+                  ? "activeRover roverBtn"
+                  : "roverBtn"
+              }
+            >
               Opportunity
             </button>
             <button
-              onClick={(e) => {
-                this.props.selectRover(e)
+              onClick={e => {
+                this.props.selectRover(e);
               }}
               data-rover="curiosity"
-              className={this.props.rover === "curiosity" ? "activeRover roverBtn" : "roverBtn"}>
+              className={
+                this.props.rover === "curiosity"
+                  ? "activeRover roverBtn"
+                  : "roverBtn"
+              }
+            >
               Curiosity
             </button>
           </div>
@@ -62,11 +80,16 @@ class FormRover extends Component {
             <div className="solGroup">
               <label className="maxSol">Max-Sol: {this.props.max_sol}</label>
               <label>Sol</label>
-              <input type="number" className="solInput" onChange={(e) => this.props.selectSolDay(e)} value={this.props.sol} />
+              <input
+                type="number"
+                className="solInput"
+                onChange={e => this.props.selectSolDay(e)}
+                value={this.props.sol}
+              />
             </div>
           ) : (
-              <div></div>
-            )}
+            <div />
+          )}
 
           <Camera
             camera={this.props.camera}
@@ -79,31 +102,40 @@ class FormRover extends Component {
           />
 
           <div className="bottomButtons">
-            <button className="bottomBtn" onClick={(e) => { e.preventDefault() }}>
-              <Link className="" to="/articles">Articles<span className="hideMobile"> Page</span></Link>
+            <button
+              className="bottomBtn"
+              onClick={e => {
+                e.preventDefault();
+              }}
+            >
+              <Link className="" to="/articles">
+                Articles<span className="hideMobile"> Page</span>
+              </Link>
             </button>
 
             <button
               className={this.props.flip ? "bottomBtn flipped " : "bottomBtn"}
               onClick={e => this.props.handleFlipChange(e)}
-            >Flip Book</button>
+            >
+              Flip Book
+            </button>
 
             <button
-              className={this.props.camera ? "bottomBtn ready": "bottomBtn inactive"}
-              onClick={(e) => this.props.getPhotos(e)}
+              className={
+                this.props.camera ? "bottomBtn ready" : "bottomBtn inactive"
+              }
+              onClick={e => this.props.getPhotos(e)}
               data-rover={this.props.rover}
               data-sol={this.props.sol}
               data-camera={this.props.camera}
-            >Search</button>
+            >
+              Search
+            </button>
           </div>
-
-          
         </Form>
       </div>
-    )
+    );
   }
-
-
 }
 
 export default FormRover;
