@@ -10,15 +10,11 @@ router.get("/", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-// router.get("/wtf", (req, res) => {
-//   // console.log(req.user)
-//   res.json(true)
-// })
-
 // Post Route
 
 // This is not gated at the backend because it can handle all post types.
 // We need to make sure to gate this in the front end!
+// Create new Post and link it to our User
 router.post("/", (req, res) => {
   if (req.user) {
     const newPost = new Post(req.body);
@@ -76,6 +72,8 @@ router.put("/deleteImg/", (req, res) => {
   }
 });
 
+// When User "unsaves" an Article from Articles page
+// Delete Post at matching article title AND user ID
 router.delete("/deleteSavedArticle/:title", (req, res) => {
   if (req.user) {
     Post.findOneAndDelete({
@@ -100,6 +98,7 @@ router.put("/put/:id", (req, res) => {
     .catch(err => res.json(err));
 });
 
+// When the User "likes" a post, update Post's "likes" array with the User ID
 router.put("/liked/:id", (req, res) => {
   if (req.user) {
     console.log("User that's liking", req.user._id);
@@ -112,6 +111,7 @@ router.put("/liked/:id", (req, res) => {
   }
 });
 
+// When the User "unlikes" a Post, pull the User's ID from Post's "likes" array
 router.put("/unliked/:id", (req, res) => {
   if (req.user) {
     console.log("User wants to unlike", req.user._id);
@@ -124,6 +124,7 @@ router.put("/unliked/:id", (req, res) => {
   }
 });
 
+// When the User "saves" a Post, update Post's "savedUsers" array with User ID
 router.put("/saved/:id", (req, res) => {
   if (req.user) {
     console.log("User that's saving", req.user._id);
@@ -138,6 +139,7 @@ router.put("/saved/:id", (req, res) => {
   }
 });
 
+// When the User "unsaves" a Post, pull the User ID from the "savedUsers" array
 router.put("/unsaved/:id", (req, res) => {
   if (req.user) {
     console.log("User wants to unsave", req.user._id);
@@ -178,6 +180,7 @@ router.put("/shared", (req, res) => {
   }
 });
 
+// When User comments on a Post, update Post's "commentIDs" array
 router.put("/newcomment/:postID/:commentID", (req, res) => {
   if (req.user) {
     console.log("Adding new comment ID to Post");
@@ -192,6 +195,7 @@ router.put("/newcomment/:postID/:commentID", (req, res) => {
   }
 });
 
+// If User deletes their comment, remove the comment ID from the Post
 router.put("/comments/removeComment/:postID/:commentID", (req, res) => {
   if (req.user) {
     console.log("Remove Comment ID from post");
@@ -207,6 +211,7 @@ router.put("/comments/removeComment/:postID/:commentID", (req, res) => {
   }
 });
 
+// When User "unshares" an article, find the matching title and User and change to "shared: false"
 router.put("/unshareArticle/:title", (req, res) => {
   if (req.user) {
     console.log("Updating post to be unshared.");
@@ -262,15 +267,11 @@ router.get("/profile/user-liked", (req, res) => {
 });
 
 // Get all posts by one user in postman
-
 router.get("/postman/:id", (req, res) => {
   Post.find({ userID: req.params.id })
     .then(result => res.json(result))
     .catch(err => res.json(err));
 });
-
-// For Sorting, I think we could keep state in react that sees what we last sorted
-// If sorted again, we could flip flop between ascending or descending
 
 // Sort Get Route Ascending
 router.get("/sort/asc/:sort", (req, res) => {

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Post = require("../../models/Post");
+// const Post = require("../../models/Post");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
