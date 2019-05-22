@@ -10,11 +10,11 @@ class Login extends Component {
     email: "",
     password: "",
     user: true,
-    signed: false,
+    signed: false
   };
 
   componentDidMount() {
-    this.checkUser()
+    this.checkUser();
   }
 
   checkUser = () => {
@@ -22,16 +22,15 @@ class Login extends Component {
       .then(result => {
         console.log(result);
         if (result.data.user) {
-          this.setState({ user: true })
-          this.props.changeUserState({ user: true })
+          this.setState({ user: true });
+          this.props.changeUserState({ user: true });
         } else {
-          this.setState({ user: false })
-          this.props.changeUserState({ user: false })
+          this.setState({ user: false });
+          this.props.changeUserState({ user: false });
         }
-
       })
       .catch(err => console.log(err));
-  }
+  };
 
   handleInputUpdate = e => {
     const keyData = e.target.name;
@@ -61,9 +60,9 @@ class Login extends Component {
     console.log("login button pressed");
     API.userLogin(this.state.email, this.state.password)
       .then(res => {
-        console.log(res)
+        console.log(res);
         console.log(res.data.user);
-        this.setState({ user: true, show: false })
+        this.setState({ user: true, show: false });
         this.props.changeUserState(res.data.user);
       })
       .catch(err => {
@@ -85,14 +84,14 @@ class Login extends Component {
       .catch(err => console.log(err));
   };
 
-  logout = (e) => {
+  logout = e => {
     API.userLogout()
       .then(res => {
         console.log(res);
-        this.checkUser()
+        this.checkUser();
       })
       .catch(err => console.log(err));
-  }
+  };
 
   render() {
     return (
@@ -100,14 +99,17 @@ class Login extends Component {
         {this.state.user ? (
           <div className="banLink" onClick={e => this.showLogin(e)}>
             <span>
-              <i className="fas fa-user-astronaut fa-lg" onClick={(e) => this.logout(e)} />
+              <i
+                className="fas fa-user-astronaut fa-lg"
+                onClick={e => this.logout(e)}
+              />
             </span>
           </div>
         ) : (
-            <div className="banLink" onClick={e => this.showLogin(e)}>
-              Login
+          <div className="banLink" onClick={e => this.showLogin(e)}>
+            Login
           </div>
-          )}
+        )}
 
         {!this.state.user ? (
           <div
@@ -154,57 +156,57 @@ class Login extends Component {
                 </form>
               </div>
             ) : (
-                <div id="signupForm" className="signup form-padding">
-                  <form>
-                    <div className="loginFormGroup">
-                      <label>Email:</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={e => this.handleInputUpdate(e)}
-                      />
-                    </div>
-                    <div className="loginFormGroup">
-                      <label>Username:</label>
-                      <input
-                        type="text"
-                        name="username"
-                        value={this.state.username}
-                        onChange={e => this.handleInputUpdate(e)}
-                      />
-                    </div>
-                    <div className="loginFormGroup">
-                      <label>Password:</label>
-                      <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={e => this.handleInputUpdate(e)}
-                      />
-                    </div>
-                    <div className="formButtons">
-                      <button
-                        type="submit"
-                        className="formSubBtn"
-                        onClick={e => this.signup(e)}
-                      >
-                        Sign Up
+              <div id="signupForm" className="signup form-padding">
+                <form>
+                  <div className="loginFormGroup">
+                    <label>Email:</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={this.state.email}
+                      onChange={e => this.handleInputUpdate(e)}
+                    />
+                  </div>
+                  <div className="loginFormGroup">
+                    <label>Username:</label>
+                    <input
+                      type="text"
+                      name="username"
+                      value={this.state.username}
+                      onChange={e => this.handleInputUpdate(e)}
+                    />
+                  </div>
+                  <div className="loginFormGroup">
+                    <label>Password:</label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={e => this.handleInputUpdate(e)}
+                    />
+                  </div>
+                  <div className="formButtons">
+                    <button
+                      type="submit"
+                      className="formSubBtn"
+                      onClick={e => this.signup(e)}
+                    >
+                      Sign Up
                     </button>
-                      <button
-                        onClick={e => this.switchForm(e)}
-                        className="formSubBtn"
-                      >
-                        Back
+                    <button
+                      onClick={e => this.switchForm(e)}
+                      className="formSubBtn"
+                    >
+                      Back
                     </button>
-                    </div>
-                  </form>
-                </div>
-              )}
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
         ) : (
-            <div />
-          )}
+          <div />
+        )}
       </div>
     );
   }

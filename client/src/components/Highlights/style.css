@@ -18,7 +18,7 @@
   height: auto;
 }
 
-.highlightInfo{
+.highlightInfo {
   border: 1px darkred solid;
   border-top: none;
   border-bottom-left-radius: 5px;
@@ -28,26 +28,26 @@
 .highlightInfo p {
   font-size: 14px;
   padding: 5px;
-  margin-bottom: .25em;
+  margin-bottom: 0.25em;
 }
 
-.moveButtons{
+.moveButtons {
   width: fit-content;
-  margin: .5em auto;
+  margin: 0.5em auto;
 }
 
-.moveBtn{
+.moveBtn {
   background-color: darkred;
   color: white;
   border: 1px solid black;
   padding: 3px 18px;
 }
 
-.moveBtn:focus{
+.moveBtn:focus {
   outline: 0;
 }
 
-.moveBtn:hover{
+.moveBtn:hover {
   background-color: white;
   color: darkred;
 }

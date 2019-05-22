@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import "./style.css";
 
 class RoverPic extends Component {
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
-
-    const filterSavedImg = this.props.userSavedArray.filter(each => each === this.props.photo.img_src);
-    const filterSharedImg = this.props.userSharedArray.filter(each => each === this.props.photo.img_src);
+    const filterSavedImg = this.props.userSavedArray.filter(
+      each => each === this.props.photo.img_src
+    );
+    const filterSharedImg = this.props.userSharedArray.filter(
+      each => each === this.props.photo.img_src
+    );
     const showSaved = filterSavedImg.length < 1 ? true : false;
     const showShared = filterSharedImg.length < 1 ? true : false;
     const both = showSaved === true && showShared === true ? true : false;
 
-    console.log(showSaved, showShared, both)
+    console.log(showSaved, showShared, both);
 
     return (
       <div className="picBody">
@@ -27,7 +28,7 @@ class RoverPic extends Component {
 
           <div className="roverPicButtons">
             {/* {console.log(this.props.userImgArray.filter(each => each === this.props.photo.img_src).length)} */}
-            {showSaved && showShared ?
+            {showSaved && showShared ? (
               <button
                 className="roverPicBtn"
                 data-type="roverPic"
@@ -36,23 +37,27 @@ class RoverPic extends Component {
                 data-camera={this.props.photo.camera.name}
                 data-sol={this.props.photo.sol}
                 data-earth_date={this.props.photo.earth_date}
-                onClick={(e) => this.props.handleSaveButton(e)}
-              >Save
-                </button>
-              :
-              <div></div>
-            }
+                onClick={e => this.props.handleSaveButton(e)}
+              >
+                Save
+              </button>
+            ) : (
+              <div />
+            )}
 
-            {!showSaved && showShared ?
+            {!showSaved && showShared ? (
               <button
                 className="roverPicBtn"
                 data-img={this.props.photo.img_src}
-                onClick={(e) => this.props.unsaveButton(e)}
-              >Unsave</button>
-              :
-              <div></div>}
+                onClick={e => this.props.unsaveButton(e)}
+              >
+                Unsave
+              </button>
+            ) : (
+              <div />
+            )}
 
-            {showShared ?
+            {showShared ? (
               <button
                 className="roverPicBtn"
                 data-type="roverPic"
@@ -61,16 +66,19 @@ class RoverPic extends Component {
                 data-camera={this.props.photo.camera.name}
                 data-sol={this.props.photo.sol}
                 data-earth_date={this.props.photo.earth_date}
-                onClick={(e) => this.props.handleShareButton(e)}
-              >Share
-                </button>
-              :
+                onClick={e => this.props.handleShareButton(e)}
+              >
+                Share
+              </button>
+            ) : (
               <button
                 className="roverPicBtn"
                 data-img={this.props.photo.img_src}
-                onClick={(e) => this.props.unshareButton(e)}
-              >Unshare</button>
-            }
+                onClick={e => this.props.unshareButton(e)}
+              >
+                Unshare
+              </button>
+            )}
             <button
               className="roverPicBtn"
               data-type="roverPic"
@@ -79,15 +87,15 @@ class RoverPic extends Component {
               data-camera={this.props.photo.camera.name}
               data-sol={this.props.photo.sol}
               data-earth_date={this.props.photo.earth_date}
-              onClick={(e) => this.props.showModal(e)}
-            >More Info
-                </button>
+              onClick={e => this.props.showModal(e)}
+            >
+              More Info
+            </button>
           </div>
         </div>
-      </div >
-    )
+      </div>
+    );
   }
 }
 
 export default RoverPic;
-

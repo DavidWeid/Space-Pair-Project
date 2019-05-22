@@ -1,12 +1,12 @@
-.toggleBar{
+.toggleBar {
   width: 50%;
-  padding:  .5em 0 0 0;
+  padding: 0.5em 0 0 0;
   margin: auto;
   display: flex;
   background-color: white;
 }
 
-.toggle{
+.toggle {
   width: 50%;
   text-align: center;
   padding: 10px 0;
@@ -14,12 +14,12 @@
   cursor: pointer;
 }
 
-.backWhite{
+.backWhite {
   width: 100%;
   background: white;
 }
 
-.toggleActive{
+.toggleActive {
   background-color: darkred;
   color: white;
   border: none;
@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 500px) {
-  .toggle{
+  .toggle {
     font-size: 14px;
   }
 }

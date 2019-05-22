@@ -1,4 +1,4 @@
-.roverSelectBox{
+.roverSelectBox {
   height: 90%;
   width: 600px;
   position: fixed;
@@ -10,7 +10,7 @@
   background-color: #666;
 }
 
-.roverSelectBox img{
+.roverSelectBox img {
   display: block;
   height: 50%;
   max-width: 580px;
@@ -19,7 +19,7 @@
   border-radius: 1px;
 }
 
-.roverSelectInfo{
+.roverSelectInfo {
   height: 50%;
   display: grid;
   grid-template-columns: auto;
@@ -27,7 +27,7 @@
   grid-row-gap: 0%;
 }
 
-.roverSelectInfoShared{
+.roverSelectInfoShared {
   height: 50%;
   display: grid;
   grid-template-columns: auto;
@@ -35,11 +35,11 @@
   grid-row-gap: 0%;
 }
 
-.capital{
+.capital {
   text-transform: capitalize;
 }
 
-.topBox{
+.topBox {
   width: 80%;
   height: 95%;
   margin: 2.5px auto;
@@ -51,10 +51,10 @@
   color: black;
   padding: 10px;
   border-radius: 5px;
-  border: .5px darkred solid;
+  border: 0.5px darkred solid;
 }
 
-.shareText{
+.shareText {
   display: block;
   height: 90%;
   width: 80%;
@@ -62,56 +62,58 @@
   border-radius: 5px;
 }
 
-.spaceTaker2000{
+.spaceTaker2000 {
   height: 100%;
   width: 100%;
 }
 
-.topBox a{
+.topBox a {
   color: black;
   text-decoration: underline;
 }
 
-.topBox h5, .topBox a{
+.topBox h5,
+.topBox a {
   font-size: 18px;
 }
 
-.roverSelectModalButtons{
+.roverSelectModalButtons {
   width: 80%;
   margin: auto;
-  height: 90%
+  height: 90%;
 }
 
-.roverSelectBtn{
+.roverSelectBtn {
   margin: auto;
   border: darkred 1px solid;
 }
 
 @media (max-width: 900px) {
-
-  .roverSelectBox{
+  .roverSelectBox {
     width: 80%;
     left: 10%;
   }
 
-  .topBox h5, .topBox a{
+  .topBox h5,
+  .topBox a {
     font-size: 16px;
   }
 
-  .topBox{
+  .topBox {
     display: grid;
     grid-template-columns: auto auto;
   }
-
-  
 }
 
 @media (max-width: 600px) {
-  .topBox, .roverSelectBtn, .shareText {
+  .topBox,
+  .roverSelectBtn,
+  .shareText {
     width: 95%;
   }
 
-  .topBox h5, .topBox a{
+  .topBox h5,
+  .topBox a {
     font-size: 12px;
   }
 
@@ -122,9 +124,7 @@
     overflow: hidden;
   }
 
-  .roverSelectModalButtons{
+  .roverSelectModalButtons {
     width: 95%;
   }
-
-  
 }

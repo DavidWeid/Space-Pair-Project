@@ -64,7 +64,9 @@ export default {
   },
 
   removeCommentFromPost(commentID, postID) {
-    return Axios.put(`/api/posts/comments/removeComment/${postID}/${commentID}`);
+    return Axios.put(
+      `/api/posts/comments/removeComment/${postID}/${commentID}`
+    );
   },
 
   savePost(postData) {

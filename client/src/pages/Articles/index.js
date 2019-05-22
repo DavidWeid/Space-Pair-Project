@@ -21,7 +21,7 @@ class Articles extends Component {
     url: "",
     description: "",
     alt: "",
-    userComment: "",
+    userComment: ""
   };
 
   // On load, scrape articles and grab User info if logged in
@@ -68,7 +68,7 @@ class Articles extends Component {
           url: "",
           description: "",
           alt: ""
-        })
+        });
       })
       .catch(err => console.log(err));
   };
@@ -196,7 +196,7 @@ class Articles extends Component {
         url: "",
         description: "",
         alt: ""
-      })
+      });
     } else {
       this.setState({
         modal: !this.state.modal,
@@ -208,8 +208,7 @@ class Articles extends Component {
         alt: dat.alt
       });
     }
-
-  }
+  };
 
   handleUnsaveButton = e => {
     e.preventDefault();
@@ -234,7 +233,7 @@ class Articles extends Component {
     console.log("working");
     console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   render() {
     const urlPic =
@@ -273,21 +272,23 @@ class Articles extends Component {
             </Link>
           </button>
         </nav>
-        {this.state.modal ? <div>
-          <div className="backdrop"></div>
-          <ArticleModal
-            handleShareModal={this.handleShareModal}
-            title={this.state.title}
-            img={this.state.img}
-            author={this.state.author}
-            url={this.state.url}
-            description={this.state.description}
-            alt={this.state.alt}
-            handleInputChange={this.handleInputChange}
-            handleShareButton={this.handleShareButton}
-            userComment={this.state.userComment}
-          />
-        </div> : null}
+        {this.state.modal ? (
+          <div>
+            <div className="backdrop" />
+            <ArticleModal
+              handleShareModal={this.handleShareModal}
+              title={this.state.title}
+              img={this.state.img}
+              author={this.state.author}
+              url={this.state.url}
+              description={this.state.description}
+              alt={this.state.alt}
+              handleInputChange={this.handleInputChange}
+              handleShareButton={this.handleShareButton}
+              userComment={this.state.userComment}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }

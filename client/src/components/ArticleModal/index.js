@@ -10,7 +10,7 @@ const ArticleModal = props => {
       <label>Comment</label>
       <textarea
         className="shareArticleText"
-        onChange={(e) => props.handleInputChange(e)}
+        onChange={e => props.handleInputChange(e)}
         name="userComment"
         value={props.userComment}
       />
@@ -24,14 +24,20 @@ const ArticleModal = props => {
           data-alt={props.alt}
           data-img={props.img}
           data-user_comment={props.userComment}
-          onClick={(e) => props.handleShareButton(e)}
-        >Share</button>
+          onClick={e => props.handleShareButton(e)}
+        >
+          Share
+        </button>
 
-        <button className="articleModalBtn" onClick={(e) => props.handleShareModal(e)}>Back</button>
+        <button
+          className="articleModalBtn"
+          onClick={e => props.handleShareModal(e)}
+        >
+          Back
+        </button>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default ArticleModal;
