@@ -4,6 +4,20 @@
   border-radius: 5px;
 }
 
+.machineImgMain{
+  width: 400px;
+  height: auto; 
+  border-radius: 5px;
+}
+
+.roverImgGrid{
+  display: grid;
+  width: 900px;
+  margin: .5em auto;
+  grid-template-columns: 400px 400px;
+  grid-gap: 100px;
+}
+
 .imgDesc{
   font-size: 14px;
   text-align: center;
@@ -22,8 +36,10 @@
 }
 
 .bottomImg{
-  width: 100%;
+  display: block;
+  width: 80%;
   height: auto;
+  margin: auto;
   border-radius: 5px;
 }
 
@@ -36,6 +52,30 @@
   .machinePicGrid div:nth-child(3){
     grid-column: 1 / span 2;
     margin: auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  .machineImgMain{
+    width: 300px;
+    height: auto; 
+    border-radius: 5px;
+  }
+  
+  .roverImgGrid{
+    display: grid;
+    width: 700px;
+    margin: .5em auto;
+    grid-template-columns: 300px 300px;
+    grid-gap: 100px;
+  }
+}
+
+@media (max-width: 800px) {
+  .roverImgGrid{
+    width: 300px;
+    grid-template-columns: 300px;
+    grid-gap: .5em;
   }
 }
 
@@ -53,5 +93,9 @@
   .machineImg{
     display: block;
     margin: auto;
+  }
+
+  .bottomImg{
+    width: 100%;
   }
 }
