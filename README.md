@@ -6,7 +6,26 @@ Rover Reddit is live [here](https://rover-reddit.herokuapp.com/)!
 Rover Reddit is an application that hopes to create a positive and interactive community that is passionate about Mars, Rovers, and Space! Rover Reddit is a React-express application built in Node.js that utilizes MongoDB and Passport to create a dynamic and customizable user experience. This application is one of the few places that allows the User to browse Mar's Rover images directly from NASA - a massive catalog available to the public, but largely untapped due to the lack of a friendly UI. Rover Reddit aims to be the bridge between Mars and the User.
 - - -
 ## User Interaction
+### Data Page
+#### Images
+From the Data Page, the User can search for images or articles. The image search is shown by default. To search for images, the User first selects the rover: Spirit, Opportunity, or Curiosity. The User then enters the desired sol (martian day) to search. The max-sol day is shown for reference. Spirit and Opportunity have a static max-sol, but Curiosity is still active and thus updates daily. After entering the sol date, the User must select a camera from the selected rover, or select "All". The total number of photos for each sol is shown to the User (some sols will not have photos taken). After camera selection, the User can click "Search" to look at the photos.
 
+User selections give visible feedback. Selecting the Rover highlights the rover button. Selecting the sol allows the User to see the rover's camera selection. Selecting a camera highlights the camera button. Once these three selections are made, the User can click "Search" or "Flip Book".
+
+Clicking "Search" displays the appropriate photos. The User can click "More Info" to see details on the photo, and if the User is logged in, they can "Save" and "Share" the photo. Saving is personal to the User, while sharing posts the image publically to the forum.
+
+Clicking "Flip Book" (a toggle) consolidates all the photos into a single box, which the User can then play. The images are displayed one at a time, in a flip-book like fashion.
+
+#### Articles
+From the Data Page, the User can select to view articles. On the article page, articles are automatically displayed - scraped from space.com/news. Each article is shown in a card that has the article's image, title, summary, and author. The plot is a link to the article on space.com. From the card, the User can also save and share.
+
+### Forum Page
+On the Forum Page, the User can view posts that they have shared and that all other Users have shared. They can also "Like" a post, "Comment" on a post, and "Save" a post if they are logged in. By default, posts are shown in reverse order or creation (newest first). Posts will display the User that shared the post and the post's owner's initial comment if applicable. The posts also display the date and time they were created.
+
+Commenting on a post takes the User to the post's specific comment page where comments can be added to the post. All comments that belong to the post is shown.
+
+### Profile Paage
+The Profile Page will show the logged in User's total number of posts shared, saved, and liked. The User can view these posts specifically by clicking the "Yours", "Saved", or "Liked" buttons. Posts are shown in cards similar to the Forum Page, except the User can't like or save posts from this page. They can, however, comment on any of the posts on the Profile Page. If the User is not logged in, the page informs them that they need to log in to access the page.
 - - -
 ## Dependencies
 Server-side
