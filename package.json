@@ -28,15 +28,9 @@
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
-<<<<<<< HEAD
     "mongoose": "^5.9.10",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-=======
-    "mongoose": "^5.7.5",
-    "morgan": "^1.9.1",
-    "passport": "^0.4.0",
->>>>>>> 99d0b5422044c23947132e03fa7c941297730641
     "passport-local": "^1.0.0"
   }
 }
